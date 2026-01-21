@@ -1,0 +1,10 @@
+/* canvas ocupa toda a janela, fica fixo e não captura eventos do mouse */
+#particles-canvas {
+  position: fixed; /* importante: não é absolute */
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1; /* atrás do conteúdo (conteúdo deve ter z-index >= 2) */
+  pointer-events: none;
+  display: block;
+}
