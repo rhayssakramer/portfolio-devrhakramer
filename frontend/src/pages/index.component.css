@@ -1,0 +1,110 @@
+.landing-container {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  /* deep black gradient background */
+  background: linear-gradient(180deg, #0b0f23 0%, #070a18 40%, #04060d 70%, #000000 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+/* Stars background animation */
+/* removed stars background; particles now provide subtle animated points */
+
+/* Main content */
+.main-content {
+  position: relative;
+  z-index: 2; /* above particles */
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 60px;
+}
+
+/* Welcome title with gradient */
+.welcome-title {
+  font-size: clamp(2.5rem, 8vw, 6rem);
+  font-weight: 700;
+  margin: 0;
+  background: linear-gradient(135deg, #8b5cf6 0%, #ec4899 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  line-height: 1.2;
+  max-width: 90vw;
+  text-align: center;
+}
+
+/* Arrow container */
+.arrow-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Bouncing arrow animation */
+.bouncing-arrow {
+  color: #8b5cf6;
+  animation: bounce 2s ease-in-out infinite;
+  cursor: pointer;
+  padding: 12px;
+  border-radius: 50%;
+  transition: all 0.3s ease;
+}
+
+.bouncing-arrow:hover {
+  color: #ec4899;
+  transform: scale(1.1);
+}
+
+.bouncing-arrow svg {
+  width: 32px;
+  height: 32px;
+}
+
+@keyframes bounce {
+  0%, 20%, 50%, 80%, 100% {
+    transform: translateY(0);
+  }
+  40% {
+    transform: translateY(-20px);
+  }
+  60% {
+    transform: translateY(-10px);
+  }
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .welcome-title {
+    font-size: clamp(2rem, 6vw, 4rem);
+  }
+  
+  .main-content {
+    gap: 40px;
+    padding: 20px;
+  }
+  
+  .bouncing-arrow svg {
+    width: 28px;
+    height: 28px;
+  }
+}
+
+@media (max-width: 480px) {
+  .welcome-title {
+    font-size: clamp(1.8rem, 5vw, 3rem);
+  }
+  
+  .main-content {
+    gap: 30px;
+  }
+  
+  .bouncing-arrow svg {
+    width: 24px;
+    height: 24px;
+  }
+}
