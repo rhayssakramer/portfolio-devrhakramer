@@ -53,6 +53,7 @@
   padding: 12px;
   border-radius: 50%;
   transition: all 0.3s ease;
+  text-decoration: none;
 }
 
 .bouncing-arrow:hover {

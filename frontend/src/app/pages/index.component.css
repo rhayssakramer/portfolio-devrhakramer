@@ -69,6 +69,11 @@
   transform: translateX(-50%);
   z-index: 3;
   color: #c084fc;
+  text-decoration: none;
+  font-size: 2rem;
+  line-height: 1;
+  cursor: pointer;
+  animation: float 2.5s ease-in-out infinite;
 }
 
 @keyframes float {

@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { RouterLink } from '@angular/router';
 import { ParticlesComponent } from '../components/particles.component';
 
 @Component({
@@ -7,6 +8,6 @@ import { ParticlesComponent } from '../components/particles.component';
   templateUrl: './index.component.html',
   styleUrls: ['./index.component.css'],
   standalone: true,
-  imports: [CommonModule, ParticlesComponent]
+  imports: [CommonModule, RouterLink, ParticlesComponent]
 })
 export class IndexComponent {}
