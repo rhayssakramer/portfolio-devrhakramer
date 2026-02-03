@@ -12,6 +12,7 @@
       "architect": {
         "build": {
           "builder": "@angular/build:application",
+          "class": "@angular-devkit/build-angular:BrowserBuilder",
           "options": {
             "index": "src/index.html",
             "polyfills": [
