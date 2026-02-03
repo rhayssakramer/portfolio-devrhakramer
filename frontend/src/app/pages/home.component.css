@@ -1,0 +1,215 @@
+/* Wrapper with same background + particles behind */
+.page-wrapper {
+  position: relative;
+  min-height: 100vh;
+  padding: 24px;
+  /* Define ambient shadow variable used across boxes */
+  --shadow-1: 0 12px 40px rgba(0,0,0,.45);
+  background:
+    linear-gradient(180deg,#0b0f23 0%,#070a18 40%,#04060d 70%,#000 100%),
+    radial-gradient(circle at 15% 35%, rgba(255,255,255,.05) 0%, transparent 50%),
+    radial-gradient(circle at 85% 75%, rgba(255,255,255,.04) 0%, transparent 55%);
+}
+
+.container { max-width: 1250px; margin: 0 auto; }
+.page-grid {
+  position: relative;
+  z-index: 3;
+  display: grid;
+  grid-template-columns: 320px 1fr;
+  gap: 28px;
+}
+
+/* Sidebar */
+.profile-card {
+  background: rgba(20, 22, 35, .85);
+  border: 1px solid rgba(255,255,255,.06);
+  border-radius: 18px;
+  padding: 26px 22px;
+  box-shadow: 0 12px 40px rgba(0,0,0,.45);
+}
+.avatar {
+  width: 170px; height: 170px; border-radius: 18px; margin: 6px auto 18px auto;
+  background: linear-gradient(135deg,#3f3f46,#111827);
+  overflow: hidden;
+}
+.avatar img { width: 100%; height: 100%; object-fit: cover; border-radius: inherit; display: block; }
+.name { color: #ffffff; font-weight: 800; text-align: center; margin: 0; font-size: 2.1rem; letter-spacing: .02em; }
+.role-pill { display: block; margin: 12px auto 0; padding: 10px 16px; border-radius: 12px; background: #1f222d; color: #eaeaf3; font-weight: 600; box-shadow: inset 0 0 0 1px rgba(255,255,255,.08); text-align:center; }
+.divider { height: 1px; background: rgba(255,255,255,.08); margin: 18px 0; }
+
+.contact { list-style: none; padding: 0; margin: 0; display: grid; gap: 12px; }
+.contact li { display: grid; grid-template-columns: 64px 1fr; align-items: center; gap: 18px; }
+.contact div {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.icon {
+  position: relative;
+  width: 50px;
+  height: 50px;
+  border-radius: 16px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #1c1f26;
+  /* Keep glyph/buttons as-is; only the box styling changes */
+  color: var(--orange-yellow-crayola);
+  /* Layered shadow to mimic the attached style */
+  box-shadow:
+    /* ambient project shadow (with fallback if var undefined) */
+    var(--shadow-1, 0 8px 24px rgba(0,0,0,.28)),
+    /* crisp full ring to border the whole box */
+    0 0 0 1px #383839;
+  transition: transform .18s ease, background .18s ease, box-shadow .18s ease, color .18s ease;
+  z-index: 1;
+}
+.icon svg { width: 16px; height: 16px; display: block; }
+.icon::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  /* Subtle top-left glow for the box */
+  background: radial-gradient(120% 100% at 20% 10%, rgba(255,255,255,.08) 0%, rgba(255,255,255,0) 55%);
+  pointer-events: none;
+}
+
+/* Hover for contact icons: pointer cursor and subtle lift/highlight, without making them links */
+.contact li:hover .icon {
+  cursor: pointer;
+  transform: translateY(-4px);
+  background: linear-gradient(180deg, #232427 0%, #111315 100%);
+  box-shadow: var(--shadow-1, 0 10px 28px rgba(0,0,0,.45));
+}
+
+/* Removed left-only contour; full ring handled via box-shadow */
+.contact strong {
+  color: #9ca3af;
+  font-weight: 700;
+  font-size: .72rem;
+  text-transform: uppercase;
+  letter-spacing: .08em;
+}
+.contact small {
+  color: #ffffff;
+  text-decoration: none;
+  font-size: .95rem;
+}
+
+/* Make links inside the small/value area inherit the small text styles and remove underline */
+.contact div small a,
+.contact div small a:visited {
+  color: inherit;
+  font: inherit;
+  font-size: inherit;
+  font-weight: inherit;
+  line-height: inherit;
+  text-decoration: none;
+  border-bottom: none;
+}
+.contact div small a:hover,
+.contact div small a:focus {
+  color: inherit;
+  text-decoration: none;
+  outline: none;
+}
+
+.contact div small { margin-top: 6px; }
+
+.social { display: flex; gap: 10px; justify-content: center; margin-top: 14px; }
+.social-btn { width: 28px; height: 28px; border-radius: 50%; display: grid; place-items: center; color: #d4d4d8; background: rgba(255,255,255,.06); box-shadow: inset 0 0 0 1px rgba(255,255,255,.08); transition: transform .18s ease, background .18s ease; }
+.social-btn:hover { transform: translateY(-2px); background: rgba(255,255,255,.12); color: #fff; }
+
+/* Icon-only social buttons: no box, only svg icon, subtle hover */
+.social-btn.icon-only {
+  width: auto;
+  height: auto;
+  padding: 6px;
+  border-radius: 4px;
+  background: transparent;
+  box-shadow: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--orange-yellow-crayola);
+  transition: transform .18s ease, color .18s ease;
+}
+.social-btn.icon-only:hover { transform: translateY(-3px); color: #8b65d0; }
+.social-btn.icon-only svg { width: 18px; height: 18px; display: block; fill: currentColor; 
+}
+
+/* Main */
+.content { min-width: 0; position: relative; }
+
+.tabs {
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  display: flex;
+  gap: 14px;
+  align-items: center;
+  background: #171a26;
+  padding: 6px 12px;
+  border: 1px solid rgba(255,255,255,0.03);
+  border-top-right-radius: 15px;
+  border-bottom-left-radius: 15px;
+  box-shadow: none;
+  z-index: 20;
+  width: auto;
+  justify-content: flex-end;
+}
+.tab {
+  padding: 8px 14px;
+  color: #d0d0d6;
+  background: transparent;
+  cursor: pointer;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  white-space: nowrap;
+  border-radius: 6px;
+  transition: transform .18s ease, color .12s ease;
+}
+.tab:hover { color: #8b65d0; transform: translateY(-4px); }
+.tab.active { color: #8b65d0; font-weight: 800;}
+
+/* slight inner divider to blend with card edge */
+/* removed decorative inner gradient to sit flush with card */
+
+/* Ensure the .card is the positioning context for embedded tabs */
+.card { position: relative; padding-top: 48px; overflow: visible; }
+
+.card {
+  background: rgba(20, 22, 35, .85);
+  border: 1px solid rgba(255,255,255,.06);
+  border-radius: 18px;
+  padding: 22px 22px 22px 22px;
+  box-shadow: 0 12px 40px rgba(0,0,0,.45);
+  color: #d6d6df;
+}
+.card + .card { margin-top: 18px; }
+.title { font-size: 2rem; margin: 0 0 12px 0; color: #fff; position: relative; }
+.title::after { content: ''; display:block; width: 52px; height: 4px; border-radius: 2px; background: #8b65d0; margin-top: 8px; opacity: .9; }
+.subtitle { color: #fff; margin: 0 0 14px 0; font-size: 1.25rem; }
+
+.grid-feats { display:grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: 16px; }
+.feat { display:flex; gap:14px; background: rgba(255,255,255,.02); border: 1px solid rgba(255,255,255,.06); padding:16px; border-radius: 14px; }
+.feat h3 { margin: 0 0 6px 0; color: #fff; }
+.feat p { margin: 0; color: #bdbdc7; }
+.feat-ico { width: 52px; height: 52px; border-radius: 14px; display:grid; place-items:center; font-size: 1.2rem; }
+.feat-ico.gold { background: linear-gradient(180deg,#8b65d0,#6727dd); color:#1a1201; }
+
+.projects { display:grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 16px; }
+.project { background: rgba(255,255,255,.02); border: 1px solid rgba(255,255,255,.06); padding:16px; border-radius: 14px; }
+.project h3 { color: #fff; margin: 8px 0; }
+.project p { margin: 0; color: #bdbdc7; }
+.project .link { color: #f0c94a; text-decoration: underline; cursor: default; display:inline-block; margin-bottom: 6px; }
+.proj-ico { width: 64px; height: 64px; border-radius: 12px; display:grid; place-items:center; background: linear-gradient(180deg,#ffb84d,#ff8c1a); color:#1a1201; font-size: 1.4rem; }
+
+.stack { display:flex; gap: 14px; flex-wrap: wrap; }
+.stack-item { background: rgba(255,255,255,.04); color:#e4e4e7; border-radius: 12px; padding: 12px 16px; border:1px solid rgba(255,255,255,.06); }
+
+@media (max-width: 1000px) { .page-grid { grid-template-columns: 1fr; } }
+@media (max-width: 640px) { .grid-feats, .projects { grid-template-columns: 1fr; } }
