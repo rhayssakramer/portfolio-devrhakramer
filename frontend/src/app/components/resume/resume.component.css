@@ -1,4 +1,327 @@
-.resume-page { padding: 24px; }
-.resume-page .container { max-width: 900px; margin: 0 auto; }
-.resume-section { margin-top: 16px; }
-.download-note { margin-top: 20px; color: #666; }
+.container{
+    position: relative; 
+    left: -35px;
+    top: -18px;
+    overflow: visible; 
+    padding: 10px 0px 5px 10px;
+    color: #d6d6df;
+}
+
+.container h1{ 
+  font-size: 2rem; 
+  margin: 0 0 12px 0; 
+  color: #fff; 
+  position: relative; 
+  font-weight: 700;
+}
+
+.container h1::after { 
+  content: ''; 
+  display:block; 
+  width: 52px; 
+  height: 4px; 
+  border-radius: 2px; 
+  background: #8b65d0; 
+  margin-top: 8px; 
+  opacity: .9; 
+}
+
+.container p{
+    font-size: 20px;
+}
+
+.resume-page { 
+    padding: 24px; 
+}
+
+.resume-page .container { 
+    max-width: 1400px; 
+    margin: 0 auto; 
+}
+
+/* Grid Layout */
+.resume-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 32px;
+  margin-top: 32px;
+  grid-auto-rows: 1fr; /* força todas as linhas a terem a mesma altura */
+}
+
+.left-column,
+.right-column {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+/* Card Styles */
+.card {
+    display: flex;
+    position: relative; 
+    flex-direction: column;
+    background: transparent; 
+    background: rgba(255,255,255,.02); 
+    color: #d6d6df;
+    padding: 22px 22px 22px 22px; 
+    border-radius: 16px;
+    box-shadow: 2px 2px 2px 2px #00000047;
+    transition: transform 0.3s ease, border-color 0.3s ease, max-height 0.5s ease;
+    overflow: hidden;
+    margin-bottom: 5px;
+    max-height: 270px; /* Altura padrão para acomodar apenas 1 evento */
+    min-height: 270px; /* Altura mínima para manter todos os cards do mesmo tamanho */
+}
+
+/* Card de habilidades com altura diferente */
+.card.skills-card {
+    min-height: auto; /* Remove altura mínima para o card de habilidades */
+    max-height: none; /* Remove limite de altura máxima */
+    overflow: visible; /* Permite mostrar todo o conteúdo */
+}
+
+.card.expanded {
+    max-height: 2000px; /* Altura máxima no modo expandido */
+    overflow: visible;
+    min-height: auto; /* Remove altura mínima quando expandido */
+}
+
+.card:hover {
+  border: 2px solid #8b65d0;
+}
+
+/* Ajuste específico para o card de Formação Acadêmica */
+.formation-card {
+  min-height: 360px;
+}
+
+/* Card Header */
+.card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 15px;
+  margin-bottom: 5px;
+  padding: 10px;
+}
+
+.card-header-left {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.card-header::after {
+  display: none !important;
+}
+
+.card-header h2 {
+  border: none !important;
+  border-bottom: none !important;
+  font-size: 12px;
+}
+
+.card-header h2::after {
+  display: none !important;
+}
+
+.card-header .icon {
+  font-size: 28px;
+}
+
+.card-header h2 {
+  font-size: 1.5rem;
+  color: #ffff;
+  margin: 0;
+  font-weight: 600;
+}
+
+/* Botão de Expansão */
+.expand-btn {
+  background: transparent;
+  border: 1px solid rgba(139, 101, 208, 0.5);
+  color: #8b65d0;
+  padding: 8px 12px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 0.875rem;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  white-space: nowrap;
+}
+
+.expand-btn:hover {
+  background: rgba(139, 101, 208, 0.3);
+  border-color: #8b65d0;
+  transform: scale(1.05);
+}
+
+.expand-btn svg {
+  width: 16px;
+  height: 16px;
+  transition: transform 0.3s ease;
+}
+
+.expand-btn.expanded svg {
+  transform: rotate(180deg);
+}
+
+/* Conteúdo do Card */
+.card-content {
+  position: relative;
+  overflow: hidden;
+}
+
+.card.expanded .card-content {
+  overflow: visible;
+}
+
+/* Gradiente de Fade quando colapsado */
+.card:not(.expanded) .card-content::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 60px;
+  pointer-events: none;
+}
+
+/* Timeline Items */
+.timeline-item {
+  margin-bottom: 24px;
+  padding-left: 20px;
+  border-left: 2px solid rgba(139, 101, 208, 0.3);
+}
+
+.timeline-item:last-child {
+  margin-bottom: 0;
+}
+
+/* Ocultar todos os itens exceto o primeiro quando card não estiver expandido */
+.card:not(.expanded) .timeline-item:not(:first-child) {
+  display: none;
+}
+
+/* Mostrar todos os itens quando expandido */
+.card.expanded .timeline-item {
+  display: block;
+}
+
+.timeline-item .year {
+  font-size: 0.875rem;
+  color: #8b65d0;
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+
+.timeline-item h3 {
+  font-size: 1.125rem;
+  color: #fff;
+  margin: 0 0 8px 0;
+  font-weight: 600;
+}
+
+.timeline-item .institution {
+  font-size: 0.9375rem;
+  color: #a0a0b0;
+  margin: 0 0 8px 0;
+}
+
+.timeline-item .description {
+  font-size: 0.9375rem;
+  color: #d6d6df;
+  line-height: 1.6;
+  margin: 0;
+}
+
+/* Skills */
+.skill-item {
+  margin-bottom: 20px;
+}
+
+.skill-item:last-child {
+  margin-bottom: 0;
+}
+
+.skill-header {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 8px;
+  font-size: 0.9375rem;
+  color: #fff;
+}
+
+.skill-bar {
+  width: 100%;
+  height: 8px;
+  background: rgba(139, 101, 208, 0.2);
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.skill-progress {
+  height: 100%;
+  background: linear-gradient(90deg, #8b65d0, #b491e0);
+  border-radius: 4px;
+  transition: width 1s ease;
+}
+
+/* Animations */
+@keyframes slideInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-100px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideInRight {
+  from {
+    opacity: 0;
+    transform: translateX(100px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.slide-in-left {
+  animation: slideInLeft 0.8s ease-out forwards;
+}
+
+.slide-in-right {
+  animation: slideInRight 0.8s ease-out forwards;
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+  .resume-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .slide-in-left,
+  .slide-in-right {
+    animation: slideInLeft 0.8s ease-out forwards;
+  }
+}
+
+@media (max-width: 768px) {
+  .card {
+    padding: 24px;
+  }
+  
+  .card-header h2 {
+    font-size: 1.25rem;
+  }
+  
+  .timeline-item h3 {
+    font-size: 1rem;
+  }
+}

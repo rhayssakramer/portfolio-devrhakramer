@@ -16,7 +16,7 @@
 }
 
 .container { 
-  max-width: 1000px; /* reduced to shrink main card width */
+  max-width: 1400px; /* increased card width */
   margin: 0 auto; 
 }
 
@@ -24,7 +24,7 @@
   position: relative; 
   z-index: 3; 
   display: grid; 
-  grid-template-columns: 320px minmax(0,760px); /* fixed sidebar + constrained main column to center content */
+  grid-template-columns: 320px minmax(0,960px); /* fixed sidebar + wider main column for more content */
   gap: 32px; 
   align-items: start;
   height: 100%;
@@ -33,7 +33,7 @@
 
 /* Ensure the grid container itself doesn't expand beyond the intended width */
 .page-grid.container {
-  max-width: 1100px; /* enforce container width on the grid element (allow 320 + 760px) */
+  max-width: 1300px; /* enforce container width on the grid element (allow 320 + 960px) */
   margin: 0 auto;
 }
 /* Profile styles moved to src/app/components/profile-card/profile-card.component.css */
@@ -125,7 +125,7 @@
 /* Limit the width of the main "Sobre Mim" card so it doesn't stretch too wide */
 .content > .card {
   width: 100%;
-  max-width: 760px; /* tuned to match visual balance with sidebar */
+  max-width: 960px; /* increased width for better content display */
   margin: 0 auto; /* center the card horizontally inside its grid column */
 }
 
@@ -133,6 +133,7 @@
 .card.show-resume > *:not(.tabs):not(.resume-host) {
   display: none;
 }
+
 .resume-host {
   padding: 8px 0 0 0;
 }
@@ -141,6 +142,7 @@
 .card.show-portfolio > *:not(.tabs):not(.portfolio-host) {
   display: none;
 }
+
 .portfolio-host {
   padding: 8px 0 0 0;
 }
@@ -149,6 +151,7 @@
 .card.show-blog > *:not(.tabs):not(.blog-host) {
   display: none;
 }
+
 .blog-host {
   padding: 8px 0 0 0;
 }
@@ -168,6 +171,7 @@
 .title { 
   font-size: 2rem; 
   margin: 0 0 12px 0; 
+  margin-top: 25px;
   color: #fff; 
   position: relative; 
 }
@@ -233,9 +237,7 @@
   background: rgba(255,255,255,.02); 
   padding:16px; 
   border-radius: 14px; 
-  box-shadow:
-    /* crisp full ring to border the whole box */
-    2px 2px 2px 2px #00000047;
+  box-shadow: 2px 2px 2px 2px #00000047;
 }
 
 .feat h3 { 

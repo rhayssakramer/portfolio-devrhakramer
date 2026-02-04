@@ -1,23 +1,286 @@
 <section class="page-wrapper resume-page">
   <div class="container">
     <h1>Currículo</h1>
-    <p>Bem-vindo(a)! Aqui você encontra um resumo das minhas experiências, habilidades e formações.</p>
-
-    <section class="resume-section">
+    <p>Linha do Tempo Profissional</p>
+    <section class="resume-professional">
       <h2>Resumo Profissional</h2>
-      <p>Desenvolvedora Full-stack Jr. com experiência em Angular, TypeScript, Node.js e .NET. Foco em boas práticas, segurança e aplicações escaláveis.</p>
+      <p>Desenvolvedora Full-stack Jr. com experiência em Angular, Typescript, Node.js e .NET. 
+        Foco em boas práticas, segurança e aplicações escaláveis.
+      </p>
     </section>
+    <div class="resume-grid">
+      <!-- Coluna Esquerda -->
+      <div class="left-column">
+        <!-- Formação Acadêmica -->
+        <div class="card slide-in-left" [class.expanded]="isExpanded('education')">
+          <div class="card-header">
+            <div class="card-header-left">
+              <span class="icon">
+                <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M22 10v6M2 10l10-5 10 5-10 5z"></path>
+                  <path d="M6 12v5c3 3 9 3 12 0v-5"></path>
+                </svg>
+              </span>
+              <h2>Formação Acadêmica</h2>
+            </div>
+            <button *ngIf="hasMultipleItems('education')" class="expand-btn" [class.expanded]="isExpanded('education')" (click)="toggleCard('education')">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="6 9 12 15 18 9"></polyline>
+              </svg>
+            </button>
+          </div>
+          <div class="card-content">
+            <div class="timeline-item">
+              <div class="year">2024 - 2027</div>
+              <h3>Bacharelado em Sistemas de Informação</h3>
+              <p class="institution">Universidade Estácio de Sá</p>
+              <p class="description">Formação completa para desenvolver sistemas que automatizam processos e aumentam a produtividade nas organizações.</p>
+            </div>
+          </div>
+        </div>
 
-    <section class="resume-section">
-      <h2>Habilidades</h2>
-      <ul>
-        <li>Angular / TypeScript</li>
-        <li>C# / .NET</li>
-        <li>Node.js / JavaScript</li>
-        <li>Azure, CI/CD, Docker</li>
-      </ul>
-    </section>
+        <!-- Experiências -->
+        <div class="card slide-in-left" [class.expanded]="isExpanded('experience')" style="animation-delay: 0.2s;">
+          <div class="card-header">
+            <div class="card-header-left">
+              <span class="icon">
+                <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect>
+                  <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path>
+                </svg>
+              </span>
+              <h2>Experiências</h2>
+            </div>
+            <button *ngIf="hasMultipleItems('experience')" class="expand-btn" [class.expanded]="isExpanded('experience')" (click)="toggleCard('experience')">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="6 9 12 15 18 9"></polyline>
+              </svg>
+            </button>
+          </div>
+          <div class="card-content">
+            <div class="timeline-item">
+              <div class="year">2025 - Atual</div>
+              <h3>Sr. Assoc, Full-Stack Development</h3>
+              <p class="institution">Avanade</p>
+              <p class="description">Desenvolvimento de aplicações web escaláveis usando Angular, Node.js, JavaScript, TypeScript e .NET.</p>
+            </div>
+            <div class="timeline-item">
+              <div class="year">2024 - 2025</div>
+              <h3>Assoc, Full-Stack Development</h3>
+              <p class="institution">Avanade</p>
+              <p class="description">Desenvolvimento de aplicações web escaláveis usando Angular, Node.js, JavaScript, TypeScript e .NET.</p>
+            </div>
+            <div class="timeline-item">
+              <div class="year">2023 - 2024</div>
+              <h3>Estagiária de Processos e Sistemas</h3>
+              <p class="institution">Evolution</p>
+              <p class="description">Atividades dos serviços de tecnologia da informação 
+                e atualização e criação de novos processos utilizando diagramas de fluxos de processos.</p>
+            </div>
+          </div>
+        </div>
+      </div>
 
-    <p class="download-note">Deseja o PDF do currículo? Adicione `assets/resume.pdf` e use um link de download aqui.</p>
+      <!-- Coluna Direita -->
+      <div class="right-column">
+        <!-- Certificações -->
+        <div class="card slide-in-right" [class.expanded]="isExpanded('certifications')">
+          <div class="card-header">
+            <div class="card-header-left">
+              <span class="icon">
+                <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <circle cx="12" cy="8" r="6"></circle>
+                  <path d="M15.477 12.89 17 22l-5-3-5 3 1.523-9.11"></path>
+                </svg>
+              </span>
+              <h2>Certificações</h2>
+            </div>
+            <button *ngIf="hasMultipleItems('certifications')" class="expand-btn" [class.expanded]="isExpanded('certifications')" (click)="toggleCard('certifications')">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="6 9 12 15 18 9"></polyline>
+              </svg>
+            </button>
+          </div>
+          <div class="card-content">
+            <div class="timeline-item">
+              <div class="year">2025</div>
+              <h3>Microsoft Certified: Azure AI Fundamentals</h3>
+              <p class="institution">Microsof</p>
+            </div>
+            <div class="timeline-item">
+              <div class="year">2025</div>
+              <h3>GitHub Foundations</h3>
+              <p class="institution">GitHub</p>
+            </div>
+            <div class="timeline-item">
+              <div class="year">2024</div>
+              <h3>Microsoft Certified: Azure Fundamentals</h3>
+              <p class="institution">Microsoft</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Certificados -->
+        <div class="card slide-in-right" [class.expanded]="isExpanded('certificates')" style="animation-delay: 0.1s;">
+          <div class="card-header">
+            <div class="card-header-left">
+              <span class="icon">
+                <img src="assets/icons/certificado.png" alt="Certificados" width="28" height="28">
+              </span>
+              <h2>Certificados</h2>
+            </div>
+            <button *ngIf="hasMultipleItems('certificates')" class="expand-btn" [class.expanded]="isExpanded('certificates')" (click)="toggleCard('certificates')">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="6 9 12 15 18 9"></polyline>
+              </svg>
+            </button>
+          </div>
+          <div class="card-content">
+            <div class="timeline-item">
+              <div class="year">2025</div>
+              <h3>Formação Microsoft AI Fundamentals (AI-900)</h3>
+              <p class="institution">DIO</p>
+            </div>
+            <div class="timeline-item">
+              <div class="year">2025</div>
+              <h3>GitHub Copilot Challenge</h3>
+              <p class="institution">Microsoft</p>
+            </div>
+            <div class="timeline-item">
+              <div class="year">2025</div>
+              <h3>GitHub4Women</h3>
+              <p class="institution">Microsoft</p>
+            </div>
+            <div class="timeline-item">
+              <div class="year">2025</div>
+              <h3>Security Girls</h3>
+              <p class="institution">Microsoft</p>
+            </div>
+            <div class="timeline-item">
+              <div class="year">2025</div>
+              <h3>Formação GitHub Certification</h3>
+              <p class="institution">DIO</p>
+            </div>
+            <div class="timeline-item">
+              <div class="year">2025</div>
+              <h3>Formação Cybersecurity Specialist</h3>
+              <p class="institution">DIO</p>
+            </div>
+            <div class="timeline-item">
+              <div class="year">2025</div>
+              <h3>Formação Lógica de Programação</h3>
+              <p class="institution">DIO</p>
+            </div>
+            <div class="timeline-item">
+              <div class="year">2024</div>
+              <h3>API - Application Programming Interface</h3>
+              <p class="institution">DevMedia</p>
+            </div>
+            <div class="timeline-item">
+              <div class="year">2024</div>
+              <h3>Formação Microsoft AZ-900 Certification</h3>
+              <p class="institution">DIO</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Habilidades -->
+        <div class="card skills-card slide-in-right" style="animation-delay: 0.2s;">
+          <div class="card-header">
+            <span class="icon">
+              <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="16 18 22 12 16 6"></polyline>
+                <polyline points="8 6 2 12 8 18"></polyline>
+              </svg>
+            </span>
+            <h2>Habilidades</h2>
+          </div>
+          <div class="card-content">
+            <div class="skill-item">
+              <div class="skill-header">
+                <span>JavaScript/Node.js</span>
+                <span>95%</span>
+              </div>
+              <div class="skill-bar">
+                <div class="skill-progress" style="width: 95%"></div>
+              </div>
+            </div>
+            <div class="skill-item">
+              <div class="skill-header">
+                <span>TypeScript</span>
+                <span>90%</span>
+              </div>
+              <div class="skill-bar">
+                <div class="skill-progress" style="width: 90%"></div>
+              </div>
+            </div>
+            <div class="skill-item">
+              <div class="skill-header">
+                <span>Angular</span>
+                <span>90%</span>
+              </div>
+              <div class="skill-bar">
+                <div class="skill-progress" style="width: 90%"></div>
+              </div>
+            </div>
+            <div class="skill-item">
+              <div class="skill-header">
+                <span>Node.js</span>
+                <span>85%</span>
+              </div>
+              <div class="skill-bar">
+                <div class="skill-progress" style="width: 85%"></div>
+              </div>
+            </div>
+            <div class="skill-item">
+              <div class="skill-header">
+                <span>C#</span>
+                <span>80%</span>
+              </div>
+              <div class="skill-bar">
+                <div class="skill-progress" style="width: 80%"></div>
+              </div>
+            </div>
+            <div class="skill-item">
+              <div class="skill-header">
+                <span>.NET</span>
+                <span>80%</span>
+              </div>
+              <div class="skill-bar">
+                <div class="skill-progress" style="width: 80%"></div>
+              </div>
+            </div>
+            <div class="skill-item">
+              <div class="skill-header">
+                <span>Docker/Kubernetes</span>
+                <span>75%</span>
+              </div>
+              <div class="skill-bar">
+                <div class="skill-progress" style="width: 75%"></div>
+              </div>
+            </div>
+            <div class="skill-item">
+              <div class="skill-header">
+                <span>SQL Server</span>
+                <span>75%</span>
+              </div>
+              <div class="skill-bar">
+                <div class="skill-progress" style="width: 75%"></div>
+              </div>
+            </div>
+            <div class="skill-item">
+              <div class="skill-header">
+                <span>Git/GitHub</span>
+                <span>95%</span>
+              </div>
+              <div class="skill-bar">
+                <div class="skill-progress" style="width: 90%"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
   </div>
 </section>
