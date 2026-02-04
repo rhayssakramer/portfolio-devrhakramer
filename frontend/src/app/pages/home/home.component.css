@@ -2,7 +2,7 @@
 .page-wrapper { 
   position: relative; 
   min-height: 100vh; 
-  padding: 24px; 
+  padding: 36px; 
  /* Define ambient shadow variable used across boxes */
   --shadow-1: 0 12px 40px rgba(0,0,0,.45);
   background:
@@ -12,7 +12,7 @@
 }
 
 .container { 
-  max-width: 1250px; 
+  max-width: 1100px; 
   margin: 0 auto; 
 }
 
@@ -20,8 +20,8 @@
   position: relative; 
   z-index: 3; 
   display: grid; 
-  grid-template-columns: 320px 1fr; 
-  gap: 28px; 
+  grid-template-columns: 300px 1fr; 
+  gap: 32px; 
 }
 
 /* Sidebar */
@@ -112,7 +112,7 @@
   font-weight: 800; 
   text-align: center; 
   margin: 0; 
-  font-size: 2.1rem; 
+  font-size: 1.8rem; 
   letter-spacing: .02em; 
 }
 
