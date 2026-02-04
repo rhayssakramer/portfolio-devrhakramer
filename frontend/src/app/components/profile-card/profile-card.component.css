@@ -1,0 +1,441 @@
+/* Profile card styles moved from home.component.css */
+.host-replacement {}
+:host {
+  display: block;
+  align-self: start;
+}
+:host {
+  position: relative; /* allow absolute children to position relative to host when needed */
+}
+
+:host > .profile {
+  display: block;
+}
+
+/* Ensure toggle is hidden on larger viewports (safe-guard against overrides) */
+@media (min-width: 1087px) {
+  .toggle-contacts {
+    display: none !important;
+  }
+}
+.profile-card {
+  width: 320px; /* increase card width to match grid column */
+  box-sizing: border-box;
+}
+.profile-card {
+  background: rgba(20, 22, 35, .85);
+  border: 1px solid rgba(255,255,255,.06);
+  border-radius: 18px;
+  padding: 26px 22px;
+  box-shadow: 0 12px 40px rgba(0,0,0,.45);
+}
+
+.profile-card { position: relative; }
+
+.profile-card {
+  position: relative; /* anchor for the toggle button */
+  align-self: start;
+  max-height: none;
+  overflow: visible; /* no internal scrolling */
+}
+
+.toggle-contacts {
+  display: none;
+  position: absolute;
+  top: 12px; /* place above the card */
+  right: 12px;
+  width: 46px;
+  height: 34px;
+  display: grid;
+  place-items: center;
+  padding: 4px 6px;
+  border-radius: 14px 8px 8px 14px;
+  border: none;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.45), 0 2px 8px rgba(183,139,43,0.12) inset;
+  font-weight: 700;
+  cursor: pointer;
+  z-index: 60; /* above the card */
+}
+
+.toggle-contacts.toggle-contacts--closed {
+  background: transparent;
+  color: #d0d0d6;
+  border: 1px solid rgba(255,255,255,0.03);
+  border-top-right-radius: 17px;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 0;
+  border-top-left-radius: 0;
+  box-shadow: none;
+  margin-top: -13px;
+  margin-right: -13px;
+}
+
+.toggle-contacts.toggle-contacts--open {
+  background: linear-gradient(180deg,#2b2540,#14121a);
+  color: #f3e9cf;
+  border-radius: 14px 8px 8px 14px;
+  border: 1px solid rgba(255,255,255,0.03);
+  box-shadow: 0 12px 30px rgba(0,0,0,0.6);
+}
+
+.avatar {
+  width: 170px;
+  height: 170px;
+  border-radius: 18px;
+  margin: 6px auto 18px auto;
+  background: linear-gradient(135deg,#3f3f46,#111827);
+  overflow: hidden;
+}
+
+.avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: inherit;
+  display: block;
+}
+
+.name {
+  color: #ffffff;
+  font-weight: 800;
+  text-align: center;
+  margin: 0;
+  font-size: 1.8rem;
+  letter-spacing: .02em;
+}
+
+.role-pill {
+  display: block;
+  margin: 12px auto 0;
+  padding: 10px 16px;
+  border-radius: 12px;
+  background: #1f222d;
+  color: #eaeaf3;
+  font-weight: 600;
+  text-align:center;
+}
+
+.divider {
+  height: 1px;
+  background: rgba(255,255,255,.08);
+  margin: 18px 0;
+}
+
+.contact {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  gap: 12px;
+}
+
+.contact li {
+  display: grid;
+  grid-template-columns: 64px 1fr;
+  align-items: center;
+  gap: 18px;
+}
+
+.contact div {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.icon {
+  position: relative;
+  width: 50px;
+  height: 50px;
+  border-radius: 16px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #1c1f26;
+  box-shadow: 2px 2px 2px 2px #00000047;
+  transition: transform .18s ease, background .18s ease, box-shadow .18s ease, color .18s ease;
+  z-index: 1;
+}
+
+.icon svg {
+  width: 16px;
+  height: 16px;
+  display: block;
+}
+
+.icon::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: radial-gradient(120% 100% at 20% 10%, rgba(255,255,255,.08) 0%, rgba(255,255,255,0) 55%);
+  pointer-events: none;
+}
+
+.contact li:hover .icon {
+  cursor: pointer;
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-1, 0 10px 28px rgba(0,0,0,.45));
+}
+
+.contact strong {
+  color: #9ca3af;
+  font-weight: 700;
+  font-size: .72rem;
+  text-transform: uppercase;
+  letter-spacing: .08em;
+}
+
+.contact small {
+  color: #ffffff;
+  text-decoration: none;
+  font-size: .95rem;
+}
+
+.contact div small a,
+.contact div small a:visited {
+  color: inherit;
+  font: inherit;
+  font-size: inherit;
+  font-weight: inherit;
+  line-height: inherit;
+  text-decoration: none;
+  border-bottom: none;
+}
+
+.contact div small a:hover,
+.contact div small a:focus {
+  color: inherit;
+  text-decoration: none;
+  outline: none;
+}
+
+.contact div small {
+  margin-top: 6px;
+}
+
+.social {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  margin-top: 14px;
+}
+
+@media (max-width: 1086px) {
+  .toggle-contacts {
+    display: block;
+    border: 1px solid rgba(255,255,255,0.03);
+    border-top-right-radius: 17px;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 0;
+    border-top-left-radius: 0;
+    box-shadow: none;
+    color: #d0d0d6;
+    background: transparent;
+    margin-top: -13px;
+    margin-right: -13px;
+  }
+
+  .toggle-contacts.toggle-contacts--open {
+    display: block;
+    border: 1px solid rgba(255,255,255,0.03);
+    border-top-right-radius: 17px !important;
+    border-bottom-left-radius: 10px !important;
+    border-bottom-right-radius: 0 !important;
+    border-top-left-radius: 0 !important;
+    box-shadow: none;
+    color: #d0d0d6;
+    background: transparent;
+    margin-top: -13px;
+    margin-right: -13px;
+  }
+
+  .toggle-contacts.toggle-contacts--closed {
+    display: block;
+    border: 1px solid rgba(255,255,255,0.03);
+    border-top-right-radius: 17px !important;
+    border-bottom-left-radius: 10px !important;
+    border-bottom-right-radius: 0 !important;
+    border-top-left-radius: 0 !important;
+    box-shadow: none;
+    color: #d0d0d6;
+    background: transparent;
+    margin-top: -13px;
+    margin-right: -13px;
+  }
+
+  .profile-card:not(.open) .divider,
+  .profile-card:not(.open) .contact,
+  .profile-card:not(.open) .social {
+    max-height: 0;
+    opacity: 0;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    transform: translateY(-6px);
+    transition: max-height .38s ease, opacity .28s ease, 
+    transform .28s ease;
+    pointer-events: none;
+    margin-bottom: 5px;
+  }
+
+  .divider{
+    margin-top: 20px;
+  }
+
+  .profile-card.open .divider,
+  .profile-card.open .contact,
+  .profile-card.open .social {
+    max-height: 1000px;
+    opacity: 1;
+    margin: 20px;
+    padding: initial;
+    transform: translateY(0);
+    transition: max-height .48s cubic-bezier(.2,.9,.2,1),
+    opacity .32s ease, transform .32s ease;
+    pointer-events: auto;
+  }
+
+  .profile-card.open .divider{
+   margin-top: 30px;
+   margin-bottom: 30px;
+ }
+
+  .profile-card .avatar { 
+    margin: 6px auto 12px auto; 
+  }
+
+  .profile-card .name { 
+    font-size: 1.9rem; 
+  }
+
+  .profile-card { 
+    padding-bottom: 14px; 
+  }
+}
+
+/* Ensure profile card collapses to full width on narrow viewports */
+@media (max-width: 1000px) {
+  .profile-card {
+    width: 100%;
+    box-sizing: border-box;
+    margin: 0; /* remove external offsets when stacked */
+  }
+}
+
+.social-btn { 
+  width: 28px; 
+  height: 28px; 
+  border-radius: 50%; 
+  display: grid; 
+  place-items: center; 
+  color: #d4d4d8; 
+  background: rgba(255,255,255,.06); 
+  box-shadow: inset 0 0 0 1px rgba(255,255,255,.08); 
+  transition: transform .18s ease, background .18s ease; 
+}
+
+.social-btn:hover { 
+  transform: translateY(-2px); 
+  background: rgba(255,255,255,.12); 
+  color: #fff; 
+}
+
+.social-btn.icon-only {
+  width: auto;
+  height: auto;
+  padding: 6px;
+  border-radius: 4px;
+  background: transparent;
+  box-shadow: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--orange-yellow-crayola);
+  transition: transform .18s ease, color .18s ease;
+}
+
+.social-btn.icon-only:hover { 
+  transform: translateY(-3px); 
+  color: #8b65d0; 
+}
+
+.social-btn.icon-only svg { 
+  width: 18px; height: 18px; 
+  display: block; 
+  fill: currentColor; 
+}
+
+.toggle-icon {
+  font-size: 1rem;
+  line-height: 1;
+  display: inline-block;
+  transform: rotate(0deg) translateY(0);
+  transform-origin: center;
+  transition: transform .18s ease, fill .12s ease;
+}
+
+.profile-card.open .toggle-icon { 
+  font-size: 1.05rem; 
+}
+
+.toggle-icon { 
+  display: inline-flex; 
+  align-items: center; 
+  gap: 6px; 
+}
+
+.profile-card.open .toggle-contacts {
+  top: 12px;
+  right: 12px;
+  transform: none;
+  border-radius: 14px 8px 8px 14px;
+  width: 66px;
+  height: 54px;
+  padding: 4px 6px;
+}
+
+.toggle-triangle {
+  margin-top: 3px;
+  width: 15px !important;
+  height: 15px !important;
+  display: block;
+  fill: #ffffff;
+  transform: none;
+  transform-origin: center;
+  transition: transform .18s ease, fill .12s ease;
+}
+
+.toggle-triangle polygon {
+  fill: #ffffff;
+}
+
+.toggle-contacts.toggle-contacts--closed{
+  width: 66px;
+  height: 54px;
+
+}
+
+.toggle-contacts.toggle-contacts--closed .toggle-triangle {
+  width: 15px !important;
+  height: 15px !important;
+  margin-top: 2px;
+  transform: rotate(90deg) translateY(0);
+}
+
+.toggle-contacts.toggle-contacts--closed .toggle-triangle polygon {
+  fill: #ffffff !important;
+}
+
+.toggle-contacts.toggle-contacts--open .toggle-triangle {
+  display: block;
+  transform: rotate(0deg) translateY(0);
+}
+
+.toggle-contacts.toggle-contacts--closed .arrow-left {
+  display: none;
+}
+
+.toggle-contacts.toggle-contacts--open .arrow-left {
+  display: inline-block;
+  transform: rotate(90deg);
+}
