@@ -1,0 +1,8 @@
+.portfolio-page { padding: 12px 0; }
+.projects-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 12px; margin-top: 12px; }
+.proj-card { background: rgba(255,255,255,.02); padding: 12px; border-radius: 10px; }
+.proj-card h3 { margin: 0 0 6px 0; }
+.proj-card p { margin: 0 0 8px 0; color: #c8c8cf; }
+.proj-card .link { color: #8b65d0; font-weight: 600; text-decoration: none; }
+
+.portfolio-host { padding-top: 8px; }
