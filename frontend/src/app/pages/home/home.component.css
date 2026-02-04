@@ -1,7 +1,7 @@
 /* Wrapper with same background + particles behind */
 .page-wrapper { 
   position: relative; 
-  min-height: 100vh; 
+  height: 100vh; /* fixed viewport height so internal scrolling is reliable */
   padding: 36px; 
  /* Define ambient shadow variable used across boxes */
   --shadow-1: 0 12px 40px rgba(0,0,0,.45);
@@ -9,10 +9,14 @@
     linear-gradient(180deg,#0b0f23 0%,#070a18 40%,#04060d 70%,#000 100%),
     radial-gradient(circle at 15% 35%, rgba(255,255,255,.05) 0%, transparent 50%),
     radial-gradient(circle at 85% 75%, rgba(255,255,255,.04) 0%, transparent 55%);
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none; /* hide scrollbar in Firefox */
+  -ms-overflow-style: none; /* hide scrollbar in IE 10+ */
 }
 
 .container { 
-  max-width: 1100px; 
+  max-width: 1000px; /* reduced to shrink main card width */
   margin: 0 auto; 
 }
 
@@ -20,471 +24,29 @@
   position: relative; 
   z-index: 3; 
   display: grid; 
-  grid-template-columns: 300px 1fr; 
+  grid-template-columns: 320px minmax(0,760px); /* fixed sidebar + constrained main column to center content */
   gap: 32px; 
+  align-items: start;
+  height: 100%;
+  justify-content: center; /* center the two columns within the container */
 }
 
-/* Sidebar */
-.profile-card {
-  background: rgba(20, 22, 35, .85);
-  border: 1px solid rgba(255,255,255,.06);
-  border-radius: 18px;
-  padding: 26px 22px;
-  box-shadow: 0 12px 40px rgba(0,0,0,.45);
+/* Ensure the grid container itself doesn't expand beyond the intended width */
+.page-grid.container {
+  max-width: 1100px; /* enforce container width on the grid element (allow 320 + 760px) */
+  margin: 0 auto;
 }
-
-/* positioning context for toggle button */
-.profile-card { position: relative; }
-
-/* Make the profile follow the page scroll without creating internal scrollbars */
-.profile-card {
-  position: -webkit-sticky; /* Safari */
-  position: sticky;
-  top: 24px; /* distance from top when sticking */
-  align-self: start; /* ensure it stays at the top of the grid column */
-  max-height: calc(100vh - 48px); /* avoid overflowing the viewport */
-  overflow: hidden; /* prevent internal scrollbar from showing */
-}
-
-.toggle-contacts {
-  display: none; /* shown only on small screens */
-  position: absolute;
-  top: 12px;
-  right: 12px;
-  width: 46px;
-  height: 34px;
-  display: grid;
-  place-items: center;
-  padding: 4px 6px;
-  border-radius: 14px 8px 8px 14px;
-  border: none;
-  box-shadow: 0 6px 18px rgba(0,0,0,0.45), 0 2px 8px rgba(183,139,43,0.12) inset;
-  font-weight: 700;
-  cursor: pointer;
-  z-index: 30;
-}
-
-/* Ensure modifier classes work regardless of media queries: */
-.toggle-contacts.toggle-contacts--closed {
-  /* closed (show 'Mostrar Contatos' visual) */
-  display: block;
-  background: transparent;
-  color: #d0d0d6;
-  border: 1px solid rgba(255,255,255,0.03);
-  border-top-right-radius: 17px;
-  border-bottom-left-radius: 10px;
-  border-bottom-right-radius: 0;
-  border-top-left-radius: 0;
-  box-shadow: none;
-  margin-top: -13px;
-  margin-right: -13px;
-}
-
-.toggle-contacts.toggle-contacts--open {
-  /* open (show 'Ocultar Contatos' visual) */
-  display: block;
-  background: linear-gradient(180deg,#2b2540,#14121a);
-  color: #f3e9cf;
-  border-radius: 14px 8px 8px 14px;
-  border: 1px solid rgba(255,255,255,0.03);
-  box-shadow: 0 12px 30px rgba(0,0,0,0.6);
-}
-
-.avatar {
-  width: 170px; 
-  height: 170px; 
-  border-radius: 18px; 
-  margin: 6px auto 18px auto;
-  background: linear-gradient(135deg,#3f3f46,#111827);
-  overflow: hidden;
-}
-
-.avatar img { 
-  width: 100%; 
-  height: 100%; 
-  object-fit: cover; 
-  border-radius: inherit; 
-  display: block; 
-}
-
-.name { 
-  color: #ffffff; 
-  font-weight: 800; 
-  text-align: center; 
-  margin: 0; 
-  font-size: 1.8rem; 
-  letter-spacing: .02em; 
-}
-
-.role-pill { 
-  display: block; 
-  margin: 12px auto 0; 
-  padding: 10px 16px; 
-  border-radius: 12px; 
-  background: #1f222d; 
-  color: #eaeaf3; 
-  font-weight: 600; 
-  text-align:center; 
-}
-
-.divider { 
-  height: 1px;   
-  background: rgba(255,255,255,.08); 
-  margin: 18px 0; 
-}
-
-.contact { 
-  list-style: none; 
-  padding: 0; 
-  margin: 0; 
-  display: grid; 
-  gap: 12px; 
-}
-
-.contact li { 
-  display: grid; 
-  grid-template-columns: 64px 1fr; 
-  align-items: center; 
-  gap: 18px; 
-}
-
-.contact div {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-}
-
-.icon {
-  position: relative;
-  width: 50px;
-  height: 50px;
-  border-radius: 16px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background: #1c1f26;
-  /* Layered shadow to mimic the attached style */
-  box-shadow:
-    /* crisp full ring to border the whole box */
-    2px 2px 2px 2px #00000047;
-  transition: transform .18s ease, background .18s ease, box-shadow .18s ease, color .18s ease;
-  z-index: 1;
-}
-
-.icon svg { 
-  width: 16px; 
-  height: 16px; 
-  display: block; 
-}
-
-.icon::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  border-radius: inherit;
-  /* Subtle top-left glow for the box */
-  background: radial-gradient(120% 100% at 20% 10%, rgba(255,255,255,.08) 0%, rgba(255,255,255,0) 55%);
-  pointer-events: none;
-}
-
-/* Hover for contact icons: pointer cursor and subtle lift/highlight, without making them links */
-.contact li:hover .icon {
-  cursor: pointer;
-  transform: translateY(-4px);
-  box-shadow: var(--shadow-1, 0 10px 28px rgba(0,0,0,.45));
-}
-
-/* Removed left-only contour; full ring handled via box-shadow */
-.contact strong {
-  color: #9ca3af;
-  font-weight: 700;
-  font-size: .72rem;
-  text-transform: uppercase;
-  letter-spacing: .08em;
-}
-
-.contact small {
-  color: #ffffff;
-  text-decoration: none;
-  font-size: .95rem;
-}
-
-/* Make links inside the small/value area inherit the small text styles and remove underline */
-.contact div small a,
-.contact div small a:visited {
-  color: inherit;
-  font: inherit;
-  font-size: inherit;
-  font-weight: inherit;
-  line-height: inherit;
-  text-decoration: none;
-  border-bottom: none;
-}
-
-.contact div small a:hover,
-.contact div small a:focus {
-  color: inherit;
-  text-decoration: none;
-  outline: none;
-}
-
-.contact div small { 
-  margin-top: 6px; 
-}
-
-.social { 
-  display: flex; 
-  gap: 10px; 
-  justify-content: center; 
-  margin-top: 14px; 
-}
-
-/* Collapsed state on small viewports: hide contacts, divider and social unless .open is present */
-@media (max-width: 1086px) {
-  .toggle-contacts { 
-    display: block; 
-    border: 1px solid rgba(255,255,255,0.03);
-    border-top-right-radius: 17px;
-    border-bottom-left-radius: 10px;
-    border-bottom-right-radius: 0;
-    border-top-left-radius: 0;
-    box-shadow: none;
-    color: #d0d0d6;
-    background: transparent;
-    margin-top: -13px;
-    margin-right: -13px;
-  }
-
-  /* Apply styles when the toggle button itself has the '--closed' modifier */
-  .toggle-contacts.toggle-contacts--open {
-    display: block; 
-    border: 1px solid rgba(255,255,255,0.03);
-    border-top-right-radius: 17px !important;
-    border-bottom-left-radius: 10px !important;
-    border-bottom-right-radius: 0 !important;
-    border-top-left-radius: 0 !important;
-    box-shadow: none;
-    color: #d0d0d6;
-    background: transparent;
-    margin-top: -13px;
-    margin-right: -13px;
-  }
-
-  .toggle-contacts.toggle-contacts--closed {
-    display: block; 
-    border: 1px solid rgba(255,255,255,0.03);
-    border-top-right-radius: 17px !important;
-    border-bottom-left-radius: 10px !important;
-    border-bottom-right-radius: 0 !important;
-    border-top-left-radius: 0 !important;
-    box-shadow: none;
-    color: #d0d0d6;
-    background: transparent;
-    margin-top: -13px;
-    margin-right: -13px;
-  }
-
-  .profile-card:not(.open) .divider,
-  .profile-card:not(.open) .contact,
-  .profile-card:not(.open) .social {
-    max-height: 0;
-    opacity: 0;
-    margin: 0;
-    padding: 0;
-    overflow: hidden;
-    transform: translateY(-6px);
-    transition: max-height .38s ease, opacity .28s ease, 
-    transform .28s ease;
-    pointer-events: none;
-    margin-bottom: 5px;
-  }
-
-  .divider{
-    margin-top: 20px;
-  }
-
-  .profile-card.open .divider,
-  .profile-card.open .contact,
-  .profile-card.open .social {
-    max-height: 1000px;
-    opacity: 1;
-    margin: 20px;
-    padding: initial;
-    transform: translateY(0);
-    transition: max-height .48s cubic-bezier(.2,.9,.2,1),
-    opacity .32s ease, transform .32s ease;
-    pointer-events: auto;
-  }
-
-  .profile-card.open .divider{
-   margin-top: 30px;
-   margin-bottom: 30px;
- }
-
-  /* Keep avatar and name visible and centered when collapsed */
-  .profile-card .avatar { 
-    margin: 6px auto 12px auto; 
-  }
-
-  .profile-card .name { 
-    font-size: 1.9rem; 
-  }
-
-  .profile-card { 
-    padding-bottom: 14px; 
-  }
-}
-
-/* Optional: hide browser scrollbars while keeping scroll behavior. */
-html, body {
-  scrollbar-width: none; /* Firefox */
-  -ms-overflow-style: none; /* IE 10+ */
-}
-
-/* WebKit browsers */
-html::-webkit-scrollbar, body::-webkit-scrollbar {
-  width: 0px;
-  height: 0px;
-}
-
-/* style small arrow inside toggle */
-.toggle-icon {
-  font-size: 1rem;
-  line-height: 1;
-  display: inline-block;
-  transform: rotate(0deg) translateY(0);
-  transform-origin: center;
-  transition: transform .18s ease, fill .12s ease;
-}
-
-/* slightly larger arrow when open */
-.profile-card.open .toggle-icon { 
-  font-size: 1.05rem; 
-}
-
-/* style the down arrow + greater-or-equal sign when closed */
-.toggle-icon { 
-  display: inline-flex; 
-  align-items: center; 
-  gap: 6px; 
-}
-
-
-.profile-card.open .toggle-contacts {
-  /* restore to top-right position when open (original styling) */
-  top: 12px;
-  right: 12px;
-  transform: none;
-  border-radius: 14px 8px 8px 14px;
-  width: 66px;
-  height: 54px;
-  padding: 4px 6px;
-}
-
-.toggle-icon .arrow-left { 
-  font-size: 1.05rem; 
-}
-
-/* triangle SVG used on closed state */
-.toggle-triangle {
-  margin-top: 3px;
-  width: 15px !important;
-  height: 15px !important;
-  display: block;
-  fill: #ffffff;
-  transform: none;
-  transform-origin: center;
-  transition: transform .18s ease, fill .12s ease;
-}
-
-.toggle-triangle polygon {
-  fill: #ffffff;
-}
-
-.toggle-contacts.toggle-contacts--closed{
-  width: 66px;
-  height: 54px;
-
-}
-
-/* Ensure closed/open modifiers can target the triangle specifically */
-.toggle-contacts.toggle-contacts--closed .toggle-triangle {
-  width: 15px !important;
-  height: 15px !important;
-  margin-top: 2px;
-  /* closed: point to the left */
-  transform: rotate(90deg) translateY(0);
-}
-
-.toggle-contacts.toggle-contacts--closed .toggle-triangle polygon {
-  fill: #ffffff !important;
-}
-
-.toggle-contacts.toggle-contacts--open .toggle-triangle {
-  /* when open, show triangle pointing down (if present) */
-  display: block;
-  transform: rotate(0deg) translateY(0);
-}
-
-.toggle-contacts.toggle-contacts--closed .arrow-left {
-  display: none;
-}
-
-.toggle-contacts.toggle-contacts--open .arrow-left {
-  display: inline-block;
-  /* rotate the arrow glyph to point down */
-  transform: rotate(90deg);
-}
-
-.social-btn { 
-  width: 28px; 
-  height: 28px; 
-  border-radius: 50%; 
-  display: grid; 
-  place-items: center; 
-  color: #d4d4d8; 
-  background: rgba(255,255,255,.06); 
-  box-shadow: inset 0 0 0 1px rgba(255,255,255,.08); 
-  transition: transform .18s ease, background .18s ease; 
-}
-
-.social-btn:hover { 
-  transform: translateY(-2px); 
-  background: rgba(255,255,255,.12); 
-  color: #fff; 
-}
-
-/* Icon-only social buttons: no box, only svg icon, subtle hover */
-.social-btn.icon-only {
-  width: auto;
-  height: auto;
-  padding: 6px;
-  border-radius: 4px;
-  background: transparent;
-  box-shadow: none;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  color: var(--orange-yellow-crayola);
-  transition: transform .18s ease, color .18s ease;
-}
-
-.social-btn.icon-only:hover { 
-  transform: translateY(-3px); 
-  color: #8b65d0; 
-}
-
-.social-btn.icon-only svg { 
-  width: 18px; height: 18px; 
-  display: block; 
-  fill: currentColor; 
-}
+.\/* Profile styles moved to src/app/components/profile-card/profile-card.component.css *\/
 
 /* Main */
 .content { 
   min-width: 0; 
   position: relative; 
+  display: flex; /* enable child max-width handling */
+  justify-content: center; /* center the card inside the main column */
 }
+
+/* (scrolling handled on .page-wrapper above) */
 
 .tabs {
   position: absolute;
@@ -558,6 +120,13 @@ html::-webkit-scrollbar, body::-webkit-scrollbar {
   padding: 22px 22px 22px 22px;
   box-shadow: 0 12px 40px rgba(0,0,0,.45);
   color: #d6d6df;
+}
+
+/* Limit the width of the main "Sobre Mim" card so it doesn't stretch too wide */
+.content > .card {
+  width: 100%;
+  max-width: 760px; /* tuned to match visual balance with sidebar */
+  margin: 0 auto; /* center the card horizontally inside its grid column */
 }
 
 .card + .card { 
@@ -846,8 +415,7 @@ html::-webkit-scrollbar, body::-webkit-scrollbar {
 
 /* Desktop: hide compact toggle above 1086px and show full tabs */
 @media (min-width: 1087px) {
-  .tabs-toggle,
-  .toggle-contacts {
+  .tabs-toggle {
     display: none !important;
     pointer-events: none;
     opacity: 0;
@@ -1017,4 +585,10 @@ html::-webkit-scrollbar, body::-webkit-scrollbar {
   .tabs-toggle-triangle {
     transform: none;
   }
+}
+
+/* Hide webkit scrollbar for the main content scrolling area */
+.page-wrapper::-webkit-scrollbar {
+  width: 0px;
+  height: 0px;
 }
