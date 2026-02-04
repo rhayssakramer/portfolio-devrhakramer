@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ParticlesComponent } from '../components/particles.component';
+import { ParticlesComponent } from '../../components/particles/particles.component';
 
 @Component({
   selector: 'app-home',

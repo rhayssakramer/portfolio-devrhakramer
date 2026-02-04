@@ -36,6 +36,16 @@
 /* positioning context for toggle button */
 .profile-card { position: relative; }
 
+/* Make the profile follow the page scroll without creating internal scrollbars */
+.profile-card {
+  position: -webkit-sticky; /* Safari */
+  position: sticky;
+  top: 24px; /* distance from top when sticking */
+  align-self: start; /* ensure it stays at the top of the grid column */
+  max-height: calc(100vh - 48px); /* avoid overflowing the viewport */
+  overflow: hidden; /* prevent internal scrollbar from showing */
+}
+
 .toggle-contacts {
   display: none; /* shown only on small screens */
   position: absolute;
@@ -323,6 +333,18 @@
   .profile-card { 
     padding-bottom: 14px; 
   }
+}
+
+/* Optional: hide browser scrollbars while keeping scroll behavior. */
+html, body {
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE 10+ */
+}
+
+/* WebKit browsers */
+html::-webkit-scrollbar, body::-webkit-scrollbar {
+  width: 0px;
+  height: 0px;
 }
 
 /* style small arrow inside toggle */

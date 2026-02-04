@@ -1,6 +1,6 @@
 import { Component, signal } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import { ParticlesComponent } from './components/particles.component';
+import { ParticlesComponent } from './components/particles/particles.component';
 
 @Component({
   selector: 'app-root',
