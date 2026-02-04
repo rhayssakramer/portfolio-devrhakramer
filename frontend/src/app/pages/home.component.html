@@ -3,7 +3,18 @@
 
   <div class="page-grid container">
     <aside class="profile">
-      <div class="profile-card">
+      <div class="profile-card" [class.open]="showContacts">
+        <button class="toggle-contacts"
+          (click)="toggleContacts()"
+          [ngClass]="{ 'toggle-contacts--closed': !showContacts, 'toggle-contacts--open': showContacts }"
+          [attr.aria-expanded]="showContacts"
+          [attr.aria-label]="showContacts ? 'Ocultar Contatos' : 'Mostrar Contatos'">
+          <span class="toggle-icon" aria-hidden="true">
+            <svg class="toggle-triangle" viewBox="0 0 24 16" xmlns="http://www.w3.org/2000/svg" focusable="false" aria-hidden="true">
+              <polygon points="0,0 24,0 12,16" />
+            </svg>
+          </span>
+        </button>
         <div class="avatar">
           <img src="assets/images/profile.jpg" alt="Foto de perfil" />
         </div>
@@ -79,12 +90,24 @@
     <main class="content">
       <section class="card">
         <!-- tabs embedded in the Sobre card (top-right) -->
-        <nav class="tabs">
-          <a class="tab active">Sobre</a>
-          <a class="tab">Currículo</a>
-          <a class="tab">Portfólio</a>
-          <a class="tab">Blog</a>
-          <a class="tab">Contato</a>
+        <nav class="tabs" [class.open]="tabsOpen">
+          <!-- compact toggle (hidden on desktop via CSS) -->
+          <button class="tabs-toggle" (click)="toggleTabs()" aria-label="Abrir menu de abas" [attr.aria-expanded]="tabsOpen">
+            <span class="tabs-toggle-icon" aria-hidden="true">
+              <svg class="tabs-toggle-triangle" viewBox="0 0 24 16" xmlns="http://www.w3.org/2000/svg" focusable="false" aria-hidden="true">
+                <polygon points="0,0 24,0 12,16" />
+              </svg>
+            </span>
+          </button>
+
+          <!-- full tabs menu (shown on desktop; on mobile it's hidden until opened) -->
+          <div class="tabs-menu" [class.open]="tabsOpen">
+            <a class="tab active">Sobre</a>
+            <a class="tab">Currículo</a>
+            <a class="tab">Portfólio</a>
+            <a class="tab">Blog</a>
+            <a class="tab">Contato</a>
+          </div>
         </nav>
         <h1 class="title">Sobre Mim</h1>
         <p class="p-title">Oiê, sou Rhayssa Kramer, apaixonada por tecnologia!👋🏼<br>
@@ -188,43 +211,43 @@
         <div class="skills-icons">
           <div class="icons-container">
             <a href="https://developer.mozilla.org/pt-BR/docs/Web/HTML" target="_blank" rel="noopener noreferrer" title="HTML">
-              <img src="https://skillicons.dev/icons?i=html" alt="HTML">
+              <img src="https://skillicons.dev/icons?i=html" alt="HTML" onerror="this.onerror=null;this.src='assets/icons/placeholder.svg'">
             </a>
             <a href="https://developer.mozilla.org/pt-BR/docs/Web/CSS" target="_blank" rel="noopener noreferrer" title="CSS">
-              <img src="https://skillicons.dev/icons?i=css" alt="CSS">
+              <img src="https://skillicons.dev/icons?i=css" alt="CSS" onerror="this.onerror=null;this.src='assets/icons/placeholder.svg'">
             </a>
             <a href="https://getbootstrap.com/docs/5.3/getting-started/introduction/" target="_blank" rel="noopener noreferrer" title="Bootstrap">
-              <img src="https://skillicons.dev/icons?i=bootstrap" alt="Bootstrap">
+              <img src="https://skillicons.dev/icons?i=bootstrap" alt="Bootstrap" onerror="this.onerror=null;this.src='assets/icons/placeholder.svg'">
             </a>
             <a href="https://api.jquery.com/" target="_blank" rel="noopener noreferrer" title="jQuery">
-              <img src="https://skillicons.dev/icons?i=jquery" alt="jQuery">
+              <img src="https://skillicons.dev/icons?i=jquery" alt="jQuery" onerror="this.onerror=null;this.src='assets/icons/placeholder.svg'">
             </a>
             <a href="https://angular.dev/overview" target="_blank" rel="noopener noreferrer" title="Angular">
-              <img src="https://skillicons.dev/icons?i=angular" alt="Angular">
+              <img src="https://skillicons.dev/icons?i=angular" alt="Angular" onerror="this.onerror=null;this.src='assets/icons/placeholder.svg'">
             </a>
             <a href="https://pt-br.react.dev/" target="_blank" rel="noopener noreferrer" title="React">
-              <img src="https://skillicons.dev/icons?i=react" alt="React">
+              <img src="https://skillicons.dev/icons?i=react" alt="React" onerror="this.onerror=null;this.src='assets/icons/placeholder.svg'">
             </a>
             <a href="https://br.vuejs.org/v2/guide/index.html" target="_blank" rel="noopener noreferrer" title="Vue">
-              <img src="https://skillicons.dev/icons?i=vue" alt="Vue">
+              <img src="https://skillicons.dev/icons?i=vue" alt="Vue" onerror="this.onerror=null;this.src='assets/icons/placeholder.svg'">
             </a>
             <a href="https://developer.mozilla.org/pt-BR/docs/Web/JavaScript" target="_blank" rel="noopener noreferrer" title="JavaScript">
-              <img src="https://skillicons.dev/icons?i=javascript" alt="JavaScript">
+              <img src="https://skillicons.dev/icons?i=javascript" alt="JavaScript" onerror="this.onerror=null;this.src='assets/icons/placeholder.svg'">
             </a>
             <a href="https://nodejs.org/docs/latest/api/" target="_blank" rel="noopener noreferrer" title="Node.js">
-              <img src="https://skillicons.dev/icons?i=nodejs" alt="Node.js">
+              <img src="https://skillicons.dev/icons?i=nodejs" alt="Node.js" onerror="this.onerror=null;this.src='assets/icons/placeholder.svg'">
             </a>
             <a href="https://docs.npmjs.com/" target="_blank" rel="noopener noreferrer" title="npm">
-              <img src="https://skillicons.dev/icons?i=npm" alt="npm">
+              <img src="https://skillicons.dev/icons?i=npm" alt="npm" onerror="this.onerror=null;this.src='assets/icons/placeholder.svg'">
             </a>
             <a href="https://www.typescriptlang.org/pt/docs/" target="_blank" rel="noopener noreferrer" title="TypeScript">
-              <img src="https://skillicons.dev/icons?i=typescript" alt="TypeScript">
+              <img src="https://skillicons.dev/icons?i=typescript" alt="TypeScript" onerror="this.onerror=null;this.src='assets/icons/placeholder.svg'">
             </a>
             <a href="https://learn.microsoft.com/pt-br/dotnet/csharp/" target="_blank" rel="noopener noreferrer" title="C#">
-              <img src="https://skillicons.dev/icons?i=cs" alt="C#">
+              <img src="https://skillicons.dev/icons?i=cs" alt="C#" onerror="this.onerror=null;this.src='assets/icons/placeholder.svg'">
             </a>
             <a href="https://dotnet.microsoft.com/pt-br/platform/try-dotnet" target="_blank" rel="noopener noreferrer" title=".NET">
-              <img src="https://skillicons.dev/icons?i=dotnet" alt=".NET">
+              <img src="https://skillicons.dev/icons?i=dotnet" alt=".NET" onerror="this.onerror=null;this.src='assets/icons/placeholder.svg'">
             </a>
             <a href="https://docs.oracle.com/en/java/" target="_blank" rel="noopener noreferrer" title="Java">
               <img src="https://skillicons.dev/icons?i=java" alt="Java">

@@ -9,4 +9,15 @@ import { ParticlesComponent } from '../components/particles.component';
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css']
 })
-export class HomeComponent {}
+export class HomeComponent {
+  showContacts = false;
+  tabsOpen = false;
+
+  toggleContacts() {
+    this.showContacts = !this.showContacts;
+  }
+
+  toggleTabs() {
+    this.tabsOpen = !this.tabsOpen;
+  }
+}

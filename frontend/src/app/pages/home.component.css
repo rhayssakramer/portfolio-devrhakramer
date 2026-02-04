@@ -33,6 +33,53 @@
   box-shadow: 0 12px 40px rgba(0,0,0,.45);
 }
 
+/* positioning context for toggle button */
+.profile-card { position: relative; }
+
+.toggle-contacts {
+  display: none; /* shown only on small screens */
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  width: 46px;
+  height: 34px;
+  display: grid;
+  place-items: center;
+  padding: 4px 6px;
+  border-radius: 14px 8px 8px 14px;
+  border: none;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.45), 0 2px 8px rgba(183,139,43,0.12) inset;
+  font-weight: 700;
+  cursor: pointer;
+  z-index: 30;
+}
+
+/* Ensure modifier classes work regardless of media queries: */
+.toggle-contacts.toggle-contacts--closed {
+  /* closed (show 'Mostrar Contatos' visual) */
+  display: block;
+  background: transparent;
+  color: #d0d0d6;
+  border: 1px solid rgba(255,255,255,0.03);
+  border-top-right-radius: 17px;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 0;
+  border-top-left-radius: 0;
+  box-shadow: none;
+  margin-top: -13px;
+  margin-right: -13px;
+}
+
+.toggle-contacts.toggle-contacts--open {
+  /* open (show 'Ocultar Contatos' visual) */
+  display: block;
+  background: linear-gradient(180deg,#2b2540,#14121a);
+  color: #f3e9cf;
+  border-radius: 14px 8px 8px 14px;
+  border: 1px solid rgba(255,255,255,0.03);
+  box-shadow: 0 12px 30px rgba(0,0,0,0.6);
+}
+
 .avatar {
   width: 170px; 
   height: 170px; 
@@ -70,7 +117,8 @@
   text-align:center; 
 }
 
-.divider { height: 1px; 
+.divider { 
+  height: 1px;   
   background: rgba(255,255,255,.08); 
   margin: 18px 0; 
 }
@@ -181,6 +229,191 @@
   margin-top: 14px; 
 }
 
+/* Collapsed state on small viewports: hide contacts, divider and social unless .open is present */
+@media (max-width: 1086px) {
+  .toggle-contacts { 
+    display: block; 
+    border: 1px solid rgba(255,255,255,0.03);
+    border-top-right-radius: 17px;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 0;
+    border-top-left-radius: 0;
+    box-shadow: none;
+    color: #d0d0d6;
+    background: transparent;
+    margin-top: -13px;
+    margin-right: -13px;
+  }
+
+  /* Apply styles when the toggle button itself has the '--closed' modifier */
+  .toggle-contacts.toggle-contacts--open {
+    display: block; 
+    border: 1px solid rgba(255,255,255,0.03);
+    border-top-right-radius: 17px !important;
+    border-bottom-left-radius: 10px !important;
+    border-bottom-right-radius: 0 !important;
+    border-top-left-radius: 0 !important;
+    box-shadow: none;
+    color: #d0d0d6;
+    background: transparent;
+    margin-top: -13px;
+    margin-right: -13px;
+  }
+
+  .toggle-contacts.toggle-contacts--closed {
+    display: block; 
+    border: 1px solid rgba(255,255,255,0.03);
+    border-top-right-radius: 17px !important;
+    border-bottom-left-radius: 10px !important;
+    border-bottom-right-radius: 0 !important;
+    border-top-left-radius: 0 !important;
+    box-shadow: none;
+    color: #d0d0d6;
+    background: transparent;
+    margin-top: -13px;
+    margin-right: -13px;
+  }
+
+  .profile-card:not(.open) .divider,
+  .profile-card:not(.open) .contact,
+  .profile-card:not(.open) .social {
+    max-height: 0;
+    opacity: 0;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    transform: translateY(-6px);
+    transition: max-height .38s ease, opacity .28s ease, 
+    transform .28s ease;
+    pointer-events: none;
+    margin-bottom: 5px;
+  }
+
+  .divider{
+    margin-top: 20px;
+  }
+
+  .profile-card.open .divider,
+  .profile-card.open .contact,
+  .profile-card.open .social {
+    max-height: 1000px;
+    opacity: 1;
+    margin: 20px;
+    padding: initial;
+    transform: translateY(0);
+    transition: max-height .48s cubic-bezier(.2,.9,.2,1),
+    opacity .32s ease, transform .32s ease;
+    pointer-events: auto;
+  }
+
+  .profile-card.open .divider{
+   margin-top: 30px;
+   margin-bottom: 30px;
+ }
+
+  /* Keep avatar and name visible and centered when collapsed */
+  .profile-card .avatar { 
+    margin: 6px auto 12px auto; 
+  }
+
+  .profile-card .name { 
+    font-size: 1.9rem; 
+  }
+
+  .profile-card { 
+    padding-bottom: 14px; 
+  }
+}
+
+/* style small arrow inside toggle */
+.toggle-icon {
+  font-size: 1rem;
+  line-height: 1;
+  display: inline-block;
+  transform: rotate(0deg) translateY(0);
+  transform-origin: center;
+  transition: transform .18s ease, fill .12s ease;
+}
+
+/* slightly larger arrow when open */
+.profile-card.open .toggle-icon { 
+  font-size: 1.05rem; 
+}
+
+/* style the down arrow + greater-or-equal sign when closed */
+.toggle-icon { 
+  display: inline-flex; 
+  align-items: center; 
+  gap: 6px; 
+}
+
+
+.profile-card.open .toggle-contacts {
+  /* restore to top-right position when open (original styling) */
+  top: 12px;
+  right: 12px;
+  transform: none;
+  border-radius: 14px 8px 8px 14px;
+  width: 66px;
+  height: 54px;
+  padding: 4px 6px;
+}
+
+.toggle-icon .arrow-left { 
+  font-size: 1.05rem; 
+}
+
+/* triangle SVG used on closed state */
+.toggle-triangle {
+  margin-top: 3px;
+  width: 15px !important;
+  height: 15px !important;
+  display: block;
+  fill: #ffffff;
+  transform: none;
+  transform-origin: center;
+  transition: transform .18s ease, fill .12s ease;
+}
+
+.toggle-triangle polygon {
+  fill: #ffffff;
+}
+
+.toggle-contacts.toggle-contacts--closed{
+  width: 66px;
+  height: 54px;
+
+}
+
+/* Ensure closed/open modifiers can target the triangle specifically */
+.toggle-contacts.toggle-contacts--closed .toggle-triangle {
+  width: 15px !important;
+  height: 15px !important;
+  margin-top: 2px;
+  /* closed: point to the left */
+  transform: rotate(90deg) translateY(0);
+}
+
+.toggle-contacts.toggle-contacts--closed .toggle-triangle polygon {
+  fill: #ffffff !important;
+}
+
+.toggle-contacts.toggle-contacts--open .toggle-triangle {
+  /* when open, show triangle pointing down (if present) */
+  display: block;
+  transform: rotate(0deg) translateY(0);
+}
+
+.toggle-contacts.toggle-contacts--closed .arrow-left {
+  display: none;
+}
+
+.toggle-contacts.toggle-contacts--open .arrow-left {
+  display: inline-block;
+  /* rotate the arrow glyph to point down */
+  transform: rotate(90deg);
+}
+
 .social-btn { 
   width: 28px; 
   height: 28px; 
@@ -243,10 +476,22 @@
   border: 1px solid rgba(255,255,255,0.03);
   border-top-right-radius: 15px;
   border-bottom-left-radius: 15px;
-  box-shadow: none;
+    border-bottom-left-radius: 10px;
   z-index: 20;
   width: auto;
   justify-content: flex-end;
+}
+
+/* compact toggle hidden by default (only visible on small screens via media query) */
+.tabs-toggle { 
+  display: none; 
+}
+
+/* by default show full tabs menu (desktop) */
+.tabs-menu { 
+  display: flex; 
+  gap: 14px; 
+  align-items: center; 
 }
 
 .tab {
@@ -574,5 +819,180 @@
   .icons-container img {
     width: 50px;
     height: 50px;
+  }
+}
+
+/* Desktop: hide compact toggle above 1086px and show full tabs */
+@media (min-width: 1087px) {
+  .tabs-toggle,
+  .toggle-contacts {
+    display: none !important;
+    pointer-events: none;
+    opacity: 0;
+  }
+
+  .tabs {
+    right: 0px;
+    top: 0px;
+    padding: 6px 12px;
+    width: auto;
+    align-items: center;
+    display: flex;
+    gap: 14px;
+    flex-direction: row;
+  }
+
+  .tabs-menu {
+    display: flex !important;
+    flex-direction: row;
+    gap: 14px;
+    align-items: center;
+    margin-top: 0;
+    width: auto;
+    background: transparent;
+    border: none;
+    padding: 0;
+  }
+
+  .tabs.open .tabs-menu {
+    display: flex;
+    max-height: none;
+    opacity: 1;
+    transform: none;
+  }
+
+  .tabs .tab {
+    display: inline-flex;
+    width: auto;
+    padding: 8px 14px;
+    border-radius: 6px;
+  }
+}
+
+/* Mobile: show compact toggle and stacked menu up to 1086px */
+@media (max-width: 1086px) {
+  .tabs {
+    right: -1px;
+    top: -1px;
+    padding: 6px 8px;
+    display: flex;
+    gap: 8px;
+    /* stack toggle above menu on mobile */
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .tabs-toggle {
+    display: inline-flex !important;
+    /* match toggle-contacts closed visual: compact pill */
+    background: transparent;
+    color: #d0d0d6;
+    width: 46px;
+    height: 34px;
+    display: grid;
+    place-items: center;
+    padding: 4px 6px;
+    border: none;
+    box-shadow: none;
+    font-weight: 700;
+    cursor: pointer;
+    z-index: 30;
+    align-self: flex-start;
+  }
+
+  /* Larger icon inside the compact tabs toggle (use SVG triangle like .toggle-triangle) */
+  .tabs-toggle-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    line-height: 1;
+    width: 44px;
+    height: 44px;
+    padding: 0;
+    /* don't rotate - SVG orientation is defined in the template */
+    transform: none;
+    transform-origin: center;
+    transition: transform .18s ease;
+  }
+
+  .tabs-toggle-triangle {
+    margin-top: 3px;
+    width: 15px !important;
+    height: 15px !important;
+    display: block;
+    fill: #ffffff;
+    /* No rotation: we render left/down triangles directly in HTML */
+    transform: none;
+    transform-origin: center;
+    transition: transform .18s ease, fill .12s ease;
+  }
+  
+  .tabs-menu {
+    display: none;
+    flex-direction: column;
+    gap: 1px;
+    width: 120px;
+    padding: 5px;
+    transform-origin: top right;
+    transition: max-height .36s ease, opacity .28s ease, transform .28s ease;
+    max-height: 0;
+    overflow: hidden;
+    opacity: 0;
+  }
+
+  .tabs.open .tabs-menu {
+    display: flex;
+    max-height: 800px;
+    opacity: 1;
+    transform: translateY(0);
+    margin-top: -10px;
+  }
+
+  .tabs.open .tab {
+    display: block;
+    width: 100%;
+    background: transparent;
+  }
+
+  /* when closed on small screens, rotate the triangle to point left */
+  /* when closed, rotate the icon container / non-triangle svgs to point left; leave the actual triangle SVG untouched */
+  .tabs:not(.open) .tabs-toggle-icon,
+  .tabs:not(.open) .tabs-toggle-icon svg:not(.tabs-toggle-triangle) {
+  /* keep container behavior but do not rotate the actual triangle SVG */
+    transform: none;
+  }
+
+  .tabs.open .tabs-toggle-triangle,
+  .tabs.open .tabs-toggle-icon svg,
+  .tabs.open .tabs-toggle-icon{
+    background: transparent !important;
+  }
+
+  .tabs.closed .tabs-toggle-triangle,
+  .tabs.close .tabs-toggle-icon svg,
+  .tabs.closed .tabs-toggle-icon{
+    width: 15px !important;
+    height: 15px !important;
+  }
+
+  .tabs.open .tabs-toggle-icon,
+  .tabs.open .tabs-toggle-icon svg:not(.tabs-toggle-triangle) {
+    transform: none;
+    width: 15px !important;
+    height: 15px !important;
+  }
+
+  /* Ensure explicit orientation from template is not overridden */
+  .tabs-toggle[aria-expanded="false"] .tabs-toggle-triangle{
+    transform: rotate(90deg) translateY(0) !important;
+  }
+
+  .tabs-toggle[aria-expanded="true"] .tabs-toggle-triangle {
+    transform: rotate(0deg) translateY(0) !important;
+  }
+
+  /* Ensure the actual triangle SVG keeps the polygon orientation we render in the template */
+  .tabs-toggle-triangle {
+    transform: none;
   }
 }
