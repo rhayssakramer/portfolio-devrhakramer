@@ -6,7 +6,7 @@ import { ParticlesComponent } from './components/particles.component';
   selector: 'app-root',
   imports: [RouterOutlet, ParticlesComponent],
   templateUrl: './app.html',
-  styleUrl: './app.css'
+  styleUrls: ['./app.css']
 })
 export class App {
   protected readonly title = signal('frontend');

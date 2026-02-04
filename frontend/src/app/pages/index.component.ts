@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterLink } from '@angular/router';
+import { Router } from '@angular/router';
 import { ParticlesComponent } from '../components/particles.component';
 
 @Component({
@@ -8,6 +8,13 @@ import { ParticlesComponent } from '../components/particles.component';
   templateUrl: './index.component.html',
   styleUrls: ['./index.component.css'],
   standalone: true,
-  imports: [CommonModule, RouterLink, ParticlesComponent]
+  imports: [CommonModule, ParticlesComponent]
 })
-export class IndexComponent {}
+export class IndexComponent {
+  constructor(private router: Router) {}
+
+  goHome(): void {
+    localStorage.setItem('allowHome', 'true');
+    this.router.navigate(['/home']);
+  }
+}
