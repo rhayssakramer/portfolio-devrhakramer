@@ -15,4 +15,5 @@ body {
   background: #000;
   color: white;
   overflow-x: hidden;
+  overflow-y: hidden; /* prevent body scroll so .page-wrapper handles scrolling */
 }

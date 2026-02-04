@@ -1,16 +1,16 @@
 <aside class="profile">
+  <button class="toggle-contacts"
+    (click)="toggleContacts()"
+    [ngClass]="{ 'toggle-contacts--closed': !showContacts, 'toggle-contacts--open': showContacts }"
+    [attr.aria-expanded]="showContacts"
+    [attr.aria-label]="showContacts ? 'Ocultar Contatos' : 'Mostrar Contatos'">
+    <span class="toggle-icon" aria-hidden="true">
+      <svg class="toggle-triangle" viewBox="0 0 24 16" xmlns="http://www.w3.org/2000/svg" focusable="false" aria-hidden="true">
+        <polygon points="0,0 24,0 12,16" />
+      </svg>
+    </span>
+  </button>
   <div class="profile-card" [class.open]="showContacts">
-    <button class="toggle-contacts"
-      (click)="toggleContacts()"
-      [ngClass]="{ 'toggle-contacts--closed': !showContacts, 'toggle-contacts--open': showContacts }"
-      [attr.aria-expanded]="showContacts"
-      [attr.aria-label]="showContacts ? 'Ocultar Contatos' : 'Mostrar Contatos'">
-      <span class="toggle-icon" aria-hidden="true">
-        <svg class="toggle-triangle" viewBox="0 0 24 16" xmlns="http://www.w3.org/2000/svg" focusable="false" aria-hidden="true">
-          <polygon points="0,0 24,0 12,16" />
-        </svg>
-      </span>
-    </button>
     <div class="avatar">
       <img src="assets/images/profile.jpg" alt="Foto de perfil" />
     </div>

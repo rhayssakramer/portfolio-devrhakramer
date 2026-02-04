@@ -36,7 +36,7 @@
   max-width: 1100px; /* enforce container width on the grid element (allow 320 + 760px) */
   margin: 0 auto;
 }
-.\/* Profile styles moved to src/app/components/profile-card/profile-card.component.css *\/
+/* Profile styles moved to src/app/components/profile-card/profile-card.component.css */
 
 /* Main */
 .content { 
@@ -127,6 +127,38 @@
   width: 100%;
   max-width: 760px; /* tuned to match visual balance with sidebar */
   margin: 0 auto; /* center the card horizontally inside its grid column */
+}
+
+/* When resume tab is active hide non-tabs content and show resume host */
+.card.show-resume > *:not(.tabs):not(.resume-host) {
+  display: none;
+}
+.resume-host {
+  padding: 8px 0 0 0;
+}
+
+/* portfolio state: hide non-tabs content when portfolio active */
+.card.show-portfolio > *:not(.tabs):not(.portfolio-host) {
+  display: none;
+}
+.portfolio-host {
+  padding: 8px 0 0 0;
+}
+
+/* blog state: hide non-tabs content when blog active */
+.card.show-blog > *:not(.tabs):not(.blog-host) {
+  display: none;
+}
+.blog-host {
+  padding: 8px 0 0 0;
+}
+
+/* contact state: hide non-tabs content when contact active */
+.card.show-contact > *:not(.tabs):not(.contact-host) {
+  display: none;
+}
+.contact-host {
+  padding: 8px 0 0 0;
 }
 
 .card + .card { 
@@ -396,8 +428,43 @@
   border:1px solid rgba(255,255,255,.06); 
 }
 
-@media (max-width: 1000px) { 
-  .page-grid { grid-template-columns: 1fr; } 
+/* Ajustes para telas entre 1000px e 1116px */
+@media (min-width: 1000px) and (max-width: 1116px) {
+  .page-grid {
+    grid-template-columns: 280px minmax(0, 1fr);
+    gap: 24px;
+    max-width: 100%;
+    padding: 0 20px;
+  }
+  
+  .container {
+    max-width: 100%;
+    padding: 0;
+  }
+  
+  .card {
+    max-width: 100%;
+  }
+}
+
+@media (max-width: 999px) { 
+  .page-grid { 
+    grid-template-columns: 1fr;
+    justify-items: center;
+  }
+  
+  /* Centralizar o profile card */
+  .page-grid > app-profile-card {
+    width: 100%;
+    max-width: 420px;
+    display: flex;
+    justify-content: center;
+  }
+  
+  .content {
+    width: 100%;
+    max-width: 100%;
+  }
 }
 
 @media (max-width: 640px) { 
@@ -413,8 +480,8 @@
   }
 }
 
-/* Desktop: hide compact toggle above 1086px and show full tabs */
-@media (min-width: 1087px) {
+/* Desktop: hide compact toggle above 1116px and show full tabs */
+@media (min-width: 1117px) {
   .tabs-toggle {
     display: none !important;
     pointer-events: none;
@@ -460,7 +527,7 @@
 }
 
 /* Mobile: show compact toggle and stacked menu up to 1086px */
-@media (max-width: 1086px) {
+@media (max-width: 1116px) {
   .tabs {
     right: -1px;
     top: -1px;
@@ -476,7 +543,7 @@
     display: inline-flex !important;
     /* match toggle-contacts closed visual: compact pill */
     background: transparent;
-    color: #d0d0d6;
+    color: #ffffff;
     width: 46px;
     height: 34px;
     display: grid;

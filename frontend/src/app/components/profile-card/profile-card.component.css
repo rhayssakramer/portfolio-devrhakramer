@@ -5,19 +5,20 @@
   align-self: start;
 }
 :host {
-  position: relative; /* allow absolute children to position relative to host when needed */
+  position: static !important; /* force normal flow so host scrolls with page */
 }
 
 :host > .profile {
   display: block;
+  position: relative;
 }
 
-/* Ensure toggle is hidden on larger viewports (safe-guard against overrides) */
-@media (min-width: 1087px) {
-  .toggle-contacts {
-    display: none !important;
-  }
+/* Force profile card into normal document flow to ensure it scrolls with the page */
+.profile-card {
+  position: static !important;
+  top: auto !important;
 }
+
 .profile-card {
   width: 320px; /* increase card width to match grid column */
   box-sizing: border-box;
@@ -39,14 +40,15 @@
   overflow: visible; /* no internal scrolling */
 }
 
+/* No special positioning here — let the profile card scroll normally with content */
+
 .toggle-contacts {
-  display: none;
   position: absolute;
-  top: 12px; /* place above the card */
-  right: 12px;
+  top: 0; /* posicionado acima do card */
+  right: 0;
   width: 46px;
   height: 34px;
-  display: grid;
+  display: none; /* hidden by default */
   place-items: center;
   padding: 4px 6px;
   border-radius: 14px 8px 8px 14px;
@@ -57,25 +59,55 @@
   z-index: 60; /* above the card */
 }
 
+/* Show toggle on screens up to 1116px */
+/* Ajustes para telas entre 1000px e 1116px */
+@media (min-width: 1000px) and (max-width: 1116px) {
+  .profile-card {
+    width: 280px;
+  }
+  
+  .toggle-contacts {
+    display: grid !important;
+  }
+}
+
+@media (max-width: 1116px) {
+  .toggle-contacts {
+    display: grid !important;
+  }
+}
+
+/* Ensure toggle is hidden on larger viewports */
+@media (min-width: 1117px) {
+  .toggle-contacts {
+    display: none !important;
+  }
+}
+
 .toggle-contacts.toggle-contacts--closed {
   background: transparent;
-  color: #d0d0d6;
+  color: #ffffff;
   border: 1px solid rgba(255,255,255,0.03);
   border-top-right-radius: 17px;
   border-bottom-left-radius: 10px;
   border-bottom-right-radius: 0;
   border-top-left-radius: 0;
   box-shadow: none;
-  margin-top: -13px;
-  margin-right: -13px;
 }
 
 .toggle-contacts.toggle-contacts--open {
-  background: linear-gradient(180deg,#2b2540,#14121a);
-  color: #f3e9cf;
-  border-radius: 14px 8px 8px 14px;
+  position: absolute;
+  top: 0 !important;
+  right: 0 !important;
+  background: transparent;
+  color: #ffffff;
   border: 1px solid rgba(255,255,255,0.03);
   box-shadow: 0 12px 30px rgba(0,0,0,0.6);
+  border-top-right-radius: 17px !important;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 0px !important;
+  border-top-left-radius: 0px !important;
+  box-shadow: none;
 }
 
 .avatar {
@@ -220,49 +252,40 @@
   margin-top: 14px;
 }
 
-@media (max-width: 1086px) {
+/* Ajustes para telas abaixo de 1000px */
+@media (max-width: 999px) {
+  :host {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+  }
+  
+  .profile-card {
+    width: 100%;
+    max-width: 420px;
+    margin: 0 auto;
+    position: relative;
+  }
+  
   .toggle-contacts {
-    display: block;
-    border: 1px solid rgba(255,255,255,0.03);
-    border-top-right-radius: 17px;
-    border-bottom-left-radius: 10px;
-    border-bottom-right-radius: 0;
-    border-top-left-radius: 0;
-    box-shadow: none;
-    color: #d0d0d6;
-    background: transparent;
-    margin-top: -13px;
-    margin-right: -13px;
+    position: absolute;
+    top: 0;
+    right: 0;
+    display: grid !important;
   }
-
-  .toggle-contacts.toggle-contacts--open {
-    display: block;
-    border: 1px solid rgba(255,255,255,0.03);
-    border-top-right-radius: 17px !important;
-    border-bottom-left-radius: 10px !important;
-    border-bottom-right-radius: 0 !important;
-    border-top-left-radius: 0 !important;
-    box-shadow: none;
-    color: #d0d0d6;
-    background: transparent;
-    margin-top: -13px;
-    margin-right: -13px;
-  }
-
+  
   .toggle-contacts.toggle-contacts--closed {
-    display: block;
-    border: 1px solid rgba(255,255,255,0.03);
-    border-top-right-radius: 17px !important;
-    border-bottom-left-radius: 10px !important;
-    border-bottom-right-radius: 0 !important;
-    border-top-left-radius: 0 !important;
-    box-shadow: none;
-    color: #d0d0d6;
-    background: transparent;
-    margin-top: -13px;
-    margin-right: -13px;
+    top: 0;
+    right: 0;
   }
+  
+  .toggle-contacts.toggle-contacts--open {
+    top: 0;
+    right: 0;
+  }
+}
 
+@media (max-width: 1116px) {
   .profile-card:not(.open) .divider,
   .profile-card:not(.open) .contact,
   .profile-card:not(.open) .social {
@@ -313,14 +336,22 @@
   }
 }
 
+/* Ajustes adicionais para telas muito pequenas */
+@media (max-width: 640px) {
+  .profile-card {
+    max-width: 100%;
+    width: 100%;
+  }
+}
+
 /* Ensure profile card collapses to full width on narrow viewports */
-@media (max-width: 1000px) {
+/* @media (max-width: 1000px) {
   .profile-card {
     width: 100%;
     box-sizing: border-box;
-    margin: 0; /* remove external offsets when stacked */
+    margin: 0; /* remove external offsets when stacked 
   }
-}
+} */
 
 .social-btn { 
   width: 28px; 
@@ -384,9 +415,10 @@
   gap: 6px; 
 }
 
-.profile-card.open .toggle-contacts {
-  top: 12px;
-  right: 12px;
+.profile-card.open ~ .toggle-contacts,
+.toggle-contacts.toggle-contacts--open {
+  top: -10px;
+  right: 20px;
   transform: none;
   border-radius: 14px 8px 8px 14px;
   width: 66px;

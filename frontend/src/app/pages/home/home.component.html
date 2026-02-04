@@ -5,7 +5,7 @@
     <app-profile-card></app-profile-card>
 
     <main class="content">
-      <section class="card">
+      <section class="card" [class.show-resume]="activeTab==='resume'" [class.show-portfolio]="activeTab==='portfolio'" [class.show-blog]="activeTab==='blog'" [class.show-contact]="activeTab==='contact'">
         <!-- tabs embedded in the Sobre card (top-right) -->
         <nav class="tabs" [class.open]="tabsOpen">
           <!-- compact toggle (hidden on desktop via CSS) -->
@@ -19,28 +19,29 @@
 
           <!-- full tabs menu (shown on desktop; on mobile it's hidden until opened) -->
           <div class="tabs-menu" [class.open]="tabsOpen">
-            <a class="tab active">Sobre</a>
-            <a class="tab">Currículo</a>
-            <a class="tab">Portfólio</a>
-            <a class="tab">Blog</a>
-            <a class="tab">Contato</a>
+            <a class="tab" [class.active]="activeTab==='about'" (click)="setTab('about')">Sobre</a>
+            <a class="tab" [class.active]="activeTab==='resume'" (click)="setTab('resume')">Currículo</a>
+            <a class="tab" [class.active]="activeTab==='portfolio'" (click)="setTab('portfolio')">Portfólio</a>
+            <a class="tab" [class.active]="activeTab==='blog'" (click)="setTab('blog')">Blog</a>
+            <a class="tab" [class.active]="activeTab==='contact'" (click)="setTab('contact')">Contato</a>
           </div>
         </nav>
-        <h1 class="title">Sobre Mim</h1>
-        <p class="p-title">Oiê, sou Rhayssa Kramer, apaixonada por tecnologia!👋🏼<br>
-           Sou Desenvolvedora Full-stack Jr. na <a class="link-text-1" href="https://www.avanade.com/pt-br">Avanade Brasil</a> 
-           e criadora de conteúdos tech nas <a class="link-text-2" href="https://linktr.ee/devrhakramer">Redes Sociais</a>.
-           Atuo com DevSecOps, com tecnologias e linguagens como <b>C#</b>, <b>Angular</b>, <b>Typescript</b>, 
-           <b>JavaScript</b>, <b>Node.js</b>, <b>.Net</b>, <b>Azure</b>, <b>Git</b> e 
-           <b>GitHub</b>, <b>GitLab</b>, focando em qualidade de código, boas práticas e 
-           soluções escaláveis. <br>Valorizo o trabalho em equipe, a troca de conhecimento e 
-           a busca constante por inovação. Fora do mundo tech, gosto de natureza, pets, 
-           viagens, artes, livros e games, que inspiram minha criatividade.</p>
+        <div *ngIf="activeTab==='about'">
+          <h1 class="title">Sobre Mim</h1>
+          <p class="p-title">Oiê, sou Rhayssa Kramer, apaixonada por tecnologia!👋🏼<br>
+             Sou Desenvolvedora Full-stack Jr. na <a class="link-text-1" href="https://www.avanade.com/pt-br">Avanade Brasil</a> 
+             e criadora de conteúdos tech nas <a class="link-text-2" href="https://linktr.ee/devrhakramer">Redes Sociais</a>.
+             Atuo com DevSecOps, com tecnologias e linguagens como <b>C#</b>, <b>Angular</b>, <b>Typescript</b>, 
+             <b>JavaScript</b>, <b>Node.js</b>, <b>.Net</b>, <b>Azure</b>, <b>Git</b> e 
+             <b>GitHub</b>, <b>GitLab</b>, focando em qualidade de código, boas práticas e 
+             soluções escaláveis. <br>Valorizo o trabalho em equipe, a troca de conhecimento e 
+             a busca constante por inovação. Fora do mundo tech, gosto de natureza, pets, 
+             viagens, artes, livros e games, que inspiram minha criatividade.</p>
 
-        <div class="card-divider"></div>
+          <div class="card-divider"></div>
 
-        <h2 class="subtitle-1">Atuação Profissional</h2>
-        <div class="grid-feats">
+          <h2 class="subtitle-1">Atuação Profissional</h2>
+          <div class="grid-feats">
           <article class="feat">
             <div class="feat-ico gold">
               <img src="assets/icons/frontend.png" alt="Desenvolvimento Web">
@@ -233,5 +234,25 @@
               <img src="https://skillicons.dev/icons?i=linkedin" alt="LinkedIn">
             </a>
           </div>
+        </div>
+        </div>
+
+        <div *ngIf="activeTab==='resume'" class="resume-host">
+          <app-resume></app-resume>
+        </div>
+
+        <div *ngIf="activeTab==='portfolio'" class="portfolio-host">
+          <app-portfolio></app-portfolio>
+        </div>
+
+        <div *ngIf="activeTab==='blog'" class="blog-host">
+          <app-blog></app-blog>
+        </div>
+
+        <div *ngIf="activeTab==='contact'" class="contact-host">
+          <app-contact></app-contact>
+        </div>
+      </section>
+    </main>
   </div>
 </section>
