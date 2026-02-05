@@ -11,8 +11,8 @@ import { DevToService, DevToArticle } from '../../services/devto.service';
 })
 export class BlogComponent implements OnInit {
   articles: DevToArticle[] = [];
-  loading: boolean = true;
-  error: string = '';
+  loading = true;
+  error = '';
 
   constructor(private devToService: DevToService) {}
 

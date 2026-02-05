@@ -14,7 +14,7 @@
     <div class="articles-grid" *ngIf="!loading && !error">
       <article class="article-card" *ngFor="let article of articles" (click)="openArticle(article.url)">
         <div class="article-image" *ngIf="article.cover_image">
-          <img [src]="article.cover_image" [alt]="article.title">
+          <img src="{{article.cover_image}}" alt="{{article.title}}">
         </div>
         <div class="article-content">
           <div class="article-meta">

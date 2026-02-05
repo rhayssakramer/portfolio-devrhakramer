@@ -7,31 +7,31 @@
     <div class="category-filters">
       <button 
         class="category-btn" 
-        [class.active]="selectedCategory === 'all'"
+        [ngClass]="{'active': selectedCategory === 'all'}"
         (click)="filterByCategory('all')">
         Todos
       </button>
       <button 
         class="category-btn" 
-        [class.active]="selectedCategory === 'frontend'"
+        [ngClass]="{'active': selectedCategory === 'frontend'}"
         (click)="filterByCategory('frontend')">
         Frontend
       </button>
       <button 
         class="category-btn" 
-        [class.active]="selectedCategory === 'backend'"
+        [ngClass]="{'active': selectedCategory === 'backend'}"
         (click)="filterByCategory('backend')">
         Backend
       </button>
       <button 
         class="category-btn" 
-        [class.active]="selectedCategory === 'database'"
+        [ngClass]="{'active': selectedCategory === 'database'}"
         (click)="filterByCategory('database')">
         Banco de Dados
       </button>
       <button 
         class="category-btn" 
-        [class.active]="selectedCategory === 'tools'"
+        [ngClass]="{'active': selectedCategory === 'tools'}"
         (click)="filterByCategory('tools')">
         Ferramentas
       </button>
@@ -43,7 +43,7 @@
         <button 
           *ngFor="let tech of getAvailableTechnologies()"
           class="filter-btn" 
-          [class.active]="selectedFilter === tech"
+          [ngClass]="{'active': selectedFilter === tech}"
           (click)="filterByTechnology(tech)">
           {{ tech }}
         </button>
@@ -61,7 +61,7 @@
     <div class="projects-grid" *ngIf="!loading && !error">
       <article class="proj-card" *ngFor="let project of filteredProjects" (click)="openProject(project.html_url)">
         <div class="project-image">
-          <img [src]="getProjectImage(project)" [alt]="project.name">
+          <img src="{{getProjectImage(project)}}" alt="{{project.name}}">
           <div class="main-language" [style.background-color]="getLanguageColor(project.mainTag)">
             {{ project.mainTag }}
           </div>

@@ -5,11 +5,11 @@
     <app-profile-card></app-profile-card>
 
     <main class="content">
-      <section class="card" [class.show-resume]="activeTab==='resume'" [class.show-portfolio]="activeTab==='portfolio'" [class.show-blog]="activeTab==='blog'" [class.show-contact]="activeTab==='contact'">
+      <section class="card" [ngClass]="{'show-resume': activeTab==='resume', 'show-portfolio': activeTab==='portfolio', 'show-blog': activeTab==='blog', 'show-contact': activeTab==='contact'}">
         <!-- abas incorporadas no card Sobre (canto superior direito) -->
-        <nav class="tabs" [class.open]="tabsOpen">
+        <nav class="tabs" [ngClass]="{'open': tabsOpen}">
           <!-- alternador compacto (oculto no desktop via CSS) -->
-          <button class="tabs-toggle" (click)="toggleTabs()" aria-label="Abrir menu de abas" [attr.aria-expanded]="tabsOpen">
+          <button class="tabs-toggle" (click)="toggleTabs()" aria-label="Abrir menu de abas" attr.aria-expanded="{{tabsOpen}}">
             <span class="tabs-toggle-icon" aria-hidden="true">
               <svg class="tabs-toggle-triangle" viewBox="0 0 24 16" xmlns="http://www.w3.org/2000/svg" focusable="false" aria-hidden="true">
                 <polygon points="0,0 24,0 12,16" />
@@ -18,12 +18,12 @@
           </button>
 
           <!-- menu de abas completo (exibido no desktop; no mobile fica oculto até ser aberto) -->
-          <div class="tabs-menu" [class.open]="tabsOpen">
-            <a class="tab" [class.active]="activeTab==='about'" (click)="setTab('about')">Sobre</a>
-            <a class="tab" [class.active]="activeTab==='resume'" (click)="setTab('resume')">Currículo</a>
-            <a class="tab" [class.active]="activeTab==='portfolio'" (click)="setTab('portfolio')">Portfólio</a>
-            <a class="tab" [class.active]="activeTab==='blog'" (click)="setTab('blog')">Blog</a>
-            <a class="tab" [class.active]="activeTab==='contact'" (click)="setTab('contact')">Contato</a>
+          <div class="tabs-menu" [ngClass]="{'open': tabsOpen}">
+            <a class="tab" [ngClass]="{'active': activeTab==='about'}" (click)="setTab('about')">Sobre</a>
+            <a class="tab" [ngClass]="{'active': activeTab==='resume'}" (click)="setTab('resume')">Currículo</a>
+            <a class="tab" [ngClass]="{'active': activeTab==='portfolio'}" (click)="setTab('portfolio')">Portfólio</a>
+            <a class="tab" [ngClass]="{'active': activeTab==='blog'}" (click)="setTab('blog')">Blog</a>
+            <a class="tab" [ngClass]="{'active': activeTab==='contact'}" (click)="setTab('contact')">Contato</a>
           </div>
         </nav>
         <div *ngIf="activeTab==='about'">

@@ -18,10 +18,10 @@ interface ProjectWithTags extends GitHubRepo {
 export class PortfolioComponent implements OnInit {
   projects: ProjectWithTags[] = [];
   filteredProjects: ProjectWithTags[] = [];
-  loading: boolean = true;
-  error: string = '';
-  selectedFilter: string = '';
-  selectedCategory: string = 'all';
+  loading = true;
+  error = '';
+  selectedFilter = '';
+  selectedCategory = 'all';
 
   // Categorias e tecnologias
   categories = {
@@ -133,11 +133,11 @@ export class PortfolioComponent implements OnInit {
     const mainTag = repo.language || 'Outros';
     
     // Determina a categoria principal
-    const category = this.determineCategory(Array.from(tags));
+    const category = this.determineCategory([...tags]);
 
     return {
       ...repo,
-      tags: Array.from(tags),
+      tags: [...tags],
       mainTag,
       category
     };

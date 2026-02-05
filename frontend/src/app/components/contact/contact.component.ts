@@ -15,7 +15,7 @@ export class ContactComponent {
   
   // IMPORTANTE: Obtenha sua Access Key em https://web3forms.com
   // É gratuito e leva apenas 1 minuto!
-  private accessKey = '5935702f-9d36-4432-b9af-06ad95ed641f'; // ⚠️ Substitua pela sua chave do Web3Forms
+  private readonly accessKey = '5935702f-9d36-4432-b9af-06ad95ed641f'; // ⚠️ Substitua pela sua chave do Web3Forms
   
   formData = {
     name: '',

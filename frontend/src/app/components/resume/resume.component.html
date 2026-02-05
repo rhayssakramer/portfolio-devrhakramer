@@ -25,7 +25,7 @@
       <!-- Coluna Esquerda -->
       <div class="left-column">
         <!-- Formação Acadêmica -->
-        <div class="card slide-in-left" [class.expanded]="isExpanded('education')">
+        <div class="card slide-in-left" [ngClass]="{'expanded': isExpanded('education')}">
           <div class="card-header">
             <div class="card-header-left">
               <span class="icon">
@@ -36,7 +36,7 @@
               </span>
               <h2>Formação Acadêmica</h2>
             </div>
-            <button *ngIf="hasMultipleItems('education')" class="expand-btn" [class.expanded]="isExpanded('education')" (click)="toggleCard('education')">
+            <button *ngIf="hasMultipleItems('education')" class="expand-btn" [ngClass]="{'expanded': isExpanded('education')}" (click)="toggleCard('education')">
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                 <polyline points="6 9 12 15 18 9"></polyline>
               </svg>
@@ -53,7 +53,7 @@
         </div>
 
         <!-- Experiências -->
-        <div class="card slide-in-left" [class.expanded]="isExpanded('experience')" style="animation-delay: 0.2s;">
+        <div class="card slide-in-left" [ngClass]="{'expanded': isExpanded('experience')}" style="animation-delay: 0.2s;">
           <div class="card-header">
             <div class="card-header-left">
               <span class="icon">
@@ -64,7 +64,7 @@
               </span>
               <h2>Experiências</h2>
             </div>
-            <button *ngIf="hasMultipleItems('experience')" class="expand-btn" [class.expanded]="isExpanded('experience')" (click)="toggleCard('experience')">
+            <button *ngIf="hasMultipleItems('experience')" class="expand-btn" [ngClass]="{'expanded': isExpanded('experience')}" (click)="toggleCard('experience')">
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                 <polyline points="6 9 12 15 18 9"></polyline>
               </svg>
@@ -97,7 +97,7 @@
       <!-- Coluna Direita -->
       <div class="right-column">
         <!-- Certificações -->
-        <div class="card slide-in-right" [class.expanded]="isExpanded('certifications')">
+        <div class="card slide-in-right" [ngClass]="{'expanded': isExpanded('certifications')}">
           <div class="card-header">
             <div class="card-header-left">
               <span class="icon">
@@ -108,7 +108,7 @@
               </span>
               <h2>Certificações</h2>
             </div>
-            <button *ngIf="hasMultipleItems('certifications')" class="expand-btn" [class.expanded]="isExpanded('certifications')" (click)="toggleCard('certifications')">
+            <button *ngIf="hasMultipleItems('certifications')" class="expand-btn" [ngClass]="{'expanded': isExpanded('certifications')}" (click)="toggleCard('certifications')">
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                 <polyline points="6 9 12 15 18 9"></polyline>
               </svg>
@@ -134,7 +134,7 @@
         </div>
 
         <!-- Certificados -->
-        <div class="card slide-in-right" [class.expanded]="isExpanded('certificates')" style="animation-delay: 0.1s;">
+        <div class="card slide-in-right" [ngClass]="{'expanded': isExpanded('certificates')}" style="animation-delay: 0.1s;">
           <div class="card-header">
             <div class="card-header-left">
               <span class="icon">
@@ -142,7 +142,7 @@
               </span>
               <h2>Certificados</h2>
             </div>
-            <button *ngIf="hasMultipleItems('certificates')" class="expand-btn" [class.expanded]="isExpanded('certificates')" (click)="toggleCard('certificates')">
+            <button *ngIf="hasMultipleItems('certificates')" class="expand-btn" [ngClass]="{'expanded': isExpanded('certificates')}" (click)="toggleCard('certificates')">
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                 <polyline points="6 9 12 15 18 9"></polyline>
               </svg>
