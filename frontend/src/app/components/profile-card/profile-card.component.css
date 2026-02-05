@@ -1,46 +1,27 @@
 /* Profile card styles moved from home.component.css */
-.host-replacement {}
 :host {
   display: block;
   align-self: start;
-}
-:host {
-  position: static !important; /* force normal flow so host scrolls with page */
+  position: sticky;
+  top: 0;
 }
 
-:host > .profile {
+.profile {
   display: block;
   position: relative;
 }
 
-/* Force profile card into normal document flow to ensure it scrolls with the page */
 .profile-card {
-  position: static !important;
-  top: auto !important;
-}
-
-.profile-card {
-  width: 320px; /* increase card width to match grid column */
+  width: 320px;
   box-sizing: border-box;
-}
-.profile-card {
   background: rgba(20, 22, 35, .85);
   border: 1px solid rgba(255,255,255,.06);
   border-radius: 18px;
   padding: 26px 22px;
   box-shadow: 0 12px 40px rgba(0,0,0,.45);
+  max-height: calc(100vh - 40px);
+  overflow-y: auto;
 }
-
-.profile-card { position: relative; }
-
-.profile-card {
-  position: relative; /* anchor for the toggle button */
-  align-self: start;
-  max-height: none;
-  overflow: visible; /* no internal scrolling */
-}
-
-/* No special positioning here — let the profile card scroll normally with content */
 
 .toggle-contacts {
   position: absolute;
