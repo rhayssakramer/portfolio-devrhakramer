@@ -2,12 +2,25 @@
   <div class="container">
     <h1>Currículo</h1>
     <p>Linha do Tempo Profissional</p>
-    <section class="resume-professional">
-      <h2>Resumo Profissional</h2>
-      <p>Desenvolvedora Full-stack Jr. com experiência em Angular, Typescript, Node.js e .NET. 
-        Foco em boas práticas, segurança e aplicações escaláveis.
+
+    <!-- Resumo Profissional -->
+    <div class="professional-summary-card">
+      <div class="summary-header">
+        <span class="icon">
+          <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+            <circle cx="12" cy="7" r="4"></circle>
+          </svg>
+        </span>
+        <h2>Resumo Profissional</h2>
+      </div>
+      <p class="summary-description">Atuo como Sr. Assoc, Full-stack Development na <a class="link-text-1" href="https://www.avanade.com/pt-br">Avanade</a>, onde aprimoro minhas habilidades em programação e utilizo diversas 
+        linguagens e ferramentas para desenvolvimento de software. Busco constantemente o aperfeiçoamento técnico e o desenvolvimento de 
+        soft skills, visando contribuir de forma eficaz para a equipe e para o crescimento da organização. Meu objetivo é evoluir profissionalmente,
+         adquirindo experiência e conhecimento para alcançar os melhores resultados e realizar meu potencial na área de tecnologia.
       </p>
-    </section>
+    </div>
+
     <div class="resume-grid">
       <!-- Coluna Esquerda -->
       <div class="left-column">
@@ -183,19 +196,23 @@
             </div>
           </div>
         </div>
+      </div>
+    </div>
 
-        <!-- Habilidades -->
-        <div class="card skills-card slide-in-right" style="animation-delay: 0.2s;">
-          <div class="card-header">
-            <span class="icon">
-              <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <polyline points="16 18 22 12 16 6"></polyline>
-                <polyline points="8 6 2 12 8 18"></polyline>
-              </svg>
-            </span>
-            <h2>Habilidades</h2>
-          </div>
-          <div class="card-content">
+    <!-- Habilidades (fora do grid para ocupar toda a largura) -->
+    <div class="card skills-card slide-in-right" style="animation-delay: 0.2s;">
+      <div class="card-header">
+        <div class="card-header-left">
+          <span class="icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="16 18 22 12 16 6"></polyline>
+              <polyline points="8 6 2 12 8 18"></polyline>
+            </svg>
+          </span>
+          <h2>Habilidades</h2>
+        </div>
+      </div>
+      <div class="card-content">
             <div class="skill-item">
               <div class="skill-header">
                 <span>JavaScript/Node.js</span>
@@ -279,8 +296,6 @@
             </div>
           </div>
         </div>
-      </div>
-    </div>
 
   </div>
 </section>

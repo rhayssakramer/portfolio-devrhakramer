@@ -27,7 +27,62 @@
 }
 
 .container p{
-    font-size: 20px;
+    font-size: 1.2rem;
+}
+
+/* Professional Summary Card */
+.professional-summary-card {
+  background: rgba(255,255,255,.02);
+  border-radius: 16px;
+  padding: 24px 28px;
+  margin: 24px auto 32px auto;
+  max-width: 1200px;
+  box-shadow: 2px 2px 2px 2px #00000047;
+  border: 1px solid rgba(255,255,255,.05);
+  transition: transform 0.3s ease, border-color 0.3s ease;
+  position: relative;
+  left: 35px;
+}
+
+.professional-summary-card:hover {
+  border: 2px solid #8b65d0;
+  transform: translateY(-2px);
+}
+
+.summary-header {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 16px;
+}
+
+.summary-header .icon {
+  color: #8b65d0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.summary-header h2 {
+  font-size: 1.5rem;
+  color: #fff;
+  margin: 0;
+  font-weight: 600;
+}
+
+.summary-description {
+  font-size: 1.05rem;
+  text-align: justify;
+  line-height: 1.7;
+  color: #d6d6df;
+  margin: 0;
+  padding-left: 48px;
+}
+
+.link-text-1{
+  text-decoration: none; 
+  font-weight: 700; 
+  color: #ff610e; 
 }
 
 .resume-page { 
@@ -44,8 +99,11 @@
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 32px;
-  margin-top: 32px;
+  margin: 32px auto 0 auto;
+  max-width: 1200px;
   grid-auto-rows: 1fr; /* força todas as linhas a terem a mesma altura */
+  position: relative;
+  left: 35px;
 }
 
 .left-column,
@@ -75,9 +133,13 @@
 
 /* Card de habilidades com altura diferente */
 .card.skills-card {
-    min-height: auto; /* Remove altura mínima para o card de habilidades */
-    max-height: none; /* Remove limite de altura máxima */
-    overflow: visible; /* Permite mostrar todo o conteúdo */
+    min-height: auto;
+    max-height: none;
+    overflow: visible;
+    margin: 32px auto 0 auto;
+    max-width: 1200px;
+    position: relative;
+    left: 35px;
 }
 
 .card.expanded {
