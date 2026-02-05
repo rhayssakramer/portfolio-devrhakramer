@@ -19,11 +19,9 @@
 
           <!-- menu de abas completo (exibido no desktop; no mobile fica oculto até ser aberto) -->
           <div class="tabs-menu" [ngClass]="{'open': tabsOpen}">
-            <a class="tab" [ngClass]="{'active': activeTab==='about'}" (click)="setTab('about')">Sobre</a>
-            <a class="tab" [ngClass]="{'active': activeTab==='resume'}" (click)="setTab('resume')">Currículo</a>
-            <a class="tab" [ngClass]="{'active': activeTab==='portfolio'}" (click)="setTab('portfolio')">Portfólio</a>
-            <a class="tab" [ngClass]="{'active': activeTab==='blog'}" (click)="setTab('blog')">Blog</a>
-            <a class="tab" [ngClass]="{'active': activeTab==='contact'}" (click)="setTab('contact')">Contato</a>
+            <a class="tab" *ngFor="let tab of tabs" 
+               [ngClass]="{'active': activeTab === tab.id}" 
+               (click)="setTab(tab.id)">{{ tab.label }}</a>
           </div>
         </nav>
         <div *ngIf="activeTab==='about'">
@@ -41,85 +39,39 @@
 
           <h2 class="subtitle-1">Atuação Profissional</h2>
           <div class="grid-feats">
-          <article class="feat animate-left">
+          <article class="feat" *ngFor="let feature of features; let i = index" 
+                   [class.animate-left]="i % 2 === 0" 
+                   [class.animate-right]="i % 2 !== 0">
             <div class="feat-ico gold">
-              <img src="assets/icons/frontend.png" alt="Desenvolvimento Web">
+              <img src="{{feature.icon}}" alt="{{feature.alt}}">
             </div>
             <div>
-              <h3>Desenvolvimento Web</h3>
-              <p>Aplicações web escaláveis em Angular/TypeScript e JavaScript/Node.js.</p>
-            </div>
-          </article>
-          <article class="feat animate-right">
-            <div class="feat-ico gold">
-              <img src="assets/icons/backend.png" alt="BackEnd">
-            </div>
-            <div>
-              <h3>BackEnd</h3>
-              <p>Aplicações em C#, .Net, API REST, Web API, Arquitetura em Camadas, SOLID, Design Patterns, Postgres.</p>
-            </div>
-          </article>
-          <article class="feat animate-left">
-            <div class="feat-ico gold">
-              <img src="assets/icons/security.png" alt="Security">
-            </div>
-            <div>
-              <h3>Segurança</h3>
-              <p>JWT Authentication, OAuth / OpenID Connect, OWASP Top 10, Validação de dados.</p>
-            </div>
-          </article>
-          <article class="feat animate-right">
-            <div class="feat-ico gold">
-              <img src="assets/icons/devops.png" alt="DevOps">
-            </div>
-            <div>
-              <h3>DevOps</h3>
-              <p>CI/CD, Docker, Testes Unitários, Kubernetes.</p>
-            </div>
-          </article>
-          <article class="feat animate-left">
-            <div class="feat-ico gold">
-              <img src="assets/icons/database.png" alt="Dados e Persistência">
-            </div>
-            <div>
-              <h3>Dados e Persistência</h3>
-              <p>Entity Framework, Dapper, Migrations</p>
-            </div>
-          </article>
-          <article class="feat animate-right">
-            <div class="feat-ico gold">
-              <img src="assets/icons/cloud.png" alt="Cloud Azure">
-            </div>
-            <div>
-              <h3>Cloud Azure</h3>
-              <p>Aplicações em nuvem com Azure.</p>
+              <h3>{{ feature.title }}</h3>
+              <p>{{ feature.description }}</p>
             </div>
           </article>
         </div>
         <h2 class="subtitle-1">Projetos em Destaque</h2>
         <div class="projects">
-          <article class="project animate-left">
+          <article class="project" *ngFor="let project of featuredProjects; let i = index"
+                   [class.animate-left]="i % 2 === 0" 
+                   [class.animate-right]="i % 2 !== 0">
             <div class="proj-ico">
-              <svg viewBox="0 0 24 24" width="32" height="32" fill="white">
-                <path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.44 9.8 8.2 11.39.6.11.82-.26.82-.58 0-.29-.01-1.06-.02-2.08-3.34.73-4.04-1.61-4.04-1.61-.55-1.39-1.34-1.76-1.34-1.76-1.09-.75.08-.73.08-.73 1.2.08 1.83 1.23 1.83 1.23 1.07 1.83 2.8 1.3 3.48.99.11-.78.42-1.3.76-1.6-2.66-.3-5.47-1.33-5.47-5.93 0-1.31.47-2.38 1.23-3.22-.12-.3-.54-1.52.11-3.18 0 0 1.01-.32 3.3 1.23a11.5 11.5 0 0 1 3-.4c1.02 0 2.05.14 3 .4 2.3-1.55 3.3-1.23 3.3-1.23.65 1.66.23 2.88.11 3.18.77.84 1.23 1.91 1.23 3.22 0 4.61-2.81 5.63-5.49 5.93.43.37.81 1.1.81 2.22 0 1.6-.01 2.89-.01 3.28 0 .32.21.69.82.57C20.56 21.78 24 17.3 24 12 24 5.37 18.63 0 12 0z"/>
+              <svg [attr.viewBox]="project.svgViewBox" width="32" height="32" [attr.fill]="project.svgFill || 'white'" xmlns="http://www.w3.org/2000/svg">
+                <ng-container *ngIf="project.svgType === 'path'">
+                  <path [attr.d]="project.svgContent"/>
+                </ng-container>
+                <ng-container *ngIf="project.svgType === 'rects' && Array.isArray(project.svgContent)">
+                  <rect *ngFor="let rect of project.svgContent" 
+                        [attr.x]="rect.x" [attr.y]="rect.y" 
+                        [attr.width]="rect.width" [attr.height]="rect.height" 
+                        [attr.fill]="rect.fill"/>
+                </ng-container>
               </svg>
             </div>
-            <h3>GitHub Certification</h3>
-            <a class="link" href="https://github.com/rhayssakramer/github-certification">Projeto de Materiais de estudos para o GitHub Certification</a>
-            <p>Guia para contribuir com os estudos das Certificações do GitHub.</p>
-          </article>
-          <article class="project animate-right">
-            <div class="proj-ico">
-              <svg viewBox="0 0 32 32" width="32" height="32" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <rect x="17" y="17" width="10" height="10" fill="#ffffff"/>
-                <rect x="5" y="17" width="10" height="10" fill="#ffffff"/>
-                <rect x="17" y="5" width="10" height="10" fill="#ffffff"/>
-                <rect x="5" y="5" width="10" height="10" fill="#ffffff"/>
-              </svg>
-            </div>
-            <h3>Microsoft Certification</h3>
-            <a class="link" href="https://github.com/rhayssakramer/microsoft-certification">Projeto de Materiais de estudos para o Microsoft Certification</a>
-            <p>Guia para contribuir com os estudos das Certificações da Microsoft.</p>
+            <h3>{{ project.title }}</h3>
+            <a class="link" href="{{project.link}}">{{ project.linkText }}</a>
+            <p>{{ project.description }}</p>
           </article>
         </div>
 
@@ -127,130 +79,44 @@
         
         <div class="skills-icons">
           <div class="icons-container">
-            <a href="https://developer.mozilla.org/pt-BR/docs/Web/HTML" target="_blank" rel="noopener noreferrer" title="HTML">
-              <img src="https://skillicons.dev/icons?i=html" alt="HTML" onerror="this.onerror=null;this.src='assets/icons/placeholder.svg'">
-            </a>
-            <a href="https://developer.mozilla.org/pt-BR/docs/Web/CSS" target="_blank" rel="noopener noreferrer" title="CSS">
-              <img src="https://skillicons.dev/icons?i=css" alt="CSS" onerror="this.onerror=null;this.src='assets/icons/placeholder.svg'">
-            </a>
-            <a href="https://getbootstrap.com/docs/5.3/getting-started/introduction/" target="_blank" rel="noopener noreferrer" title="Bootstrap">
-              <img src="https://skillicons.dev/icons?i=bootstrap" alt="Bootstrap" onerror="this.onerror=null;this.src='assets/icons/placeholder.svg'">
-            </a>
-            <a href="https://api.jquery.com/" target="_blank" rel="noopener noreferrer" title="jQuery">
-              <img src="https://skillicons.dev/icons?i=jquery" alt="jQuery" onerror="this.onerror=null;this.src='assets/icons/placeholder.svg'">
-            </a>
-            <a href="https://angular.dev/overview" target="_blank" rel="noopener noreferrer" title="Angular">
-              <img src="https://skillicons.dev/icons?i=angular" alt="Angular" onerror="this.onerror=null;this.src='assets/icons/placeholder.svg'">
-            </a>
-            <a href="https://pt-br.react.dev/" target="_blank" rel="noopener noreferrer" title="React">
-              <img src="https://skillicons.dev/icons?i=react" alt="React" onerror="this.onerror=null;this.src='assets/icons/placeholder.svg'">
-            </a>
-            <a href="https://br.vuejs.org/v2/guide/index.html" target="_blank" rel="noopener noreferrer" title="Vue">
-              <img src="https://skillicons.dev/icons?i=vue" alt="Vue" onerror="this.onerror=null;this.src='assets/icons/placeholder.svg'">
-            </a>
-            <a href="https://developer.mozilla.org/pt-BR/docs/Web/JavaScript" target="_blank" rel="noopener noreferrer" title="JavaScript">
-              <img src="https://skillicons.dev/icons?i=javascript" alt="JavaScript" onerror="this.onerror=null;this.src='assets/icons/placeholder.svg'">
-            </a>
-            <a href="https://nodejs.org/docs/latest/api/" target="_blank" rel="noopener noreferrer" title="Node.js">
-              <img src="https://skillicons.dev/icons?i=nodejs" alt="Node.js" onerror="this.onerror=null;this.src='assets/icons/placeholder.svg'">
-            </a>
-            <a href="https://docs.npmjs.com/" target="_blank" rel="noopener noreferrer" title="npm">
-              <img src="https://skillicons.dev/icons?i=npm" alt="npm" onerror="this.onerror=null;this.src='assets/icons/placeholder.svg'">
-            </a>
-            <a href="https://www.typescriptlang.org/pt/docs/" target="_blank" rel="noopener noreferrer" title="TypeScript">
-              <img src="https://skillicons.dev/icons?i=typescript" alt="TypeScript" onerror="this.onerror=null;this.src='assets/icons/placeholder.svg'">
-            </a>
-            <a href="https://learn.microsoft.com/pt-br/dotnet/csharp/" target="_blank" rel="noopener noreferrer" title="C#">
-              <img src="https://skillicons.dev/icons?i=cs" alt="C#" onerror="this.onerror=null;this.src='assets/icons/placeholder.svg'">
-            </a>
-            <a href="https://dotnet.microsoft.com/pt-br/platform/try-dotnet" target="_blank" rel="noopener noreferrer" title=".NET">
-              <img src="https://skillicons.dev/icons?i=dotnet" alt=".NET" onerror="this.onerror=null;this.src='assets/icons/placeholder.svg'">
-            </a>
-            <a href="https://docs.oracle.com/en/java/" target="_blank" rel="noopener noreferrer" title="Java">
-              <img src="https://skillicons.dev/icons?i=java" alt="Java">
-            </a>
-            <a href="https://docs.spring.io/spring-framework/reference/index.html" target="_blank" rel="noopener noreferrer" title="Spring">
-              <img src="https://skillicons.dev/icons?i=spring" alt="Spring">
-            </a>
-            <a href="https://docs.python.org/pt-br/" target="_blank" rel="noopener noreferrer" title="Python">
-              <img src="https://skillicons.dev/icons?i=python" alt="Python">
-            </a>
-            <a href="https://docs.djangoproject.com/pt-br/5.1/" target="_blank" rel="noopener noreferrer" title="Django">
-              <img src="https://skillicons.dev/icons?i=django" alt="Django">
-            </a>
-            <a href="https://learn.microsoft.com/pt-br/sql/?view=sql-server-ver16" target="_blank" rel="noopener noreferrer" title="SQL Server">
-              <img width="48" src="https://github.com/rhayssakramer/rhayssakramer/blob/main/img/sqlserver.svg?raw=true" alt="SQL Server">
-            </a>
-            <a href="https://dev.mysql.com/doc/" target="_blank" rel="noopener noreferrer" title="MySQL">
-              <img src="https://skillicons.dev/icons?i=mysql" alt="MySQL">
-            </a>
-            <a href="https://www.mongodb.com/pt-br/docs/" target="_blank" rel="noopener noreferrer" title="MongoDB">
-              <img src="https://skillicons.dev/icons?i=mongodb" alt="MongoDB">
-            </a>
-            <a href="https://www.postgresql.org/docs/" target="_blank" rel="noopener noreferrer" title="PostgreSQL">
-              <img src="https://skillicons.dev/icons?i=postgres" alt="PostgreSQL">
-            </a>
-            <a href="https://git-scm.com/docs/git/pt_BR" target="_blank" rel="noopener noreferrer" title="Git">
-              <img src="https://skillicons.dev/icons?i=git" alt="Git">
-            </a>
-            <a href="https://docs.github.com/pt" target="_blank" rel="noopener noreferrer" title="GitHub">
-              <img src="https://skillicons.dev/icons?i=github" alt="GitHub">
-            </a>
-            <a href="https://docs.gitlab.com/" target="_blank" rel="noopener noreferrer" title="GitLab">
-              <img src="https://skillicons.dev/icons?i=gitlab" alt="GitLab">
-            </a>
-            <a href="https://docs.github.com/pt/get-started/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax" target="_blank" rel="noopener noreferrer" title="Markdown">
-              <img src="https://skillicons.dev/icons?i=md" alt="Markdown">
-            </a>
-            <a href="https://learn.microsoft.com/pt-br/azure/" target="_blank" rel="noopener noreferrer" title="Azure">
-              <img src="https://skillicons.dev/icons?i=azure" alt="Azure">
-            </a>
-            <a href="https://learn.microsoft.com/pt-br/visualstudio/windows/?view=vs-2022" target="_blank" rel="noopener noreferrer" title="Visual Studio">
-              <img src="https://skillicons.dev/icons?i=visualstudio" alt="Visual Studio">
-            </a>
-            <a href="https://code.visualstudio.com/docs" target="_blank" rel="noopener noreferrer" title="VS Code">
-              <img src="https://skillicons.dev/icons?i=vscode" alt="VS Code">
-            </a>
-            <a href="https://docs.openshift.com/" target="_blank" rel="noopener noreferrer" title="OpenShift">
-              <img src="https://skillicons.dev/icons?i=openshift" alt="OpenShift">
-            </a>
-            <a href="https://docs.redhat.com/pt-br" target="_blank" rel="noopener noreferrer" title="Red Hat">
-              <img src="https://skillicons.dev/icons?i=redhat" alt="Red Hat">
-            </a>
-            <a href="https://swagger.io/docs/" target="_blank" rel="noopener noreferrer" title="Swagger">
-              <img width="48" src="https://github.com/rhayssakramer/rhayssakramer/blob/main/img/swagger.svg?raw=true" alt="Swagger">
-            </a>
-            <a href="https://learn.microsoft.com/pt-br/powershell/" target="_blank" rel="noopener noreferrer" title="PowerShell">
-              <img src="https://skillicons.dev/icons?i=powershell" alt="PowerShell">
-            </a>
-            <a href="https://www.notion.com/pt/help/guides/category/documentation" target="_blank" rel="noopener noreferrer" title="Notion">
-              <img src="https://skillicons.dev/icons?i=notion" alt="Notion">
-            </a>
-            <a href="https://help.figma.com/hc/pt-br" target="_blank" rel="noopener noreferrer" title="Figma">
-              <img src="https://skillicons.dev/icons?i=figma" alt="Figma">
-            </a>
-            <a href="https://learn.microsoft.com/en-us/linkedin/" target="_blank" rel="noopener noreferrer" title="LinkedIn">
-              <img src="https://skillicons.dev/icons?i=linkedin" alt="LinkedIn">
+            <a *ngFor="let skill of skillsData" 
+               [href]="skill.url" 
+               target="_blank" 
+               rel="noopener noreferrer" 
+               [title]="skill.name">
+              <img *ngIf="skill.customSrc" 
+                   [width]="skill.width || 48" 
+                   [src]="skill.customSrc" 
+                   [alt]="skill.name">
+              <img *ngIf="!skill.customSrc && skill.isSkillIcon" 
+                   src="https://skillicons.dev/icons?i={{skill.icon}}" 
+                   [alt]="skill.name">
+              <img *ngIf="!skill.customSrc && !skill.isSkillIcon" 
+                   src="https://skillicons.dev/icons?i={{skill.icon}}" 
+                   [alt]="skill.name" 
+                   (error)="$any($event.target).src='assets/icons/placeholder.svg'">
             </a>
           </div>
         </div>
         </div>
 
-        <div *ngIf="activeTab==='resume'" class="resume-host">
-          <app-resume></app-resume>
-        </div>
+        <ng-container [ngSwitch]="activeTab">
+          <div *ngSwitchCase="'resume'" class="resume-host">
+            <app-resume></app-resume>
+          </div>
 
-        <div *ngIf="activeTab==='portfolio'" class="portfolio-host">
-          <app-portfolio></app-portfolio>
-        </div>
+          <div *ngSwitchCase="'portfolio'" class="portfolio-host">
+            <app-portfolio></app-portfolio>
+          </div>
 
-        <div *ngIf="activeTab==='blog'" class="blog-host">
-          <app-blog></app-blog>
-        </div>
+          <div *ngSwitchCase="'blog'" class="blog-host">
+            <app-blog></app-blog>
+          </div>
 
-        <div *ngIf="activeTab==='contact'" class="contact-host">
-          <app-contact></app-contact>
-        </div>
+          <div *ngSwitchCase="'contact'" class="contact-host">
+            <app-contact></app-contact>
+          </div>
+        </ng-container>
       </section>
     </main>
   </div>

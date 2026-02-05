@@ -24,71 +24,59 @@
     <div class="resume-grid">
       <!-- Coluna Esquerda -->
       <div class="left-column">
-        <!-- Formação Acadêmica -->
-        <div class="card slide-in-left" [ngClass]="{'expanded': isExpanded('education')}">
+        <div *ngFor="let card of cardConfigs.left" 
+             class="card slide-in-left" 
+             [ngClass]="{'expanded': isExpanded(card.id)}"
+             [style.animation-delay]="card.animationDelay">
           <div class="card-header">
             <div class="card-header-left">
               <span class="icon">
-                <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M22 10v6M2 10l10-5 10 5-10 5z"></path>
-                  <path d="M6 12v5c3 3 9 3 12 0v-5"></path>
+                <img *ngIf="$any(card).iconType === 'image'" 
+                     [src]="$any(card).iconSrc" 
+                     [alt]="card.title" 
+                     width="28" 
+                     height="28">
+                <svg *ngIf="$any(card).iconType === 'svg'" 
+                     xmlns="http://www.w3.org/2000/svg" 
+                     width="28" 
+                     height="28" 
+                     viewBox="0 0 24 24" 
+                     fill="none" 
+                     stroke="currentColor" 
+                     stroke-width="2" 
+                     stroke-linecap="round" 
+                     stroke-linejoin="round">
+                  <rect *ngIf="card.svgRect" 
+                        [attr.x]="card.svgRect.x" 
+                        [attr.y]="card.svgRect.y" 
+                        [attr.width]="card.svgRect.width" 
+                        [attr.height]="card.svgRect.height" 
+                        [attr.rx]="card.svgRect.rx" 
+                        [attr.ry]="card.svgRect.ry"></rect>
+                  <path *ngFor="let path of card.svgPaths || []" [attr.d]="path"></path>
+                  <circle *ngIf="card.svgCircle" 
+                          [attr.cx]="card.svgCircle.cx" 
+                          [attr.cy]="card.svgCircle.cy" 
+                          [attr.r]="card.svgCircle.r"></circle>
                 </svg>
               </span>
-              <h2>Formação Acadêmica</h2>
+              <h2>{{ card.title }}</h2>
             </div>
-            <button *ngIf="hasMultipleItems('education')" class="expand-btn" [ngClass]="{'expanded': isExpanded('education')}" (click)="toggleCard('education')">
+            <button *ngIf="hasMultipleItems(card.id)" 
+                    class="expand-btn" 
+                    [ngClass]="{'expanded': isExpanded(card.id)}" 
+                    (click)="toggleCard(card.id)">
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                 <polyline points="6 9 12 15 18 9"></polyline>
               </svg>
             </button>
           </div>
           <div class="card-content">
-            <div class="timeline-item">
-              <div class="year">2024 - 2027</div>
-              <h3>Bacharelado em Sistemas de Informação</h3>
-              <p class="institution">Universidade Estácio de Sá</p>
-              <p class="description">Formação completa para desenvolver sistemas que automatizam processos e aumentam a produtividade nas organizações.</p>
-            </div>
-          </div>
-        </div>
-
-        <!-- Experiências -->
-        <div class="card slide-in-left" [ngClass]="{'expanded': isExpanded('experience')}" style="animation-delay: 0.2s;">
-          <div class="card-header">
-            <div class="card-header-left">
-              <span class="icon">
-                <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect>
-                  <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path>
-                </svg>
-              </span>
-              <h2>Experiências</h2>
-            </div>
-            <button *ngIf="hasMultipleItems('experience')" class="expand-btn" [ngClass]="{'expanded': isExpanded('experience')}" (click)="toggleCard('experience')">
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <polyline points="6 9 12 15 18 9"></polyline>
-              </svg>
-            </button>
-          </div>
-          <div class="card-content">
-            <div class="timeline-item">
-              <div class="year">2025 - Atual</div>
-              <h3>Sr. Assoc, Full-Stack Development</h3>
-              <p class="institution">Avanade</p>
-              <p class="description">Desenvolvimento de aplicações web escaláveis usando Angular, Node.js, JavaScript, TypeScript e .NET.</p>
-            </div>
-            <div class="timeline-item">
-              <div class="year">2024 - 2025</div>
-              <h3>Assoc, Full-Stack Development</h3>
-              <p class="institution">Avanade</p>
-              <p class="description">Desenvolvimento de aplicações web escaláveis usando Angular, Node.js, JavaScript, TypeScript e .NET.</p>
-            </div>
-            <div class="timeline-item">
-              <div class="year">2023 - 2024</div>
-              <h3>Estagiária de Processos e Sistemas</h3>
-              <p class="institution">Evolution</p>
-              <p class="description">Atividades dos serviços de tecnologia da informação 
-                e atualização e criação de novos processos utilizando diagramas de fluxos de processos.</p>
+            <div class="timeline-item" *ngFor="let item of getCardData(card.id)">
+              <div class="year">{{ item.year }}</div>
+              <h3>{{ item.title }}</h3>
+              <p class="institution">{{ item.institution }}</p>
+              <p class="description" *ngIf="item.description">{{ item.description }}</p>
             </div>
           </div>
         </div>
@@ -96,103 +84,58 @@
 
       <!-- Coluna Direita -->
       <div class="right-column">
-        <!-- Certificações -->
-        <div class="card slide-in-right" [ngClass]="{'expanded': isExpanded('certifications')}">
+        <div *ngFor="let card of cardConfigs.right" 
+             class="card slide-in-right" 
+             [ngClass]="{'expanded': isExpanded(card.id)}"
+             [style.animation-delay]="card.animationDelay">
           <div class="card-header">
             <div class="card-header-left">
               <span class="icon">
-                <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <circle cx="12" cy="8" r="6"></circle>
-                  <path d="M15.477 12.89 17 22l-5-3-5 3 1.523-9.11"></path>
+                <img *ngIf="$any(card).iconType === 'image'" 
+                     [src]="$any(card).iconSrc" 
+                     [alt]="card.title" 
+                     width="28" 
+                     height="28">
+                <svg *ngIf="$any(card).iconType === 'svg'" 
+                     xmlns="http://www.w3.org/2000/svg" 
+                     width="28" 
+                     height="28" 
+                     viewBox="0 0 24 24" 
+                     fill="none" 
+                     stroke="currentColor" 
+                     stroke-width="2" 
+                     stroke-linecap="round" 
+                     stroke-linejoin="round">
+                  <rect *ngIf="card.svgRect" 
+                        [attr.x]="card.svgRect.x" 
+                        [attr.y]="card.svgRect.y" 
+                        [attr.width]="card.svgRect.width" 
+                        [attr.height]="card.svgRect.height" 
+                        [attr.rx]="card.svgRect.rx" 
+                        [attr.ry]="card.svgRect.ry"></rect>
+                  <path *ngFor="let path of card.svgPaths || []" [attr.d]="path"></path>
+                  <circle *ngIf="card.svgCircle" 
+                          [attr.cx]="card.svgCircle.cx" 
+                          [attr.cy]="card.svgCircle.cy" 
+                          [attr.r]="card.svgCircle.r"></circle>
                 </svg>
               </span>
-              <h2>Certificações</h2>
+              <h2>{{ card.title }}</h2>
             </div>
-            <button *ngIf="hasMultipleItems('certifications')" class="expand-btn" [ngClass]="{'expanded': isExpanded('certifications')}" (click)="toggleCard('certifications')">
+            <button *ngIf="hasMultipleItems(card.id)" 
+                    class="expand-btn" 
+                    [ngClass]="{'expanded': isExpanded(card.id)}" 
+                    (click)="toggleCard(card.id)">
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                 <polyline points="6 9 12 15 18 9"></polyline>
               </svg>
             </button>
           </div>
           <div class="card-content">
-            <div class="timeline-item">
-              <div class="year">2025</div>
-              <h3>Microsoft Certified: Azure AI Fundamentals</h3>
-              <p class="institution">Microsof</p>
-            </div>
-            <div class="timeline-item">
-              <div class="year">2025</div>
-              <h3>GitHub Foundations</h3>
-              <p class="institution">GitHub</p>
-            </div>
-            <div class="timeline-item">
-              <div class="year">2024</div>
-              <h3>Microsoft Certified: Azure Fundamentals</h3>
-              <p class="institution">Microsoft</p>
-            </div>
-          </div>
-        </div>
-
-        <!-- Certificados -->
-        <div class="card slide-in-right" [ngClass]="{'expanded': isExpanded('certificates')}" style="animation-delay: 0.1s;">
-          <div class="card-header">
-            <div class="card-header-left">
-              <span class="icon">
-                <img src="assets/icons/certificado.png" alt="Certificados" width="28" height="28">
-              </span>
-              <h2>Certificados</h2>
-            </div>
-            <button *ngIf="hasMultipleItems('certificates')" class="expand-btn" [ngClass]="{'expanded': isExpanded('certificates')}" (click)="toggleCard('certificates')">
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <polyline points="6 9 12 15 18 9"></polyline>
-              </svg>
-            </button>
-          </div>
-          <div class="card-content">
-            <div class="timeline-item">
-              <div class="year">2025</div>
-              <h3>Formação Microsoft AI Fundamentals (AI-900)</h3>
-              <p class="institution">DIO</p>
-            </div>
-            <div class="timeline-item">
-              <div class="year">2025</div>
-              <h3>GitHub Copilot Challenge</h3>
-              <p class="institution">Microsoft</p>
-            </div>
-            <div class="timeline-item">
-              <div class="year">2025</div>
-              <h3>GitHub4Women</h3>
-              <p class="institution">Microsoft</p>
-            </div>
-            <div class="timeline-item">
-              <div class="year">2025</div>
-              <h3>Security Girls</h3>
-              <p class="institution">Microsoft</p>
-            </div>
-            <div class="timeline-item">
-              <div class="year">2025</div>
-              <h3>Formação GitHub Certification</h3>
-              <p class="institution">DIO</p>
-            </div>
-            <div class="timeline-item">
-              <div class="year">2025</div>
-              <h3>Formação Cybersecurity Specialist</h3>
-              <p class="institution">DIO</p>
-            </div>
-            <div class="timeline-item">
-              <div class="year">2025</div>
-              <h3>Formação Lógica de Programação</h3>
-              <p class="institution">DIO</p>
-            </div>
-            <div class="timeline-item">
-              <div class="year">2024</div>
-              <h3>API - Application Programming Interface</h3>
-              <p class="institution">DevMedia</p>
-            </div>
-            <div class="timeline-item">
-              <div class="year">2024</div>
-              <h3>Formação Microsoft AZ-900 Certification</h3>
-              <p class="institution">DIO</p>
+            <div class="timeline-item" *ngFor="let item of getCardData(card.id)">
+              <div class="year">{{ item.year }}</div>
+              <h3>{{ item.title }}</h3>
+              <p class="institution">{{ item.institution }}</p>
             </div>
           </div>
         </div>
@@ -213,85 +156,13 @@
         </div>
       </div>
       <div class="card-content">
-            <div class="skill-item">
+            <div class="skill-item" *ngFor="let skill of skillsData">
               <div class="skill-header">
-                <span>JavaScript/Node.js</span>
-                <span>95%</span>
+                <span>{{ skill.name }}</span>
+                <span>{{ skill.level }}%</span>
               </div>
               <div class="skill-bar">
-                <div class="skill-progress" style="width: 95%"></div>
-              </div>
-            </div>
-            <div class="skill-item">
-              <div class="skill-header">
-                <span>TypeScript</span>
-                <span>90%</span>
-              </div>
-              <div class="skill-bar">
-                <div class="skill-progress" style="width: 90%"></div>
-              </div>
-            </div>
-            <div class="skill-item">
-              <div class="skill-header">
-                <span>Angular</span>
-                <span>90%</span>
-              </div>
-              <div class="skill-bar">
-                <div class="skill-progress" style="width: 90%"></div>
-              </div>
-            </div>
-            <div class="skill-item">
-              <div class="skill-header">
-                <span>Node.js</span>
-                <span>85%</span>
-              </div>
-              <div class="skill-bar">
-                <div class="skill-progress" style="width: 85%"></div>
-              </div>
-            </div>
-            <div class="skill-item">
-              <div class="skill-header">
-                <span>C#</span>
-                <span>80%</span>
-              </div>
-              <div class="skill-bar">
-                <div class="skill-progress" style="width: 80%"></div>
-              </div>
-            </div>
-            <div class="skill-item">
-              <div class="skill-header">
-                <span>.NET</span>
-                <span>80%</span>
-              </div>
-              <div class="skill-bar">
-                <div class="skill-progress" style="width: 80%"></div>
-              </div>
-            </div>
-            <div class="skill-item">
-              <div class="skill-header">
-                <span>Docker/Kubernetes</span>
-                <span>75%</span>
-              </div>
-              <div class="skill-bar">
-                <div class="skill-progress" style="width: 75%"></div>
-              </div>
-            </div>
-            <div class="skill-item">
-              <div class="skill-header">
-                <span>SQL Server</span>
-                <span>75%</span>
-              </div>
-              <div class="skill-bar">
-                <div class="skill-progress" style="width: 75%"></div>
-              </div>
-            </div>
-            <div class="skill-item">
-              <div class="skill-header">
-                <span>Git/GitHub</span>
-                <span>95%</span>
-              </div>
-              <div class="skill-bar">
-                <div class="skill-progress" style="width: 90%"></div>
+                <div class="skill-progress" [style.width.%]="skill.level"></div>
               </div>
             </div>
           </div>

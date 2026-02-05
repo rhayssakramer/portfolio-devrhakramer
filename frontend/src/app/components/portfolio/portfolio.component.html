@@ -5,35 +5,11 @@
 
     <!-- Filtros de Categoria -->
     <div class="category-filters">
-      <button 
+      <button *ngFor="let category of categoryFilters"
         class="category-btn" 
-        [ngClass]="{'active': selectedCategory === 'all'}"
-        (click)="filterByCategory('all')">
-        Todos
-      </button>
-      <button 
-        class="category-btn" 
-        [ngClass]="{'active': selectedCategory === 'frontend'}"
-        (click)="filterByCategory('frontend')">
-        Frontend
-      </button>
-      <button 
-        class="category-btn" 
-        [ngClass]="{'active': selectedCategory === 'backend'}"
-        (click)="filterByCategory('backend')">
-        Backend
-      </button>
-      <button 
-        class="category-btn" 
-        [ngClass]="{'active': selectedCategory === 'database'}"
-        (click)="filterByCategory('database')">
-        Banco de Dados
-      </button>
-      <button 
-        class="category-btn" 
-        [ngClass]="{'active': selectedCategory === 'tools'}"
-        (click)="filterByCategory('tools')">
-        Ferramentas
+        [ngClass]="{'active': selectedCategory === category.id}"
+        (click)="filterByCategory(category.id)">
+        {{ category.label }}
       </button>
     </div>
 

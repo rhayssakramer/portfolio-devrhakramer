@@ -23,6 +23,14 @@ export class PortfolioComponent implements OnInit {
   selectedFilter = '';
   selectedCategory = 'all';
 
+  categoryFilters = [
+    { id: 'all', label: 'Todos' },
+    { id: 'frontend', label: 'Frontend' },
+    { id: 'backend', label: 'Backend' },
+    { id: 'database', label: 'Banco de Dados' },
+    { id: 'tools', label: 'Ferramentas' }
+  ];
+
   // Categorias e tecnologias
   categories = {
     frontend: ['HTML', 'CSS', 'Bootstrap', 'jQuery', 'Angular', 'React', 'Vue', 'Sass', 'Tailwind'],
