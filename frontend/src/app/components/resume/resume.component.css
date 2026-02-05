@@ -71,7 +71,8 @@
 }
 
 .summary-description {
-  font-size: 1.05rem;
+  font-size: 12px;
+  line-height: 30px;
   text-align: justify;
   line-height: 1.7;
   color: #d6d6df;

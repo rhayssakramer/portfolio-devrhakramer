@@ -179,6 +179,7 @@
 .p-title{
   font-size: 1.2rem;
   text-align: justify;
+  line-height: 30px;
 }
 
 .title::after { 
@@ -522,19 +523,23 @@
   .page-grid { 
     grid-template-columns: 1fr;
     justify-items: center;
+    min-height: auto; /* Remove a altura mínima para evitar scroll */
+    align-items: start;
   }
   
-  /* Centralizar o profile card */
+  /* Centralizar o profile card e colocá-lo no topo */
   .page-grid > app-profile-card {
     width: 100%;
     max-width: 420px;
     display: flex;
     justify-content: center;
+    order: -1; /* Coloca o profile-card em primeiro lugar */
   }
   
   .content {
     width: 100%;
     max-width: 100%;
+    order: 0; /* Garante que o conteúdo venha depois */
   }
 }
 
