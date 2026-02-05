@@ -1,8 +1,350 @@
-.contact-page { padding: 12px 0; }
-.contacts-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 12px; margin-top: 12px; }
-.contact-card { background: rgba(255,255,255,.02); padding: 12px; border-radius: 10px; }
-.contact-card h3 { margin: 0 0 6px 0; }
-.contact-card p { margin: 0; color: #c8c8cf; }
-.contact-card .link { color: #8b65d0; font-weight: 600; text-decoration: none; }
+.contact-page {
+  padding: 60px 0;
+  min-height: 100vh;
+}
 
-.contact-host { padding-top: 8px; }
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+/* Header */
+.contact-header {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.contact-header h1 {
+  font-size: 3rem;
+  font-weight: 700;
+  margin: 0 0 10px 0;
+  background: linear-gradient(135deg, #8b65d0 0%, #6a4fb8 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.subtitle {
+  font-size: 1.2rem;
+  color: #c8c8cf;
+  margin: 0;
+}
+
+.description {
+  text-align: center;
+  max-width: 700px;
+  margin: 0 auto 60px;
+  color: #a8a8b3;
+  font-size: 1.1rem;
+  line-height: 1.6;
+}
+
+/* Layout de 2 colunas */
+.contact-layout {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+  align-items: start;
+}
+
+/* Cards de informação (esquerda) */
+.contact-info {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.info-card {
+  display: flex;
+  align-items: flex-start;
+  gap: 20px;
+  background: rgba(255, 255, 255, 0.02);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 12px;
+  padding: 24px;
+  transition: all 0.3s ease;
+  opacity: 0;
+  animation: slideFromLeft 0.6s ease forwards;
+}
+
+.info-card:hover {
+  background: rgba(255, 255, 255, 0.04);
+  border-color: rgba(139, 101, 208, 0.3);
+  transform: translateX(5px);
+}
+
+.icon-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  min-width: 48px;
+  background: linear-gradient(135deg, rgba(139, 101, 208, 0.2) 0%, rgba(106, 79, 184, 0.2) 100%);
+  border-radius: 10px;
+  color: #8b65d0;
+}
+
+.icon-wrapper img {
+  filter: brightness(0) saturate(100%) invert(53%) sepia(45%) saturate(1054%) hue-rotate(222deg) brightness(91%) contrast(90%);
+}
+
+.info-content {
+  flex: 1;
+}
+
+.info-content h3 {
+  margin: 0 0 8px 0;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #c8c8cf;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.info-content p,
+.info-content a {
+  margin: 0;
+  font-size: 1rem;
+  color: #ffffff;
+  text-decoration: none;
+  word-break: break-word;
+}
+
+.info-content a {
+  transition: color 0.3s ease;
+}
+
+.info-content a:hover {
+  color: #8b65d0;
+}
+
+/* Formulário (direita) */
+.contact-form-wrapper {
+  opacity: 0;
+  animation: slideFromRight 0.6s ease forwards;
+  animation-delay: 0.2s;
+}
+
+.contact-form {
+  background: rgba(255, 255, 255, 0.02);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 12px;
+  padding: 32px;
+}
+
+.form-group {
+  margin-bottom: 24px;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 8px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: #c8c8cf;
+}
+
+.form-group input,
+.form-group textarea {
+  width: 100%;
+  padding: 12px 16px;
+  background: rgba(0, 0, 0, 0.3);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  color: #ffffff;
+  font-size: 1rem;
+  font-family: inherit;
+  transition: all 0.3s ease;
+  box-sizing: border-box;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+  outline: none;
+  border-color: #8b65d0;
+  background: rgba(0, 0, 0, 0.4);
+  box-shadow: 0 0 0 3px rgba(139, 101, 208, 0.1);
+}
+
+.form-group input::placeholder,
+.form-group textarea::placeholder {
+  color: #6b6b7b;
+}
+
+.form-group textarea {
+  resize: vertical;
+  min-height: 120px;
+}
+
+.submit-btn {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 14px 24px;
+  background: linear-gradient(135deg, #8b65d0 0%, #6a4fb8 100%);
+  border: none;
+  border-radius: 8px;
+  color: #ffffff;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.submit-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(139, 101, 208, 0.4);
+}
+
+.submit-btn:active {
+  transform: translateY(0);
+}
+
+.submit-btn svg {
+  transition: transform 0.3s ease;
+}
+
+.submit-btn:hover svg {
+  transform: translateX(5px) rotate(-5deg);
+}
+
+.submit-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.submit-btn:disabled:hover {
+  transform: none;
+  box-shadow: none;
+}
+
+/* Spinner animation */
+.spinner {
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Alertas */
+.alert {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 16px;
+  border-radius: 8px;
+  margin-bottom: 20px;
+  font-size: 0.95rem;
+  line-height: 1.5;
+  animation: slideDown 0.3s ease;
+}
+
+.alert svg {
+  min-width: 20px;
+}
+
+.alert-success {
+  background: rgba(34, 197, 94, 0.1);
+  border: 1px solid rgba(34, 197, 94, 0.3);
+  color: #4ade80;
+}
+
+.alert-error {
+  background: rgba(239, 68, 68, 0.1);
+  border: 1px solid rgba(239, 68, 68, 0.3);
+  color: #f87171;
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Animações */
+@keyframes slideFromLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideFromRight {
+  from {
+    opacity: 0;
+    transform: translateX(50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.animate-from-left {
+  animation: slideFromLeft 0.6s ease forwards;
+}
+
+.animate-from-right {
+  animation: slideFromRight 0.6s ease forwards;
+}
+
+/* Responsividade */
+@media (max-width: 968px) {
+  .contact-layout {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+
+  .contact-header h1 {
+    font-size: 2.5rem;
+  }
+}
+
+@media (max-width: 640px) {
+  .contact-page {
+    padding: 40px 0;
+  }
+
+  .contact-header h1 {
+    font-size: 2rem;
+  }
+
+  .subtitle {
+    font-size: 1rem;
+  }
+
+  .description {
+    font-size: 1rem;
+    margin-bottom: 40px;
+  }
+
+  .info-card {
+    padding: 20px;
+  }
+
+  .contact-form {
+    padding: 24px;
+  }
+}
