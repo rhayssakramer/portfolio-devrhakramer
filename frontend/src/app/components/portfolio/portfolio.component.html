@@ -1,26 +1,83 @@
 <section class="page-wrapper portfolio-page">
   <div class="container">
     <h1>Portfólio</h1>
-    <p>Projetos selecionados e descrições rápidas.</p>
+    <p>Galeria dos meus projetos</p>
 
-    <div class="projects-grid">
-      <article class="proj-card">
-        <h3>Projeto A</h3>
-        <p>Descrição curta do projeto A.</p>
-        <a class="link" href="#">Ver mais</a>
-      </article>
+    <!-- Filtros de Categoria -->
+    <div class="category-filters">
+      <button 
+        class="category-btn" 
+        [class.active]="selectedCategory === 'all'"
+        (click)="filterByCategory('all')">
+        Todos
+      </button>
+      <button 
+        class="category-btn" 
+        [class.active]="selectedCategory === 'frontend'"
+        (click)="filterByCategory('frontend')">
+        Frontend
+      </button>
+      <button 
+        class="category-btn" 
+        [class.active]="selectedCategory === 'backend'"
+        (click)="filterByCategory('backend')">
+        Backend
+      </button>
+      <button 
+        class="category-btn" 
+        [class.active]="selectedCategory === 'database'"
+        (click)="filterByCategory('database')">
+        Banco de Dados
+      </button>
+      <button 
+        class="category-btn" 
+        [class.active]="selectedCategory === 'tools'"
+        (click)="filterByCategory('tools')">
+        Ferramentas
+      </button>
+    </div>
 
-      <article class="proj-card">
-        <h3>Projeto B</h3>
-        <p>Descrição curta do projeto B.</p>
-        <a class="link" href="#">Ver mais</a>
-      </article>
+    <!-- Filtros de Tecnologia -->
+    <div class="filters-container">
+      <div class="filters-scroll">
+        <button 
+          *ngFor="let tech of getAvailableTechnologies()"
+          class="filter-btn" 
+          [class.active]="selectedFilter === tech"
+          (click)="filterByTechnology(tech)">
+          {{ tech }}
+        </button>
+      </div>
+    </div>
 
-      <article class="proj-card">
-        <h3>Projeto C</h3>
-        <p>Descrição curta do projeto C.</p>
-        <a class="link" href="#">Ver mais</a>
+    <div *ngIf="loading" class="loading">
+      <p>Carregando projetos...</p>
+    </div>
+
+    <div *ngIf="error" class="error">
+      <p>{{ error }}</p>
+    </div>
+
+    <div class="projects-grid" *ngIf="!loading && !error">
+      <article class="proj-card" *ngFor="let project of filteredProjects" (click)="openProject(project.html_url)">
+        <div class="project-image">
+          <img [src]="getProjectImage(project)" [alt]="project.name">
+          <div class="main-language" [style.background-color]="getLanguageColor(project.mainTag)">
+            {{ project.mainTag }}
+          </div>
+        </div>
+        <div class="project-content">
+          <h3>{{ project.name }}</h3>
+          <p>{{ project.description || 'Projeto desenvolvido com as melhores práticas' }}</p>
+          <div class="project-tags">
+            <span class="tag" *ngFor="let tag of project.tags.slice(0, 4)">{{ tag }}</span>
+          </div>
+        </div>
       </article>
+    </div>
+
+    <div class="no-projects" *ngIf="!loading && !error && filteredProjects.length === 0">
+      <p>Nenhum projeto encontrado com esse filtro.</p>
     </div>
   </div>
 </section>
