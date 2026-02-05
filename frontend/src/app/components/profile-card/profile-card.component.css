@@ -239,6 +239,7 @@
     width: 100%;
     display: flex;
     justify-content: center;
+    position: static; /* Remove o sticky para que o card não siga o scroll */
   }
   
   .profile-card {
