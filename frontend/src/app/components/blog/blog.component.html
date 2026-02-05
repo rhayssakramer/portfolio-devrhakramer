@@ -1,20 +1,37 @@
 <section class="page-wrapper blog-page">
   <div class="container">
     <h1>Blog</h1>
-    <p>Artigos e posts recentes.</p>
+    <p>Artigos e posts recentes do Dev.to</p>
 
-    <div class="articles-grid">
-      <article class="article-card">
-        <h3>Artigo 1</h3>
-        <p>Resumo curto do artigo 1.</p>
-        <a class="link" href="#">Ler</a>
-      </article>
+    <div *ngIf="loading" class="loading">
+      <p>Carregando artigos...</p>
+    </div>
 
-      <article class="article-card">
-        <h3>Artigo 2</h3>
-        <p>Resumo curto do artigo 2.</p>
-        <a class="link" href="#">Ler</a>
+    <div *ngIf="error" class="error">
+      <p>{{ error }}</p>
+    </div>
+
+    <div class="articles-grid" *ngIf="!loading && !error">
+      <article class="article-card" *ngFor="let article of articles" (click)="openArticle(article.url)">
+        <div class="article-image" *ngIf="article.cover_image">
+          <img [src]="article.cover_image" [alt]="article.title">
+        </div>
+        <div class="article-content">
+          <div class="article-meta">
+            <span class="date">{{ formatDate(article.published_at) }}</span>
+            <span class="reading-time">{{ article.reading_time_minutes }} min de leitura</span>
+          </div>
+          <h3>{{ article.title }}</h3>
+          <p>{{ article.description }}</p>
+          <div class="article-tags">
+            <span class="tag" *ngFor="let tag of article.tag_list">#{{ tag }}</span>
+          </div>
+        </div>
       </article>
+    </div>
+
+    <div class="no-articles" *ngIf="!loading && !error && articles.length === 0">
+      <p>Nenhum artigo publicado ainda.</p>
     </div>
   </div>
 </section>
