@@ -2,7 +2,7 @@
   position: relative;
   width: 100vw;
   height: 100vh;
-  /* deep black gradient background */
+  /* fundo com gradiente preto profundo */
   background: linear-gradient(180deg, #0b0f23 0%, #070a18 40%, #04060d 70%, #000000 100%);
   display: flex;
   align-items: center;
@@ -10,13 +10,13 @@
   overflow: hidden;
 }
 
-/* Stars background animation */
-/* removed stars background; particles now provide subtle animated points */
+/* Animação de fundo de estrelas */
+/* fundo de estrelas removido; partículas agora fornecem pontos animados sutis */
 
-/* Main content */
+/* Conteúdo principal */
 .main-content {
   position: relative;
-  z-index: 2; /* above particles */
+  z-index: 2; /* acima das partículas */
   text-align: center;
   display: flex;
   flex-direction: column;
@@ -24,7 +24,7 @@
   gap: 60px;
 }
 
-/* Welcome title with gradient */
+/* Título de boas-vindas com gradiente */
 .welcome-title {
   font-size: clamp(2.5rem, 8vw, 6rem);
   font-weight: 700;
@@ -38,14 +38,14 @@
   text-align: center;
 }
 
-/* Arrow container */
+/* Container da seta */
 .arrow-container {
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
-/* Bouncing arrow animation */
+/* Animação de seta saltitante */
 .bouncing-arrow {
   color: #8b5cf6;
   animation: bounce 2s ease-in-out infinite;
@@ -78,7 +78,7 @@
   }
 }
 
-/* Responsive design */
+/* Design responsivo */
 @media (max-width: 768px) {
   .welcome-title {
     font-size: clamp(2rem, 6vw, 4rem);

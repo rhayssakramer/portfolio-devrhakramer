@@ -6,9 +6,9 @@
 
     <main class="content">
       <section class="card" [class.show-resume]="activeTab==='resume'" [class.show-portfolio]="activeTab==='portfolio'" [class.show-blog]="activeTab==='blog'" [class.show-contact]="activeTab==='contact'">
-        <!-- tabs embedded in the Sobre card (top-right) -->
+        <!-- abas incorporadas no card Sobre (canto superior direito) -->
         <nav class="tabs" [class.open]="tabsOpen">
-          <!-- compact toggle (hidden on desktop via CSS) -->
+          <!-- alternador compacto (oculto no desktop via CSS) -->
           <button class="tabs-toggle" (click)="toggleTabs()" aria-label="Abrir menu de abas" [attr.aria-expanded]="tabsOpen">
             <span class="tabs-toggle-icon" aria-hidden="true">
               <svg class="tabs-toggle-triangle" viewBox="0 0 24 16" xmlns="http://www.w3.org/2000/svg" focusable="false" aria-hidden="true">
@@ -17,7 +17,7 @@
             </span>
           </button>
 
-          <!-- full tabs menu (shown on desktop; on mobile it's hidden until opened) -->
+          <!-- menu de abas completo (exibido no desktop; no mobile fica oculto até ser aberto) -->
           <div class="tabs-menu" [class.open]="tabsOpen">
             <a class="tab" [class.active]="activeTab==='about'" (click)="setTab('about')">Sobre</a>
             <a class="tab" [class.active]="activeTab==='resume'" (click)="setTab('resume')">Currículo</a>

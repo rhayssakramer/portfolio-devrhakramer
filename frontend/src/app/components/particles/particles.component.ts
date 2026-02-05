@@ -54,7 +54,7 @@ export class ParticlesComponent implements AfterViewInit, OnDestroy {
   private createParticles() {
     const canvas = this.canvasRef.nativeElement;
     const area = canvas.width * canvas.height;
-    // particle density: adjust divisor for more/less particles
+    // densidade de partículas: ajustar divisor para mais/menos partículas
     const count = Math.max(40, Math.floor((canvas.width * canvas.height) / 2000000));
     this.particles = [];
     for (let i = 0; i < count; i++) {
@@ -73,11 +73,11 @@ export class ParticlesComponent implements AfterViewInit, OnDestroy {
     const w = window.innerWidth;
     const h = window.innerHeight;
 
-    // clear with slight background tint (transparent)
+    // limpar com leve tonalidade de fundo (transparente)
     ctx.clearRect(0, 0, w, h);
 
-    // draw dots
-    ctx.fillStyle = 'rgba(255,255,255,0.22)'; // particle color
+    // desenhar pontos
+    ctx.fillStyle = 'rgba(255,255,255,0.22)'; // cor das partículas
     for (const p of this.particles) {
       ctx.beginPath();
       ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
@@ -92,7 +92,7 @@ export class ParticlesComponent implements AfterViewInit, OnDestroy {
       if (p.y > h + 10) p.y = -10;
     }
 
-    // draw connecting lines
+    // desenhar linhas de conexão
     ctx.lineWidth = 2.2;
     for (let i = 0; i < this.particles.length; i++) {
       const p1 = this.particles[i];
@@ -101,10 +101,10 @@ export class ParticlesComponent implements AfterViewInit, OnDestroy {
         const dx = p1.x - p2.x;
         const dy = p1.y - p2.y;
         const dist = Math.sqrt(dx * dx + dy * dy);
-        const maxDist = Math.min(160, (window.innerWidth + window.innerHeight) / 12); // adapt to screen
+        const maxDist = Math.min(160, (window.innerWidth + window.innerHeight) / 12); // adaptar à tela
         if (dist < maxDist) {
-          const alpha = (1 - dist / maxDist) * 0.22; // line alpha scaled by distance
-          ctx.strokeStyle = `rgba(210,200,255,${alpha})`; // slightly purple lines
+          const alpha = (1 - dist / maxDist) * 0.22; // alfa da linha escalado por distância
+          ctx.strokeStyle = `rgba(210,200,255,${alpha})`; // linhas levemente roxas
           ctx.beginPath();
           ctx.moveTo(p1.x, p1.y);
           ctx.lineTo(p2.x, p2.y);

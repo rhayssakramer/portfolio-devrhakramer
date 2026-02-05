@@ -1,9 +1,9 @@
-/* Wrapper with same background + particles behind */
+/* Container com o mesmo fundo + partículas atrás */
 .page-wrapper { 
   position: relative; 
-  height: 100vh; /* fixed viewport height so internal scrolling is reliable */
+  height: 100vh; /* altura de viewport fixa para rolagem interna confiável */
   padding: 36px; 
- /* Define ambient shadow variable used across boxes */
+ /* Define variável de sombra ambiente usada nas caixas */
   --shadow-1: 0 12px 40px rgba(0,0,0,.45);
   background:
     linear-gradient(180deg,#0b0f23 0%,#070a18 40%,#04060d 70%,#000 100%),
@@ -11,12 +11,12 @@
     radial-gradient(circle at 85% 75%, rgba(255,255,255,.04) 0%, transparent 55%);
   overflow-y: auto;
   -webkit-overflow-scrolling: touch;
-  scrollbar-width: none; /* hide scrollbar in Firefox */
-  -ms-overflow-style: none; /* hide scrollbar in IE 10+ */
+  scrollbar-width: none; /* ocultar barra de rolagem no Firefox */
+  -ms-overflow-style: none; /* ocultar barra de rolagem no IE 10+ */
 }
 
 .container { 
-  max-width: 1400px; /* increased card width */
+  max-width: 1400px; /* largura do card aumentada */
   margin: 0 auto; 
 }
 
@@ -24,29 +24,29 @@
   position: relative; 
   z-index: 3; 
   display: grid; 
-  grid-template-columns: 320px minmax(0,960px); /* fixed sidebar + wider main column for more content */
+  grid-template-columns: 320px minmax(0,960px); /* barra lateral fixa + coluna principal mais larga para mais conteúdo */
   gap: 32px; 
   align-items: start;
   min-height: 100%;
-  justify-content: center; /* center the two columns within the container */
+  justify-content: center; /* centralizar as duas colunas dentro do container */
 }
 
-/* Ensure the grid container itself doesn't expand beyond the intended width */
+/* Garantir que o container do grid não expanda além da largura pretendida */
 .page-grid.container {
-  max-width: 1300px; /* enforce container width on the grid element (allow 320 + 960px) */
+  max-width: 1300px; /* aplicar largura do container no elemento grid (permitir 320 + 960px) */
   margin: 0 auto;
 }
-/* Profile styles moved to src/app/components/profile-card/profile-card.component.css */
+/* Estilos de perfil movidos para src/app/components/profile-card/profile-card.component.css */
 
-/* Main */
+/* Principal */
 .content { 
   min-width: 0; 
   position: relative; 
-  display: flex; /* enable child max-width handling */
-  justify-content: center; /* center the card inside the main column */
+  display: flex; /* habilitar manipulação de max-width filho */
+  justify-content: center; /* centralizar o card dentro da coluna principal */
 }
 
-/* (scrolling handled on .page-wrapper above) */
+/* (rolagem tratada no .page-wrapper acima) */
 
 .tabs {
   position: absolute;
@@ -66,12 +66,12 @@
   justify-content: flex-end;
 }
 
-/* compact toggle hidden by default (only visible on small screens via media query) */
+/* alternador compacto oculto por padrão (visível apenas em telas pequenas via media query) */
 .tabs-toggle { 
   display: none; 
 }
 
-/* by default show full tabs menu (desktop) */
+/* por padrão mostrar menu de abas completo (desktop) */
 .tabs-menu { 
   display: flex; 
   gap: 14px; 
@@ -100,10 +100,10 @@
   font-weight: 800;
 }
 
-/* slight inner divider to blend with card edge */
-/* removed decorative inner gradient to sit flush with card */
+/* divisor interno sutil para mesclar com a borda do card */
+/* gradiente interno decorativo removido para ficar nivelado com o card */
 
-/* Ensure the .card is the positioning context for embedded tabs */
+/* Garantir que o .card seja o contexto de posicionamento para abas incorporadas */
 .card { 
   position: relative; 
   padding-top: 48px; 
@@ -122,14 +122,14 @@
   color: #d6d6df;
 }
 
-/* Limit the width of the main "Sobre Mim" card so it doesn't stretch too wide */
+/* Limitar a largura do card principal "Sobre Mim" para não esticar demais */
 .content > .card {
   width: 100%;
-  max-width: 960px; /* increased width for better content display */
-  margin: 0 auto; /* center the card horizontally inside its grid column */
+  max-width: 960px; /* largura aumentada para melhor exibição de conteúdo */
+  margin: 0 auto; /* centralizar o card horizontalmente dentro de sua coluna de grid */
 }
 
-/* When resume tab is active hide non-tabs content and show resume host */
+/* Quando a aba de currículo está ativa ocultar conteúdo não-aba e mostrar host de currículo */
 .card.show-resume > *:not(.tabs):not(.resume-host) {
   display: none;
 }
@@ -138,7 +138,7 @@
   padding: 8px 0 0 0;
 }
 
-/* portfolio state: hide non-tabs content when portfolio active */
+/* estado de portfólio: ocultar conteúdo não-aba quando portfólio ativo */
 .card.show-portfolio > *:not(.tabs):not(.portfolio-host) {
   display: none;
 }
@@ -147,7 +147,7 @@
   padding: 8px 0 0 0;
 }
 
-/* blog state: hide non-tabs content when blog active */
+/* estado de blog: ocultar conteúdo não-aba quando blog ativo */
 .card.show-blog > *:not(.tabs):not(.blog-host) {
   display: none;
 }
@@ -156,7 +156,7 @@
   padding: 8px 0 0 0;
 }
 
-/* contact state: hide non-tabs content when contact active */
+/* estado de contato: ocultar conteúdo não-aba quando contato ativo */
 .card.show-contact > *:not(.tabs):not(.contact-host) {
   display: none;
 }
@@ -383,7 +383,7 @@
   margin-bottom: 15px;
   box-shadow:
     
-    /* crisp full ring to border the whole box */
+    /* anel completo nítido para bordear toda a caixa */
     2px 2px 2px 2px #00000047;
 }
 
@@ -556,7 +556,7 @@
   }
 }
 
-/* Desktop: hide compact toggle above 1116px and show full tabs */
+/* Desktop: ocultar alternador compacto acima de 1116px e mostrar abas completas */
 @media (min-width: 1117px) {
   .tabs-toggle {
     display: none !important;
@@ -602,7 +602,7 @@
   }
 }
 
-/* Mobile: show compact toggle and stacked menu up to 1086px */
+/* Mobile: mostrar alternador compacto e menu empilhado até 1086px */
 @media (max-width: 1116px) {
   .tabs {
     right: -1px;
@@ -610,14 +610,14 @@
     padding: 6px 8px;
     display: flex;
     gap: 8px;
-    /* stack toggle above menu on mobile */
+    /* empilhar alternador acima do menu no mobile */
     flex-direction: column;
     align-items: flex-start;
   }
 
   .tabs-toggle {
     display: inline-flex !important;
-    /* match toggle-contacts closed visual: compact pill */
+    /* combinar visual fechado de toggle-contacts: pílula compacta */
     background: transparent;
     color: #ffffff;
     width: 46px;
@@ -633,7 +633,7 @@
     align-self: flex-start;
   }
 
-  /* Larger icon inside the compact tabs toggle (use SVG triangle like .toggle-triangle) */
+  /* Ícone maior dentro do alternador de abas compacto (usar triângulo SVG como .toggle-triangle) */
   .tabs-toggle-icon {
     display: inline-flex;
     align-items: center;
@@ -642,7 +642,7 @@
     width: 44px;
     height: 44px;
     padding: 0;
-    /* don't rotate - SVG orientation is defined in the template */
+    /* não rotacionar - orientação SVG é definida no template */
     transform: none;
     transform-origin: center;
     transition: transform .18s ease;
@@ -654,7 +654,7 @@
     height: 15px !important;
     display: block;
     fill: #ffffff;
-    /* No rotation: we render left/down triangles directly in HTML */
+    /* Sem rotação: renderizamos triângulos esquerda/baixo diretamente no HTML */
     transform: none;
     transform-origin: center;
     transition: transform .18s ease, fill .12s ease;
@@ -687,11 +687,11 @@
     background: transparent;
   }
 
-  /* when closed on small screens, rotate the triangle to point left */
-  /* when closed, rotate the icon container / non-triangle svgs to point left; leave the actual triangle SVG untouched */
+  /* quando fechado em telas pequenas, rotacionar o triângulo para apontar à esquerda */
+  /* quando fechado, rotacionar o container do ícone / svgs não-triângulo para apontar à esquerda; deixar o triângulo SVG real intocado */
   .tabs:not(.open) .tabs-toggle-icon,
   .tabs:not(.open) .tabs-toggle-icon svg:not(.tabs-toggle-triangle) {
-  /* keep container behavior but do not rotate the actual triangle SVG */
+  /* manter comportamento do container mas não rotacionar o triângulo SVG real */
     transform: none;
   }
 
@@ -715,7 +715,7 @@
     height: 15px !important;
   }
 
-  /* Ensure explicit orientation from template is not overridden */
+  /* Garantir que a orientação explícita do template não seja sobrescrita */
   .tabs-toggle[aria-expanded="false"] .tabs-toggle-triangle{
     transform: rotate(90deg) translateY(0) !important;
   }
@@ -724,13 +724,13 @@
     transform: rotate(0deg) translateY(0) !important;
   }
 
-  /* Ensure the actual triangle SVG keeps the polygon orientation we render in the template */
+  /* Garantir que o triângulo SVG atual mantenha a orientação do polígono renderizado no template */
   .tabs-toggle-triangle {
     transform: none;
   }
 }
 
-/* Hide webkit scrollbar for the main content scrolling area */
+/* Ocultar barra de rolagem webkit para a área de rolagem do conteúdo principal */
 .page-wrapper::-webkit-scrollbar {
   width: 0px;
   height: 0px;

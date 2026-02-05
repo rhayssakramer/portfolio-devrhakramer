@@ -1,4 +1,4 @@
-/* Profile card styles moved from home.component.css */
+/* Estilos do card de perfil movidos de home.component.css */
 :host {
   display: block;
   align-self: start;
@@ -29,7 +29,7 @@
   right: 0;
   width: 46px;
   height: 34px;
-  display: none; /* hidden by default */
+  display: none; /* oculto por padrão */
   place-items: center;
   padding: 4px 6px;
   border-radius: 14px 8px 8px 14px;
@@ -37,10 +37,10 @@
   box-shadow: 0 6px 18px rgba(0,0,0,0.45), 0 2px 8px rgba(183,139,43,0.12) inset;
   font-weight: 700;
   cursor: pointer;
-  z-index: 60; /* above the card */
+  z-index: 60; /* acima do card */
 }
 
-/* Show toggle on screens up to 1116px */
+/* Mostrar alternador em telas até 1116px */
 /* Ajustes para telas entre 1000px e 1116px */
 @media (min-width: 1000px) and (max-width: 1116px) {
   .profile-card {
@@ -58,7 +58,7 @@
   }
 }
 
-/* Ensure toggle is hidden on larger viewports */
+/* Garantir que o alternador esteja oculto em viewports maiores */
 @media (min-width: 1117px) {
   .toggle-contacts {
     display: none !important;
@@ -326,12 +326,12 @@
   }
 }
 
-/* Ensure profile card collapses to full width on narrow viewports */
+/* Garantir que o card de perfil colapsar para largura total em viewports estreitas */
 /* @media (max-width: 1000px) {
   .profile-card {
     width: 100%;
     box-sizing: border-box;
-    margin: 0; /* remove external offsets when stacked 
+    margin: 0; /* remover deslocamentos externos quando empilhado 
   }
 } */
 
