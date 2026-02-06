@@ -1,11 +1,11 @@
 <section class="page-wrapper portfolio-page">
   <div class="container">
-    <h1>Portfólio</h1>
-    <p>Galeria dos meus projetos</p>
+    <h1>{{ pageTitle() }}</h1>
+    <p>{{ pageSubtitle() }}</p>
 
     <!-- Filtros de Categoria -->
     <div class="category-filters">
-      <button *ngFor="let category of categoryFilters"
+      <button *ngFor="let category of categoryFilters()"
         class="category-btn" 
         [ngClass]="{'active': selectedCategory === category.id}"
         (click)="filterByCategory(category.id)">
@@ -27,7 +27,7 @@
     </div>
 
     <div *ngIf="loading" class="loading">
-      <p>Carregando projetos...</p>
+      <p>{{ loadingText() }}</p>
     </div>
 
     <div *ngIf="error" class="error">
@@ -44,7 +44,7 @@
         </div>
         <div class="project-content">
           <h3>{{ project.name }}</h3>
-          <p>{{ project.description || 'Projeto desenvolvido com as melhores práticas' }}</p>
+          <p>{{ project.description || defaultDescription() }}</p>
           <div class="project-tags">
             <span class="tag" *ngFor="let tag of project.tags.slice(0, 4)">{{ tag }}</span>
           </div>

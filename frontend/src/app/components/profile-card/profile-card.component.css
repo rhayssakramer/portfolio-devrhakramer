@@ -4,13 +4,11 @@
   align-self: start;
   position: sticky;
   top: 0;
-  overflow: visible;
 }
 
 .profile {
   display: block;
   position: relative;
-  overflow: visible;
 }
 
 .profile-card {

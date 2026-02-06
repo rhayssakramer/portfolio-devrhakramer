@@ -1,7 +1,7 @@
 <section class="page-wrapper resume-page">
   <div class="container">
-    <h1>Currículo</h1>
-    <p>Linha do Tempo Profissional</p>
+    <h1>{{ pageTitle() }}</h1>
+    <p>{{ pageSubtitle() }}</p>
 
     <!-- Resumo Profissional -->
     <div class="professional-summary-card">
@@ -12,19 +12,15 @@
             <circle cx="12" cy="7" r="4"></circle>
           </svg>
         </span>
-        <h2>Resumo Profissional</h2>
+        <h2>{{ summaryTitle() }}</h2>
       </div>
-      <p class="summary-description">Atuo como Sr. Assoc, Full-stack Development na <a class="link-text-1" href="https://www.avanade.com/pt-br">Avanade</a>, onde aprimoro minhas habilidades em programação e utilizo diversas 
-        linguagens e ferramentas para desenvolvimento de software. Busco constantemente o aperfeiçoamento técnico e o desenvolvimento de 
-        soft skills, visando contribuir de forma eficaz para a equipe e para o crescimento da organização. Meu objetivo é evoluir profissionalmente,
-         adquirindo experiência e conhecimento para alcançar os melhores resultados e realizar meu potencial na área de tecnologia.
-      </p>
+      <p class="summary-description">{{ summaryText() }}</p>
     </div>
 
     <div class="resume-grid">
       <!-- Coluna Esquerda -->
       <div class="left-column">
-        <div *ngFor="let card of cardConfigs.left" 
+        <div *ngFor="let card of cardConfigs().left" 
              class="card slide-in-left" 
              [ngClass]="{'expanded': isExpanded(card.id)}"
              [style.animation-delay]="card.animationDelay">
@@ -46,18 +42,18 @@
                      stroke-width="2" 
                      stroke-linecap="round" 
                      stroke-linejoin="round">
-                  <rect *ngIf="card.svgRect" 
-                        [attr.x]="card.svgRect.x" 
-                        [attr.y]="card.svgRect.y" 
-                        [attr.width]="card.svgRect.width" 
-                        [attr.height]="card.svgRect.height" 
-                        [attr.rx]="card.svgRect.rx" 
-                        [attr.ry]="card.svgRect.ry"></rect>
+                  <rect *ngIf="$any(card).svgRect" 
+                        [attr.x]="$any(card).svgRect.x" 
+                        [attr.y]="$any(card).svgRect.y" 
+                        [attr.width]="$any(card).svgRect.width" 
+                        [attr.height]="$any(card).svgRect.height" 
+                        [attr.rx]="$any(card).svgRect.rx" 
+                        [attr.ry]="$any(card).svgRect.ry"></rect>
                   <path *ngFor="let path of card.svgPaths || []" [attr.d]="path"></path>
-                  <circle *ngIf="card.svgCircle" 
-                          [attr.cx]="card.svgCircle.cx" 
-                          [attr.cy]="card.svgCircle.cy" 
-                          [attr.r]="card.svgCircle.r"></circle>
+                  <circle *ngIf="$any(card).svgCircle" 
+                          [attr.cx]="$any(card).svgCircle.cx" 
+                          [attr.cy]="$any(card).svgCircle.cy" 
+                          [attr.r]="$any(card).svgCircle.r"></circle>
                 </svg>
               </span>
               <h2>{{ card.title }}</h2>
@@ -84,7 +80,7 @@
 
       <!-- Coluna Direita -->
       <div class="right-column">
-        <div *ngFor="let card of cardConfigs.right" 
+        <div *ngFor="let card of cardConfigs().right" 
              class="card slide-in-right" 
              [ngClass]="{'expanded': isExpanded(card.id)}"
              [style.animation-delay]="card.animationDelay">
@@ -106,18 +102,18 @@
                      stroke-width="2" 
                      stroke-linecap="round" 
                      stroke-linejoin="round">
-                  <rect *ngIf="card.svgRect" 
-                        [attr.x]="card.svgRect.x" 
-                        [attr.y]="card.svgRect.y" 
-                        [attr.width]="card.svgRect.width" 
-                        [attr.height]="card.svgRect.height" 
-                        [attr.rx]="card.svgRect.rx" 
-                        [attr.ry]="card.svgRect.ry"></rect>
+                  <rect *ngIf="$any(card).svgRect" 
+                        [attr.x]="$any(card).svgRect.x" 
+                        [attr.y]="$any(card).svgRect.y" 
+                        [attr.width]="$any(card).svgRect.width" 
+                        [attr.height]="$any(card).svgRect.height" 
+                        [attr.rx]="$any(card).svgRect.rx" 
+                        [attr.ry]="$any(card).svgRect.ry"></rect>
                   <path *ngFor="let path of card.svgPaths || []" [attr.d]="path"></path>
-                  <circle *ngIf="card.svgCircle" 
-                          [attr.cx]="card.svgCircle.cx" 
-                          [attr.cy]="card.svgCircle.cy" 
-                          [attr.r]="card.svgCircle.r"></circle>
+                  <circle *ngIf="$any(card).svgCircle" 
+                          [attr.cx]="$any(card).svgCircle.cx" 
+                          [attr.cy]="$any(card).svgCircle.cy" 
+                          [attr.r]="$any(card).svgCircle.r"></circle>
                 </svg>
               </span>
               <h2>{{ card.title }}</h2>
@@ -152,7 +148,7 @@
               <polyline points="8 6 2 12 8 18"></polyline>
             </svg>
           </span>
-          <h2>Habilidades</h2>
+          <h2>{{ skillsTitle() }}</h2>
         </div>
       </div>
       <div class="card-content">

@@ -15,12 +15,12 @@
       <img src="assets/images/profile.jpg" alt="Foto de perfil" />
     </div>
     <h2 class="name">Rhayssa Kramer</h2>
-    <span class="role-pill">Full-Stack Development</span>
+    <span class="role-pill">{{ roleText() }}</span>
 
     <div class="divider"></div>
 
     <ul class="contact">
-      <li *ngFor="let contact of contactsData">
+      <li *ngFor="let contact of contactsData()">
         <span class="icon" aria-hidden="true">
           <svg [attr.viewBox]="contact.viewBox" width="24" height="24" 
                [attr.fill]="contact.fill || 'currentColor'" 

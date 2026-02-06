@@ -1,10 +1,10 @@
 <section class="page-wrapper blog-page">
   <div class="container">
-    <h1>Blog</h1>
-    <p>Artigos e posts recentes do Dev.to</p>
+    <h1>{{ title() }}</h1>
+    <p>{{ subtitle() }}</p>
 
     <div *ngIf="loading" class="loading">
-      <p>Carregando artigos...</p>
+      <p>{{ loadingText() }}</p>
     </div>
 
     <div *ngIf="error" class="error">
@@ -19,7 +19,7 @@
         <div class="article-content">
           <div class="article-meta">
             <span class="date">{{ formatDate(article.published_at) }}</span>
-            <span class="reading-time">{{ article.reading_time_minutes }} min de leitura</span>
+            <span class="reading-time">{{ article.reading_time_minutes }} {{ readingTimeText() }}</span>
           </div>
           <h3>{{ article.title }}</h3>
           <p>{{ article.description }}</p>
@@ -31,7 +31,7 @@
     </div>
 
     <div class="no-articles" *ngIf="!loading && !error && articles.length === 0">
-      <p>Nenhum artigo publicado ainda.</p>
+      <p>{{ noArticlesText() }}</p>
     </div>
   </div>
 </section>
