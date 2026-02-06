@@ -4,7 +4,8 @@
   <div class="page-grid container">
     <app-profile-card></app-profile-card>
 
-    <main class="content">
+    <div class="content-wrapper">
+      <main class="content">
       <section class="card" [ngClass]="{'show-resume': activeTab==='resume', 'show-portfolio': activeTab==='portfolio', 'show-blog': activeTab==='blog', 'show-contact': activeTab==='contact'}">
         <!-- abas incorporadas no card Sobre (canto superior direito) -->
         <nav class="tabs" [ngClass]="{'open': tabsOpen}">
@@ -19,27 +20,20 @@
 
           <!-- menu de abas completo (exibido no desktop; no mobile fica oculto até ser aberto) -->
           <div class="tabs-menu" [ngClass]="{'open': tabsOpen}">
-            <a class="tab" *ngFor="let tab of tabs" 
+            <a class="tab" *ngFor="let tab of tabs()" 
                [ngClass]="{'active': activeTab === tab.id}" 
                (click)="setTab(tab.id)">{{ tab.label }}</a>
           </div>
         </nav>
         <div *ngIf="activeTab==='about'">
-          <h1 class="title">Sobre Mim</h1>
-          <p class="p-title">Oiê, eu sou <span class="link-text-2">Rhayssa Kramer</span>, apaixonada por tecnologia!👋🏼<br>
-             Sou Full-Stack Developer Jr. na <a class="link-text-1" href="https://www.avanade.com/pt-br">Avanade</a> 
-             e criadora de conteúdos tech com linhas de humor nas <a class="link-text-2" href="https://linktr.ee/devrhakramer">Redes Sociais</a> com linhas de humor.
-             Atuo com DevSecOps com tecnologias e linguagens como <b>C#</b>, <b>Angular</b>, <b>Typescript</b>, 
-             <b>JavaScript</b>, <b>Node.js</b>, <b>.Net</b>, <b>Azure</b>, <b>Git</b> e 
-             <b>GitHub</b>, <b>GitLab</b>, focando em qualidade de código, boas práticas e 
-             soluções escaláveis. Valorizo o trabalho em equipe, a troca de conhecimento e 
-             a busca constante por inovação. Fora do mundo tech, gosto de natureza, pets, 
-             viagens, artes, filmes, sérioes, livros e games, que inspiram minha criatividade.</p>
+          <h1 class="title">{{ aboutTitle() }}</h1>
+          <p class="p-title">{{ aboutIntro() }}<br>
+             {{ aboutDescription() }}</p>
           <div class="card-divider"></div>
 
-          <h2 class="subtitle-1">Atuação Profissional</h2>
+          <h2 class="subtitle-1">{{ professionalTitle() }}</h2>
           <div class="grid-feats">
-          <article class="feat" *ngFor="let feature of features; let i = index" 
+          <article class="feat" *ngFor="let feature of features(); let i = index" 
                    [class.animate-left]="i % 2 === 0" 
                    [class.animate-right]="i % 2 !== 0">
             <div class="feat-ico gold">
@@ -51,9 +45,9 @@
             </div>
           </article>
         </div>
-        <h2 class="subtitle-1">Projetos em Destaque</h2>
+        <h2 class="subtitle-1">{{ featuredProjectsTitle() }}</h2>
         <div class="projects">
-          <article class="project" *ngFor="let project of featuredProjects; let i = index"
+          <article class="project" *ngFor="let project of featuredProjects(); let i = index"
                    [class.animate-left]="i % 2 === 0" 
                    [class.animate-right]="i % 2 !== 0">
             <div class="proj-ico">
@@ -75,7 +69,7 @@
           </article>
         </div>
 
-        <h2 class="subtitle-3">Stacks & Ferramentas</h2>
+        <h2 class="subtitle-3">{{ stacksToolsTitle() }}</h2>
         
         <div class="skills-icons">
           <div class="icons-container">
@@ -119,5 +113,6 @@
         </ng-container>
       </section>
     </main>
+    </div>
   </div>
 </section>
