@@ -176,4 +176,24 @@ export class ResumeComponent {
     };
     return dataMap[cardId] || [];
   }
+
+  pageTitle() {
+    return 'Currículo';
+  }
+
+  pageSubtitle() {
+    return 'Experiência e formação';
+  }
+
+  summaryTitle() {
+    return 'Sumário';
+  }
+
+  summaryText() {
+    return 'Desenvolvedora Full-Stack com experiência em Angular, TypeScript, JavaScript, Node.js, C# e .NET. Focada em criar soluções escaláveis e de alta qualidade.';
+  }
+
+  skillsTitle() {
+    return 'Minhas Habilidades';
+  }
 }

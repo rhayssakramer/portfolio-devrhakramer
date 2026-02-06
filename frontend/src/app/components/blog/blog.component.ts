@@ -46,4 +46,24 @@ export class BlogComponent implements OnInit {
   openArticle(url: string): void {
     window.open(url, '_blank', 'noopener,noreferrer');
   }
+
+  title() {
+    return 'Blog';
+  }
+
+  subtitle() {
+    return 'Últimos artigos e tutoriais';
+  }
+
+  loadingText() {
+    return 'Carregando artigos...';
+  }
+
+  readingTimeText() {
+    return 'min de leitura';
+  }
+
+  noArticlesText() {
+    return 'Nenhum artigo encontrado.';
+  }
 }

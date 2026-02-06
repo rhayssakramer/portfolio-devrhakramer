@@ -12,7 +12,7 @@ export class ProfileCardComponent {
   showContacts = false;
   Array = Array;
 
-  contactsData = [
+  contactsDataList = [
     {
       viewBox: '0 0 24 24',
       svgType: 'path',
@@ -74,5 +74,13 @@ export class ProfileCardComponent {
 
   toggleContacts() {
     this.showContacts = !this.showContacts;
+  }
+
+  roleText() {
+    return 'Full-Stack Development';
+  }
+
+  contactsData() {
+    return this.contactsDataList;
   }
 }

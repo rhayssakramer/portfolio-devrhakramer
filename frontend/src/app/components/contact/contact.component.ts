@@ -27,7 +27,7 @@ export class ContactComponent {
   submitStatus: 'idle' | 'success' | 'error' = 'idle';
   errorMessage = '';
 
-  contactInfo = [
+  contactInfoData = [
     {
       icon: 'email',
       title: 'Email',
@@ -134,5 +134,57 @@ export class ContactComponent {
     } finally {
       this.isSubmitting = false;
     }
+  }
+
+  pageTitle() {
+    return 'Contato';
+  }
+
+  pageSubtitle() {
+    return 'Vamos conversar!';
+  }
+
+  pageDescription() {
+    return 'Estou sempre aberta para discutir novos projetos, ideias criativas ou oportunidades de fazer parte da sua equipe. Sinta-se à vontade para entrar em contato!';
+  }
+
+  contactInfo() {
+    return this.contactInfoData;
+  }
+
+  formNameLabel() {
+    return 'Nome completo';
+  }
+
+  formNamePlaceholder() {
+    return 'Seu nome';
+  }
+
+  formEmailLabel() {
+    return 'Endereço de email';
+  }
+
+  formEmailPlaceholder() {
+    return 'seu.email@exemplo.com';
+  }
+
+  formMessageLabel() {
+    return 'Sua mensagem';
+  }
+
+  formMessagePlaceholder() {
+    return 'Escreva sua mensagem aqui...';
+  }
+
+  formSuccessMessage() {
+    return 'Mensagem enviada com sucesso! Entrarei em contato em breve.';
+  }
+
+  formSendingButton() {
+    return 'Enviando...';
+  }
+
+  formSendButton() {
+    return 'Enviar Mensagem';
   }
 }

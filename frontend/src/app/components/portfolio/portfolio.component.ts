@@ -23,7 +23,7 @@ export class PortfolioComponent implements OnInit {
   selectedFilter = '';
   selectedCategory = 'all';
 
-  categoryFilters = [
+  categoryFiltersData = [
     { id: 'all', label: 'Todos' },
     { id: 'frontend', label: 'Frontend' },
     { id: 'backend', label: 'Backend' },
@@ -226,5 +226,25 @@ export class PortfolioComponent implements OnInit {
       'Rust': '#dea584',
     };
     return colors[language] || '#6e7681';
+  }
+
+  pageTitle() {
+    return 'Portfólio';
+  }
+
+  pageSubtitle() {
+    return 'Meus projetos no GitHub';
+  }
+
+  categoryFilters() {
+    return this.categoryFiltersData;
+  }
+
+  loadingText() {
+    return 'Carregando projetos...';
+  }
+
+  defaultDescription() {
+    return 'Sem descrição disponível';
   }
 }

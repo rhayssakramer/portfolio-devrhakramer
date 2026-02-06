@@ -20,7 +20,7 @@
     <div class="resume-grid">
       <!-- Coluna Esquerda -->
       <div class="left-column">
-        <div *ngFor="let card of cardConfigs().left" 
+        <div *ngFor="let card of cardConfigs.left" 
              class="card slide-in-left" 
              [ngClass]="{'expanded': isExpanded(card.id)}"
              [style.animation-delay]="card.animationDelay">
@@ -80,7 +80,7 @@
 
       <!-- Coluna Direita -->
       <div class="right-column">
-        <div *ngFor="let card of cardConfigs().right" 
+        <div *ngFor="let card of cardConfigs.right" 
              class="card slide-in-right" 
              [ngClass]="{'expanded': isExpanded(card.id)}"
              [style.animation-delay]="card.animationDelay">
