@@ -6,7 +6,6 @@ import { ResumeComponent } from '../../components/resume/resume.component';
 import { PortfolioComponent } from '../../components/portfolio/portfolio.component';
 import { BlogComponent } from '../../components/blog/blog.component';
 import { ContactComponent } from '../../components/contact/contact.component';
-import { TranslationService } from '../../services/translation.service';
 
 @Component({
   selector: 'app-home',
@@ -20,101 +19,81 @@ export class HomeComponent {
   tabsOpen = false;
   activeTab: 'about' | 'resume' | 'portfolio' | 'blog' | 'contact' = 'about';
   Array = Array;
-  translationService = inject(TranslationService);
 
-  tabs = computed(() => {
-    // Forçar reatividade lendo o signal
-    const currentLang = this.translationService.currentLanguage();
-    console.log('Tabs computed - current language:', currentLang);
-    return [
-      { id: 'about' as const, label: this.translationService.translate('nav.about') },
-      { id: 'resume' as const, label: this.translationService.translate('nav.resume') },
-      { id: 'portfolio' as const, label: this.translationService.translate('nav.portfolio') },
-      { id: 'blog' as const, label: this.translationService.translate('nav.blog') },
-      { id: 'contact' as const, label: this.translationService.translate('nav.contact') }
-    ];
-  });
+tabs = [
+    { id: 'about' as const, label: 'Sobre' },
+    { id: 'resume' as const, label: 'Currículo' },
+    { id: 'portfolio' as const, label: 'Portfólio' },
+    { id: 'blog' as const, label: 'Blog' },
+    { id: 'contact' as const, label: 'Contato' }
+  ];
 
-  // Traduções da página About
-  aboutTitle = computed(() => this.translationService.translate('about.title'));
-  aboutIntro = computed(() => this.translationService.translate('about.intro'));
-  aboutDescription = computed(() => this.translationService.translate('about.description'));
-  professionalTitle = computed(() => this.translationService.translate('about.professionalTitle'));
-  featuredProjectsTitle = computed(() => this.translationService.translate('about.featuredProjects'));
-  stacksToolsTitle = computed(() => this.translationService.translate('about.stacksTools'));
+ features = [
+    {
+      icon: 'assets/icons/frontend.png',
+      alt: 'Desenvolvimento Web',
+      title: 'Desenvolvimento Web',
+      description: 'Aplicações web escaláveis em Angular/TypeScript e JavaScript/Node.js.'
+    },
+    {
+      icon: 'assets/icons/backend.png',
+      alt: 'BackEnd',
+      title: 'BackEnd',
+      description: 'Aplicações em C#, .Net, API REST, Web API, Arquitetura em Camadas, SOLID, Design Patterns, Postgres.'
+    },
+    {
+      icon: 'assets/icons/security.png',
+      alt: 'Security',
+      title: 'Segurança',
+      description: 'JWT Authentication, OAuth / OpenID Connect, OWASP Top 10, Validação de dados.'
+    },
+    {
+      icon: 'assets/icons/devops.png',
+      alt: 'DevOps',
+      title: 'DevOps',
+      description: 'CI/CD, Docker, Testes Unitários, Kubernetes.'
+    },
+    {
+      icon: 'assets/icons/database.png',
+      alt: 'Dados e Persistência',
+      title: 'Dados e Persistência',
+      description: 'Entity Framework, Dapper, Migrations'
+    },
+    {
+      icon: 'assets/icons/cloud.png',
+      alt: 'Cloud Azure',
+      title: 'Cloud Azure',
+      description: 'Aplicações em nuvem com Azure.'
+    }
+  ];
 
-  features = computed(() => {
-    const lang = this.translationService.currentLanguage();
-    return [
-      {
-        icon: 'assets/icons/frontend.png',
-        alt: this.translationService.translate('feature.webdev.title'),
-        title: this.translationService.translate('feature.webdev.title'),
-        description: this.translationService.translate('feature.webdev.desc')
-      },
-      {
-        icon: 'assets/icons/backend.png',
-        alt: this.translationService.translate('feature.backend.title'),
-        title: this.translationService.translate('feature.backend.title'),
-        description: this.translationService.translate('feature.backend.desc')
-      },
-      {
-        icon: 'assets/icons/security.png',
-        alt: this.translationService.translate('feature.security.title'),
-        title: this.translationService.translate('feature.security.title'),
-        description: this.translationService.translate('feature.security.desc')
-      },
-      {
-        icon: 'assets/icons/devops.png',
-        alt: this.translationService.translate('feature.devops.title'),
-        title: this.translationService.translate('feature.devops.title'),
-        description: this.translationService.translate('feature.devops.desc')
-      },
-      {
-        icon: 'assets/icons/database.png',
-        alt: this.translationService.translate('feature.data.title'),
-        title: this.translationService.translate('feature.data.title'),
-        description: this.translationService.translate('feature.data.desc')
-      },
-      {
-        icon: 'assets/icons/cloud.png',
-        alt: this.translationService.translate('feature.cloud.title'),
-        title: this.translationService.translate('feature.cloud.title'),
-        description: this.translationService.translate('feature.cloud.desc')
-      }
-    ];
-  });
-
-  featuredProjects = computed(() => {
-    const lang = this.translationService.currentLanguage();
-    return [
-      {
-        svgViewBox: '0 0 24 24',
-        svgFill: 'white',
-        svgType: 'path',
-        svgContent: 'M12 0C5.37 0 0 5.37 0 12c0 5.3 3.44 9.8 8.2 11.39.6.11.82-.26.82-.58 0-.29-.01-1.06-.02-2.08-3.34.73-4.04-1.61-4.04-1.61-.55-1.39-1.34-1.76-1.34-1.76-1.09-.75.08-.73.08-.73 1.2.08 1.83 1.23 1.83 1.23 1.07 1.83 2.8 1.3 3.48.99.11-.78.42-1.3.76-1.6-2.66-.3-5.47-1.33-5.47-5.93 0-1.31.47-2.38 1.23-3.22-.12-.3-.54-1.52.11-3.18 0 0 1.01-.32 3.3 1.23a11.5 11.5 0 0 1 3-.4c1.02 0 2.05.14 3 .4 2.3-1.55 3.3-1.23 3.3-1.23.65 1.66.23 2.88.11 3.18.77.84 1.23 1.91 1.23 3.22 0 4.61-2.81 5.63-5.49 5.93.43.37.81 1.1.81 2.22 0 1.6-.01 2.89-.01 3.28 0 .32.21.69.82.57C20.56 21.78 24 17.3 24 12 24 5.37 18.63 0 12 0z',
-        title: this.translationService.translate('project.github.title'),
-        link: 'https://github.com/rhayssakramer/github-certification',
-        linkText: this.translationService.translate('project.github.linkText'),
-        description: this.translationService.translate('project.github.desc')
-      },
-      {
-        svgViewBox: '0 0 32 32',
-        svgFill: 'none',
-        svgType: 'rects',
-        svgContent: [
-          { x: '17', y: '17', width: '10', height: '10', fill: '#ffffff' },
-          { x: '5', y: '17', width: '10', height: '10', fill: '#ffffff' },
-          { x: '17', y: '5', width: '10', height: '10', fill: '#ffffff' },
-          { x: '5', y: '5', width: '10', height: '10', fill: '#ffffff' }
-        ],
-        title: this.translationService.translate('project.microsoft.title'),
-        link: 'https://github.com/rhayssakramer/microsoft-certification',
-        linkText: this.translationService.translate('project.microsoft.linkText'),
-        description: this.translationService.translate('project.microsoft.desc')
-      }
-    ];
-  });
+ featuredProjects = [
+    {
+      svgViewBox: '0 0 24 24',
+      svgFill: 'white',
+      svgType: 'path',
+      svgContent: 'M12 0C5.37 0 0 5.37 0 12c0 5.3 3.44 9.8 8.2 11.39.6.11.82-.26.82-.58 0-.29-.01-1.06-.02-2.08-3.34.73-4.04-1.61-4.04-1.61-.55-1.39-1.34-1.76-1.34-1.76-1.09-.75.08-.73.08-.73 1.2.08 1.83 1.23 1.83 1.23 1.07 1.83 2.8 1.3 3.48.99.11-.78.42-1.3.76-1.6-2.66-.3-5.47-1.33-5.47-5.93 0-1.31.47-2.38 1.23-3.22-.12-.3-.54-1.52.11-3.18 0 0 1.01-.32 3.3 1.23a11.5 11.5 0 0 1 3-.4c1.02 0 2.05.14 3 .4 2.3-1.55 3.3-1.23 3.3-1.23.65 1.66.23 2.88.11 3.18.77.84 1.23 1.91 1.23 3.22 0 4.61-2.81 5.63-5.49 5.93.43.37.81 1.1.81 2.22 0 1.6-.01 2.89-.01 3.28 0 .32.21.69.82.57C20.56 21.78 24 17.3 24 12 24 5.37 18.63 0 12 0z',
+      title: 'GitHub Certification',
+      link: 'https://github.com/rhayssakramer/github-certification',
+      linkText: 'Projeto de Materiais de estudos para o GitHub Certification',
+      description: 'Guia para contribuir com os estudos das Certificações do GitHub.'
+    },
+    {
+      svgViewBox: '0 0 32 32',
+      svgFill: 'none',
+      svgType: 'rects',
+      svgContent: [
+        { x: '17', y: '17', width: '10', height: '10', fill: '#ffffff' },
+        { x: '5', y: '17', width: '10', height: '10', fill: '#ffffff' },
+        { x: '17', y: '5', width: '10', height: '10', fill: '#ffffff' },
+        { x: '5', y: '5', width: '10', height: '10', fill: '#ffffff' }
+      ],
+      title: 'Microsoft Certification',
+      link: 'https://github.com/rhayssakramer/microsoft-certification',
+      linkText: 'Projeto de Materiais de estudos para o Microsoft Certification',
+      description: 'Guia para contribuir com os estudos das Certificações da Microsoft.'
+    }
+  ];
 
   skillsData = [
     { name: 'HTML', icon: 'html', url: 'https://developer.mozilla.org/pt-BR/docs/Web/HTML' },
