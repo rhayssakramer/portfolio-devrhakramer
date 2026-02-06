@@ -20,7 +20,7 @@ export class HomeComponent {
   activeTab: 'about' | 'resume' | 'portfolio' | 'blog' | 'contact' = 'about';
   Array = Array;
 
-tabs = [
+  tabsData = [
     { id: 'about' as const, label: 'Sobre' },
     { id: 'resume' as const, label: 'Currículo' },
     { id: 'portfolio' as const, label: 'Portfólio' },
@@ -28,7 +28,7 @@ tabs = [
     { id: 'contact' as const, label: 'Contato' }
   ];
 
- features = [
+ featuresData = [
     {
       icon: 'assets/icons/frontend.png',
       alt: 'Desenvolvimento Web',
@@ -67,7 +67,7 @@ tabs = [
     }
   ];
 
- featuredProjects = [
+ featuredProjectsData = [
     {
       svgViewBox: '0 0 24 24',
       svgFill: 'white',
@@ -144,5 +144,41 @@ tabs = [
   setTab(tab: 'about' | 'resume' | 'portfolio' | 'blog' | 'contact') {
     this.activeTab = tab;
     this.tabsOpen = false;
+  }
+
+  tabs() {
+    return this.tabsData;
+  }
+
+  aboutTitle() {
+    return 'Sobre Mim';
+  }
+
+  aboutIntro() {
+    return 'Oiê, eu sou Rhayssa Kramer, apaixonada por tecnologia! 👋';
+  }
+
+  aboutDescription() {
+    return 'Sou Full-Stack Developer Jr. na Avanade e criadora de conteúdos tech com linhas de humor nas Redes Sociais. Atuo com DevSecOps com tecnologias e linguagens como C#, Angular, TypeScript, JavaScript, Node.js, .Net, Azure, Git e GitHub, GitLab, focando em qualidade de código, boas práticas e soluções escaláveis. Valorizo o trabalho em equipe, a troca de conhecimento e a busca constante por inovação. Fora do mundo tech, gosto de natureza, pets, viagens, artes, filmes, séries, livros e games, que inspiram minha criatividade.';
+  }
+
+  professionalTitle() {
+    return 'Atuação Profissional';
+  }
+
+  features() {
+    return this.featuresData;
+  }
+
+  featuredProjectsTitle() {
+    return 'Projetos em Destaque';
+  }
+
+  featuredProjects() {
+    return this.featuredProjectsData;
+  }
+
+  stacksToolsTitle() {
+    return 'Stacks e Ferramentas';
   }
 }
