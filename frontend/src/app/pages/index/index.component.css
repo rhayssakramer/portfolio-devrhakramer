@@ -27,15 +27,17 @@
 /* Título de boas-vindas com gradiente */
 .welcome-title {
   font-size: clamp(2.5rem, 8vw, 6rem);
-  font-weight: 700;
+  font-weight: 900;
   margin: 0;
-  background: linear-gradient(135deg, #8b5cf6 0%, #ec4899 100%);
+  background: linear-gradient(135deg, #5900ff 0%, #8b65d0 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
   line-height: 1.2;
   max-width: 90vw;
   text-align: center;
+  letter-spacing: -0.02em;
+  font-stretch: ultra-condensed;
 }
 
 /* Container da seta */
@@ -57,7 +59,7 @@
 }
 
 .bouncing-arrow:hover {
-  color: #ec4899;
+  color: #5900ff;
   transform: scale(1.1);
 }
 

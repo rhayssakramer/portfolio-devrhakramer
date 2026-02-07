@@ -186,7 +186,7 @@ export class ResumeComponent {
   }
 
   summaryTitle() {
-    return 'Sumário';
+    return 'Resumo Profissional';
   }
 
   summaryText() {

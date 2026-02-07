@@ -14,7 +14,8 @@
 }
 
 .container { 
-  max-width: 1080px; /* largura do card reduzida para mostrar fundo nas laterais */
+  max-width: 1040px; /* largura do card reduzida para mostrar fundo nas laterais */
+  top: -20px;
   margin: 0 auto; 
   transform: none;
 }
@@ -23,7 +24,7 @@
   position: relative; 
   z-index: 3; 
   display: grid; 
-  grid-template-columns: 300px minmax(0,740px); /* barra lateral fixa + coluna principal ajustada */
+  grid-template-columns: 320px minmax(0,800px); /* barra lateral fixa + coluna principal ajustada */
   gap: 32px; 
   align-items: start;
   min-height: 100%;
@@ -39,7 +40,7 @@
 
 /* Garantir que o container do grid não expanda além da largura pretendida */
 .page-grid.container {
-  max-width: 1080px; /* aplicar largura do container no elemento grid (permitir 300 + 740px) */
+  max-width: 1150px; /* aplicar largura do container no elemento grid (permitir 310 + 780px) */
   margin: 0 auto;
 }
 /* Estilos de perfil movidos para src/app/components/profile-card/profile-card.component.css */
