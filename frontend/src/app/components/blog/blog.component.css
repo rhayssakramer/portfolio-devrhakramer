@@ -54,7 +54,229 @@
   }
 }
 
-@keyframes zoomIn {
+/* Smartphones grandes */
+@media (max-width: 480px) {
+  .container h1 {
+    font-size: 1.6rem;
+  }
+
+  .container h1::after {
+    width: 45px;
+    height: 3px;
+    margin-top: 7px;
+  }
+
+  .container p {
+    font-size: 1rem;
+  }
+
+  .blog-page {
+    padding: 10px 0;
+  }
+
+  .articles-grid {
+    gap: 20px;
+    margin-top: 18px;
+  }
+
+  .article-card {
+    border-radius: 10px;
+  }
+
+  .article-image {
+    height: 180px;
+  }
+
+  .article-content {
+    padding: 14px;
+  }
+
+  .article-meta {
+    margin-bottom: 10px;
+    font-size: 0.8rem;
+  }
+
+  .article-card h3 {
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+  }
+
+  .article-card p {
+    font-size: 0.9rem;
+    margin-bottom: 10px;
+    line-height: 1.5;
+  }
+
+  .article-tags {
+    gap: 5px;
+    margin-bottom: 10px;
+  }
+
+  .tag {
+    padding: 3px 9px;
+    font-size: 0.75rem;
+    border-radius: 10px;
+  }
+
+  .article-footer {
+    margin-top: 14px;
+    padding-top: 14px;
+  }
+
+  .reactions {
+    font-size: 0.85rem;
+  }
+
+  .article-card .link {
+    font-size: 0.9rem;
+  }
+}
+
+/* Smartphones médios */
+@media (max-width: 375px) {
+  .container h1 {
+    font-size: 1.4rem;
+    margin-bottom: 10px;
+  }
+
+  .container h1::after {
+    width: 40px;
+  }
+
+  .container p {
+    font-size: 0.95rem;
+  }
+
+  .blog-page {
+    padding: 8px 0;
+  }
+
+  .articles-grid {
+    gap: 16px;
+    margin-top: 16px;
+  }
+
+  .article-image {
+    height: 160px;
+  }
+
+  .article-content {
+    padding: 12px;
+  }
+
+  .article-meta {
+    margin-bottom: 8px;
+    font-size: 0.75rem;
+  }
+
+  .article-card h3 {
+    font-size: 1.1rem;
+    margin-bottom: 8px;
+  }
+
+  .article-card p {
+    font-size: 0.85rem;
+    margin-bottom: 8px;
+  }
+
+  .article-tags {
+    gap: 4px;
+    margin-bottom: 8px;
+  }
+
+  .tag {
+    padding: 3px 8px;
+    font-size: 0.7rem;
+    border-radius: 9px;
+  }
+
+  .article-footer {
+    margin-top: 12px;
+    padding-top: 12px;
+  }
+
+  .reactions {
+    font-size: 0.8rem;
+  }
+
+  .article-card .link {
+    font-size: 0.85rem;
+  }
+}
+
+/* Smartphones pequenos */
+@media (max-width: 320px) {
+  .container h1 {
+    font-size: 1.3rem;
+  }
+
+  .container p {
+    font-size: 0.9rem;
+  }
+
+  .blog-page {
+    padding: 6px 0;
+  }
+
+  .articles-grid {
+    gap: 14px;
+    margin-top: 14px;
+  }
+
+  .article-image {
+    height: 150px;
+  }
+
+  .article-content {
+    padding: 10px;
+  }
+
+  .article-meta {
+    margin-bottom: 7px;
+    font-size: 0.7rem;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
+  }
+
+  .article-card h3 {
+    font-size: 1rem;
+    margin-bottom: 7px;
+  }
+
+  .article-card p {
+    font-size: 0.8rem;
+    margin-bottom: 7px;
+  }
+
+  .article-tags {
+    gap: 3px;
+    margin-bottom: 7px;
+  }
+
+  .tag {
+    padding: 2px 7px;
+    font-size: 0.65rem;
+  }
+
+  .article-footer {
+    margin-top: 10px;
+    padding-top: 10px;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
+
+  .reactions {
+    font-size: 0.75rem;
+  }
+
+  .article-card .link {
+    font-size: 0.8rem;
+  }
+}
+
+.blog-host { padding-top: 8px; }
   from {
     opacity: 0;
     transform: scale(0.5);

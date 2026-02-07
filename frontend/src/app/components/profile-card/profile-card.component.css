@@ -22,6 +22,8 @@
   padding: 26px 24px;
   box-shadow: 0 12px 40px rgba(0,0,0,.45);
   overflow: hidden;
+  word-wrap: break-word;
+  max-width: 100%;
 }
 
 .toggle-contacts {
@@ -243,16 +245,17 @@
 @media (max-width: 999px) {
   :host {
     width: 100%;
-    display: flex;
-    justify-content: center;
-    position: static; /* Remove o sticky para que o card não siga o scroll */
+    max-width: 100%;
+    display: block;
+    position: static;
   }
   
   .profile-card {
     width: 100%;
-    max-width: 420px;
-    margin: 0 auto;
+    max-width: 100%;
+    margin: 0;
     position: relative;
+    top: 0;
   }
   
   .toggle-contacts {
@@ -263,13 +266,13 @@
   }
   
   .toggle-contacts.toggle-contacts--closed {
-    top: 24px;
-    right: 0;
+    top: 0px;
+    right: 0px;
   }
   
   .toggle-contacts.toggle-contacts--open {
-    top: 24px !important;
-    right: 0 !important;
+    top: 0px !important;
+    right: 0px !important;
   }
 }
 
@@ -324,11 +327,262 @@
   }
 }
 
+/* Ajustes médios para cards em telas intermediárias */
+@media (max-width: 999px) and (min-width: 641px) {
+  .profile-card {
+    margin: 0 auto;
+  }
+}
+
 /* Ajustes adicionais para telas muito pequenas */
 @media (max-width: 640px) {
   .profile-card {
     max-width: 100%;
     width: 100%;
+    padding: 20px 16px;
+    border-radius: 16px;
+  }
+
+  .avatar {
+    width: 145px;
+    height: 145px;
+    margin: 4px auto 14px auto;
+    border-radius: 16px;
+  }
+
+  .name {
+    font-size: 1.6rem;
+  }
+
+  .role-pill {
+    font-size: 0.9rem;
+    padding: 9px 14px;
+    border-radius: 10px;
+  }
+}
+
+/* Smartphones grandes */
+@media (max-width: 480px) {
+  .profile-card {
+    padding: 18px 14px;
+  }
+
+  .avatar {
+    width: 140px;
+    height: 140px;
+    margin: 4px auto 12px auto;
+  }
+
+  .name {
+    font-size: 1.55rem;
+  }
+
+  .role-pill {
+    padding: 8px 13px;
+    font-size: 0.88rem;
+  }
+
+  .contact li {
+    grid-template-columns: 54px 1fr;
+    gap: 13px;
+  }
+
+  .icon {
+    width: 43px;
+    height: 43px;
+  }
+
+  .contact small {
+    font-size: 0.84rem;
+  }
+
+  .toggle-contacts {
+    width: 58px;
+    height: 48px;
+  }
+
+  .toggle-contacts.toggle-contacts--closed {
+    width: 58px;
+    height: 48px;
+  }
+}
+
+/* iPhone 14 Pro Max e similares (430px) */
+@media (max-width: 430px) and (min-width: 376px) {
+  .profile-card {
+    padding: 18px 16px;
+  }
+
+  .avatar {
+    width: 142px;
+    height: 142px;
+  }
+
+  .name {
+    font-size: 1.58rem;
+  }
+
+  .role-pill {
+    font-size: 0.9rem;
+    padding: 8px 14px;
+  }
+}
+
+/* Smartphones médios */
+@media (max-width: 375px) {
+  .profile-card {
+    padding: 20px 16px;
+    border-radius: 16px;
+  }
+
+  .avatar {
+    width: 140px;
+    height: 140px;
+    margin: 4px auto 12px auto;
+    border-radius: 16px;
+  }
+
+  .name {
+    font-size: 1.5rem;
+    letter-spacing: 0.01em;
+  }
+
+  .role-pill {
+    padding: 8px 12px;
+    font-size: 0.85rem;
+    border-radius: 10px;
+  }
+
+  .divider {
+    margin: 16px 0;
+  }
+
+  .contact {
+    gap: 10px;
+  }
+
+  .contact li {
+    grid-template-columns: 52px 1fr;
+    gap: 12px;
+  }
+
+  .icon {
+    width: 42px;
+    height: 42px;
+    border-radius: 14px;
+  }
+
+  .icon svg {
+    width: 13px;
+    height: 13px;
+  }
+
+  .contact strong {
+    font-size: 0.65rem;
+  }
+
+  .contact small {
+    font-size: 0.82rem;
+  }
+
+  .social {
+    gap: 7px;
+    margin-top: 10px;
+  }
+
+  .social-btn {
+    width: 24px;
+    height: 24px;
+  }
+
+  .toggle-contacts {
+    width: 56px;
+    height: 46px;
+  }
+
+  .toggle-contacts.toggle-contacts--closed {
+    width: 56px;
+    height: 46px;
+  }
+
+  .toggle-triangle {
+    width: 13px !important;
+    height: 13px !important;
+  }
+}
+
+/* Smartphones pequenos */
+@media (max-width: 320px) {
+  .profile-card {
+    padding: 18px 14px;
+  }
+
+  .avatar {
+    width: 130px;
+    height: 130px;
+    margin: 4px auto 10px auto;
+  }
+
+  .name {
+    font-size: 1.4rem;
+  }
+
+  .role-pill {
+    padding: 7px 10px;
+    font-size: 0.8rem;
+  }
+
+  .contact {
+    gap: 9px;
+  }
+
+  .contact li {
+    grid-template-columns: 48px 1fr;
+    gap: 10px;
+  }
+
+  .icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 12px;
+  }
+
+  .icon svg {
+    width: 12px;
+    height: 12px;
+  }
+
+  .contact strong {
+    font-size: 0.62rem;
+  }
+
+  .contact small {
+    font-size: 0.78rem;
+  }
+
+  .social {
+    gap: 6px;
+    margin-top: 8px;
+  }
+
+  .social-btn {
+    width: 22px;
+    height: 22px;
+  }
+
+  .toggle-contacts {
+    width: 52px;
+    height: 42px;
+  }
+
+  .toggle-contacts.toggle-contacts--closed {
+    width: 52px;
+    height: 42px;
+  }
+
+  .toggle-triangle {
+    width: 12px !important;
+    height: 12px !important;
   }
 }
 

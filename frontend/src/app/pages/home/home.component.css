@@ -5,6 +5,9 @@
   box-sizing: border-box;
   min-height: 100vh; /* altura mínima de viewport para permitir rolagem */
   padding: 36px; 
+  width: 100%;
+  max-width: 100vw;
+  overflow-x: hidden;
  /* Define variável de sombra ambiente usada nas caixas */
   --shadow-1: 0 12px 40px rgba(0,0,0,.45);
   background:
@@ -18,6 +21,7 @@
   top: -20px;
   margin: 0 auto; 
   transform: none;
+  width: 100%;
 }
 
 .page-grid { 
@@ -29,6 +33,7 @@
   align-items: start;
   min-height: 100%;
   justify-content: center; /* centralizar as duas colunas dentro do container */
+  width: 100%;
 }
 
 .content-wrapper {
@@ -68,6 +73,8 @@
   display: flex; /* habilitar manipulação de max-width filho */
   justify-content: center; /* centralizar o card dentro da coluna principal */
   flex: 1;
+  max-width: 100%;
+  overflow-x: hidden;
 }
 
 /* (rolagem tratada no .page-wrapper acima) */
@@ -125,6 +132,10 @@
   font-weight: 800;
 }
 
+.tabs-menu .tab:hover{
+  color: #8b65d0; 
+}
+
 /* divisor interno sutil para mesclar com a borda do card */
 /* gradiente interno decorativo removido para ficar nivelado com o card */
 
@@ -146,6 +157,8 @@
   padding: 22px 22px 22px 22px;
   box-shadow: 0 12px 40px rgba(0,0,0,.45);
   color: #d6d6df;
+  max-width: 100%;
+  word-wrap: break-word;
 }
 
 /* Limitar a largura do card principal "Sobre Mim" para não esticar demais */
@@ -153,6 +166,7 @@
   width: 100%;
   max-width: 840px; /* largura aumentada para melhor exibição de conteúdo */
   margin: 0 auto; /* centralizar o card horizontalmente dentro de sua coluna de grid */
+  box-sizing: border-box;
 }
 
 /* Quando a aba de currículo está ativa ocultar conteúdo não-aba e mostrar host de currículo */
@@ -206,6 +220,9 @@
   font-size: 1.2rem;
   text-align: justify;
   line-height: 30px;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  hyphens: auto;
 }
 
 .title::after { 
@@ -553,57 +570,206 @@
 
 @media (max-width: 999px) { 
   .page-wrapper {
-    padding: 24px 16px;
+    padding: 16px 12px;
   }
 
   .page-grid { 
     grid-template-columns: 1fr;
-    justify-items: center;
-    min-height: auto; /* Remove a altura mínima para evitar scroll */
+    justify-items: stretch;
+    min-height: auto;
     align-items: start;
+    gap: 16px;
   }
   
   /* Centralizar o profile card e colocá-lo no topo */
   .page-grid > app-profile-card {
     width: 100%;
-    max-width: 420px;
-    display: flex;
-    justify-content: center;
-    order: -1; /* Coloca o profile-card em primeiro lugar */
+    max-width: 100%;
+    display: block;
+    order: -1;
+    padding: 0;
   }
   
   .content {
     width: 100%;
     max-width: 100%;
-    order: 0; /* Garante que o conteúdo venha depois */
-  }
-}
-
-@media (max-width: 980px) {
-  .page-wrapper {
-    padding: 20px 12px;
+    order: 0;
   }
 
   .content > .card {
-    max-width: 550px;
-    padding: 48px 18px 20px 18px;
+    max-width: 100%;
+    width: 100%;
+    margin: 0;
+  }
+}
+
+@media (max-width: 768px) {
+  .page-wrapper {
+    padding: 14px 10px;
+  }
+
+  .page-grid {
+    gap: 14px;
+  }
+
+  .content > .card {
+    max-width: 100%;
+    padding: 42px 14px 18px 14px;
+  }
+
+  .title {
+    font-size: 1.65rem;
+  }
+
+  .p-title {
+    font-size: 1rem;
   }
 }
 
 @media (max-width: 640px) { 
+  .page-wrapper {
+    padding: 12px 10px;
+  }
+
+  .page-grid {
+    gap: 12px;
+  }
+
   .content > .card {
-    max-width: 480px;
+    max-width: 100%;
+    padding: 40px 14px 16px 14px;
+    border-radius: 16px;
   }
   
-  .grid-feats { grid-template-columns: 1fr; }
-  .project { flex: 0 0 100%; }
-  .icons-container a {
-    width: 80px;
-    height: 80px;
+  .title {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
   }
+
+  .p-title {
+    font-size: 0.95rem;
+    line-height: 24px;
+  }
+
+  .grid-feats { 
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  .project { 
+    flex: 0 0 100%;
+  }
+
+  .icons-container a {
+    width: 70px;
+    height: 70px;
+  }
+
   .icons-container img {
-    width: 50px;
-    height: 50px;
+    width: 45px;
+    height: 45px;
+  }
+}
+
+/* Smartphones grandes */
+@media (max-width: 480px) {
+  .page-wrapper {
+    padding: 12px 10px;
+  }
+
+  .page-grid {
+    gap: 10px;
+  }
+
+  .content > .card {
+    padding: 36px 12px 14px 12px;
+  }
+
+  .title {
+    font-size: 1.4rem;
+    margin-top: 16px;
+  }
+
+  .p-title {
+    font-size: 0.9rem;
+    line-height: 22px;
+  }
+
+  .subtitle-1,
+  .subtitle-2,
+  .subtitle-3 {
+    font-size: 1rem;
+    margin-top: 20px;
+  }
+
+  .feat {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 10px;
+    padding: 14px;
+  }
+
+  .feat h3 {
+    font-size: 0.95rem;
+  }
+
+  .feat p {
+    font-size: 0.85rem;
+  }
+
+  .icons-container a {
+    width: 65px;
+    height: 65px;
+  }
+
+  .icons-container img {
+    width: 40px;
+    height: 40px;
+  }
+
+  .projects {
+    gap: 12px;
+  }
+
+  .project {
+    padding: 12px;
+  }
+}
+
+/* iPhone 14 Pro Max e similares (430px) */
+@media (max-width: 430px) and (min-width: 376px) {
+  .page-wrapper {
+    padding: 12px 12px;
+  }
+
+  .page-grid {
+    gap: 11px;
+  }
+
+  .content > .card {
+    padding: 38px 14px 16px 14px;
+  }
+
+  .title {
+    font-size: 1.45rem;
+    margin-top: 18px;
+  }
+
+  .p-title {
+    font-size: 0.92rem;
+    line-height: 23px;
+  }
+
+  .subtitle-1,
+  .subtitle-2,
+  .subtitle-3 {
+    font-size: 1.05rem;
+    margin-top: 22px;
+  }
+
+  .feat {
+    padding: 13px;
   }
 }
 
@@ -656,19 +822,17 @@
 /* Mobile: mostrar alternador compacto e menu empilhado até 1086px */
 @media (max-width: 1116px) {
   .tabs {
-    right: -1px;
-    top: -1px;
+    right: 0px;
+    top: 0px;
     padding: 6px 8px;
     display: flex;
     gap: 8px;
-    /* empilhar alternador acima do menu no mobile */
     flex-direction: column;
     align-items: flex-start;
   }
 
   .tabs-toggle {
     display: inline-flex !important;
-    /* combinar visual fechado de toggle-contacts: pílula compacta */
     background: transparent;
     color: #ffffff;
     width: 46px;
@@ -738,6 +902,10 @@
     background: transparent;
   }
 
+  .tabs .tabs-menu:hover{
+    color: #8b65d0; 
+  }
+
   /* quando fechado em telas pequenas, rotacionar o triângulo para apontar à esquerda */
   /* quando fechado, rotacionar o container do ícone / svgs não-triângulo para apontar à esquerda; deixar o triângulo SVG real intocado */
   .tabs:not(.open) .tabs-toggle-icon,
@@ -778,6 +946,10 @@
   /* Garantir que o triângulo SVG atual mantenha a orientação do polígono renderizado no template */
   .tabs-toggle-triangle {
     transform: none;
+  }
+
+  .tabs.open{
+      background-color: #2a292fed;
   }
 }
 
