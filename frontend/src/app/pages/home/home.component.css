@@ -14,7 +14,7 @@
 }
 
 .container { 
-  max-width: 1200px; /* largura do card reduzida para mostrar fundo nas laterais */
+  max-width: 1080px; /* largura do card reduzida para mostrar fundo nas laterais */
   margin: 0 auto; 
   transform: none;
 }
@@ -23,7 +23,7 @@
   position: relative; 
   z-index: 3; 
   display: grid; 
-  grid-template-columns: 320px minmax(0,840px); /* barra lateral fixa + coluna principal ajustada */
+  grid-template-columns: 300px minmax(0,740px); /* barra lateral fixa + coluna principal ajustada */
   gap: 32px; 
   align-items: start;
   min-height: 100%;
@@ -39,7 +39,7 @@
 
 /* Garantir que o container do grid não expanda além da largura pretendida */
 .page-grid.container {
-  max-width: 1200px; /* aplicar largura do container no elemento grid (permitir 320 + 840px) */
+  max-width: 1080px; /* aplicar largura do container no elemento grid (permitir 300 + 740px) */
   margin: 0 auto;
 }
 /* Estilos de perfil movidos para src/app/components/profile-card/profile-card.component.css */
@@ -150,7 +150,7 @@
 /* Limitar a largura do card principal "Sobre Mim" para não esticar demais */
 .content > .card {
   width: 100%;
-  max-width: 960px; /* largura aumentada para melhor exibição de conteúdo */
+  max-width: 840px; /* largura aumentada para melhor exibição de conteúdo */
   margin: 0 auto; /* centralizar o card horizontalmente dentro de sua coluna de grid */
 }
 
