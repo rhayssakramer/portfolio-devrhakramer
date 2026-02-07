@@ -3,7 +3,7 @@
   position: relative; 
   transform: none;
   box-sizing: border-box;
-  min-height: auto; /* altura de viewport fixa para rolagem interna confiável */
+  min-height: 100vh; /* altura mínima de viewport para permitir rolagem */
   padding: 36px; 
  /* Define variável de sombra ambiente usada nas caixas */
   --shadow-1: 0 12px 40px rgba(0,0,0,.45);
@@ -11,9 +11,6 @@
     linear-gradient(180deg,#0b0f23 0%,#070a18 40%,#04060d 70%,#000 100%),
     radial-gradient(circle at 15% 35%, rgba(255,255,255,.05) 0%, transparent 50%),
     radial-gradient(circle at 85% 75%, rgba(255,255,255,.04) 0%, transparent 55%);
-  overflow-y: auto;
-  scrollbar-width: none; /* ocultar barra de rolagem no Firefox */
-  -ms-overflow-style: none; /* ocultar barra de rolagem no IE 10+ */
 }
 
 .container { 
@@ -81,12 +78,13 @@
   display: flex;
   gap: 14px;
   align-items: center;
-  background: #171a26;
+  background: transparent;
+  background-color: #ffffff08;
   padding: 6px 12px;
-  border: 1px solid rgba(255,255,255,0.03);
-  border-top-right-radius: 15px;
+  border: 1px solid #ffffff08;
+  border-top-right-radius: 17px !important;
   border-bottom-left-radius: 15px;
-    border-bottom-left-radius: 10px;
+  border-bottom-left-radius: 10px;
   z-index: 20;
   width: auto;
   justify-content: flex-end;

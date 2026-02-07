@@ -26,6 +26,7 @@
 
 .toggle-contacts {
   position: absolute;
+  background-color: #ffffff08;
   top: 0; /* posicionado acima do card */
   right: 0;
   width: 46px;
@@ -68,6 +69,7 @@
 
 .toggle-contacts.toggle-contacts--closed {
   background: transparent;
+  background-color: #ffffff08;
   color: #ffffff;
   border: 1px solid rgba(255,255,255,0.03);
   border-top-right-radius: 17px;
@@ -82,13 +84,14 @@
   top: 0 !important;
   right: 0 !important;
   background: transparent;
+  background-color: #ffffff08;
   color: #ffffff;
   border: 1px solid rgba(255,255,255,0.03);
   box-shadow: 0 12px 30px rgba(0,0,0,0.6);
   border-top-right-radius: 17px !important;
-  border-bottom-left-radius: 10px;
-  border-bottom-right-radius: 0px !important;
-  border-top-left-radius: 0px !important;
+  border-bottom-left-radius: 0 !important;
+  border-bottom-right-radius: 0 !important;
+  border-top-left-radius: 0 !important;
   box-shadow: none;
 }
 
@@ -254,19 +257,19 @@
   
   .toggle-contacts {
     position: absolute;
-    top: 0;
-    right: 0;
+    top: 0px;
+    right: 0px;
     display: grid !important;
   }
   
   .toggle-contacts.toggle-contacts--closed {
-    top: 0;
+    top: 24px;
     right: 0;
   }
   
   .toggle-contacts.toggle-contacts--open {
-    top: 0;
-    right: 0;
+    top: 24px !important;
+    right: 0 !important;
   }
 }
 
@@ -400,7 +403,6 @@
   gap: 6px; 
 }
 
-.profile-card.open ~ .toggle-contacts,
 .toggle-contacts.toggle-contacts--open {
   top: -10px;
   right: 20px;
