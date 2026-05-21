@@ -3,7 +3,7 @@
   display: block;
   align-self: start;
   position: sticky;
-  top: 0;
+  top: 20px;
 }
 
 .profile {
@@ -12,8 +12,7 @@
 }
 
 .profile-card {
-  position: sticky;
-  top: 0;
+  position: relative;
   width: 310px;
   box-sizing: border-box;
   background: rgba(20, 22, 35, .85);
@@ -24,7 +23,6 @@
   overflow: hidden;
   word-wrap: break-word;
   max-width: 100%;
-  margin-top: -18px;
 }
 
 .toggle-contacts {
