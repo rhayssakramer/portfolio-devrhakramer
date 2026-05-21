@@ -25,6 +25,10 @@
     padding: 12px 0; 
 }
 
+.profile-spacer {
+  height: 200px;
+}
+
 .loading, .error, .no-articles {
   text-align: center;
   padding: 40px 0;
