@@ -13,7 +13,7 @@
 
 .profile-card {
   position: sticky;
-  top: 40px;
+  top: 0;
   width: 310px;
   box-sizing: border-box;
   background: rgba(20, 22, 35, .85);
@@ -24,7 +24,7 @@
   overflow: hidden;
   word-wrap: break-word;
   max-width: 100%;
-  margin-top: 30px !important;
+  margin-top: -18px;
 }
 
 .toggle-contacts {
