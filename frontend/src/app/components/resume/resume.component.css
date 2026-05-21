@@ -166,6 +166,7 @@
   gap: 15px;
   margin-bottom: 5px;
   padding: 10px;
+  transition: background-color 0.3s ease;
 }
 
 .card-header-left {
@@ -235,10 +236,36 @@
 .card-content {
   position: relative;
   overflow: hidden;
+  max-height: 600px;
+  transition: max-height 0.4s ease;
 }
 
 .card.expanded .card-content {
-  overflow: visible;
+  overflow: auto;
+  max-height: 1200px;
+}
+
+.card:not(.expanded) .card-content {
+  max-height: 350px;
+}
+
+/* Scroll customizado para o card expandido */
+.card.expanded .card-content::-webkit-scrollbar {
+  width: 8px;
+}
+
+.card.expanded .card-content::-webkit-scrollbar-track {
+  background: rgba(139, 101, 208, 0.1);
+  border-radius: 4px;
+}
+
+.card.expanded .card-content::-webkit-scrollbar-thumb {
+  background: rgba(139, 101, 208, 0.5);
+  border-radius: 4px;
+}
+
+.card.expanded .card-content::-webkit-scrollbar-thumb:hover {
+  background: rgba(139, 101, 208, 0.8);
 }
 
 /* Gradiente de Fade quando colapsado */
@@ -268,8 +295,18 @@
   display: none;
 }
 
+/* Ocultar todos os skills exceto os 3 primeiros quando card não estiver expandido */
+.card.skills-card:not(.expanded) .skill-item:nth-child(n+4) {
+  display: none;
+}
+
 /* Mostrar todos os itens quando expandido */
 .card.expanded .timeline-item {
+  display: block;
+}
+
+/* Mostrar todos os skills quando expandido */
+.card.expanded .skill-item {
   display: block;
 }
 
@@ -285,6 +322,17 @@
   color: #fff;
   margin: 0 0 8px 0;
   font-weight: 600;
+}
+
+.credential-link {
+  color: #fff;
+  text-decoration: none;
+  transition: opacity 0.3s ease;
+  display: inline-block;
+}
+
+.credential-link:hover {
+  opacity: 0.8;
 }
 
 .timeline-item .institution {

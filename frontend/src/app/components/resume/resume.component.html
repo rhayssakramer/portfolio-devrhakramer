@@ -130,7 +130,16 @@
           <div class="card-content">
             <div class="timeline-item" *ngFor="let item of getCardData(card.id)">
               <div class="year">{{ item.year }}</div>
-              <h3>{{ item.title }}</h3>
+              <h3>
+                <a *ngIf="item.credential" 
+                   [href]="item.credential" 
+                   target="_blank" 
+                   rel="noopener noreferrer"
+                   class="credential-link">
+                  {{ item.title }}
+                </a>
+                <span *ngIf="!item.credential">{{ item.title }}</span>
+              </h3>
               <p class="institution">{{ item.institution }}</p>
             </div>
           </div>
@@ -139,7 +148,7 @@
     </div>
 
     <!-- Habilidades (fora do grid para ocupar toda a largura) -->
-    <div class="card skills-card slide-in-right" style="animation-delay: 0.2s;">
+    <div class="card skills-card slide-in-right" [ngClass]="{'expanded': isExpanded('skills')}" style="animation-delay: 0.2s;">
       <div class="card-header">
         <div class="card-header-left">
           <span class="icon">
@@ -150,6 +159,11 @@
           </span>
           <h2>{{ skillsTitle() }}</h2>
         </div>
+        <button type="button" class="expand-btn" [ngClass]="{'expanded': isExpanded('skills')}" (click)="toggleCard('skills')" aria-label="Expandir/Recolher habilidades">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="6 9 12 15 18 9"></polyline>
+          </svg>
+        </button>
       </div>
       <div class="card-content">
             <div class="skill-item" *ngFor="let skill of skillsData">
